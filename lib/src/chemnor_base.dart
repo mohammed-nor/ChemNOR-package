@@ -3,14 +3,33 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:intl/intl.dart';
 
+/// ChemNOR class is responsible for finding relevant chemical compounds
+/// based on an application description.
+///
+/// It uses Google Gemini AI to suggest relevant SMILES (Simplified Molecular
+/// Input Line Entry System) patterns and queries the PubChem database
+/// to find compounds matching those patterns.
 class ChemNOR {
+  /// API key for Google Generative AI.
   final String genAiApiKey;
+
+  /// Base URL for PubChem API.
   final String chempubBaseUrl = 'https://pubchem.ncbi.nlm.nih.gov/rest/pug';
+
+  /// Maximum number of results per SMILES pattern.
   final int maxResultsPerSmiles = 5;
 
+  /// Constructor for ChemNOR, requires an API key for Google Generative AI.
   ChemNOR({required this.genAiApiKey});
 
-  Future<String> findCompounds(String applicationDescription) async {
+  /// Finds relevant chemical compounds for a given application description.
+  ///
+  /// - Uses AI to generate SMILES patterns.
+  /// - Searches PubChem for matching compounds.
+  /// - Retrieves properties of the top compounds found.
+  ///
+  /// Returns a formatted string containing search results.
+  Future<String> findListOfCompounds(String applicationDescription) async {
     try {
       // Step 1: Get relevant SMILES patterns from AI
       final smilesList = await _getRelevantSmiles(applicationDescription);
@@ -38,6 +57,10 @@ class ChemNOR {
     }
   }
 
+  /// Uses Google Gemini AI to suggest relevant SMILES patterns
+  /// based on the given application description.
+  ///
+  /// Returns a list of valid SMILES strings.
   Future<List<String>> _getRelevantSmiles(String description) async {
     final prompt = '''
     Given the application: "$description", suggest 3-5 SMILES patterns representing 
@@ -57,16 +80,20 @@ class ChemNOR {
         RegExp(r'^[A-Za-z0-9@+\-\[\]\(\)\\/=#$.]+$', multiLine: true);
     final matches = smilesRegex.allMatches(response.text ?? '');
 
-    if (matches.isEmpty)
+    if (matches.isEmpty) {
       throw Exception('No valid SMILES found in AI response');
+    }
 
     return matches.map((m) => m.group(0)!).toList();
   }
 
+  /// Searches PubChem for compounds containing the given SMILES pattern.
+  ///
+  /// Returns a list of compound IDs (CIDs) matching the pattern.
   Future<List<int>> _getSubstructureCids(String smiles) async {
     final encodedSmiles = Uri.encodeComponent(smiles);
     final url = Uri.parse(
-        '$chempubBaseUrl/compound/substructure/smiles/$encodedSmiles/cids/JSON');
+        '$chempubBaseUrl/compound/fastidentity/SMILES/$encodedSmiles/cids/JSON');
 
     final response = await http.get(url);
     if (response.statusCode != 200) {
@@ -77,6 +104,9 @@ class ChemNOR {
     return (data['IdentifierList']['CID'] as List).cast<int>().toList();
   }
 
+  /// Fetches compound properties from PubChem using the given CID.
+  ///
+  /// Returns a map containing compound details like name, formula, weight, and SMILES.
   Future<Map<String, dynamic>> _getCompoundProperties(int cid) async {
     final url = Uri.parse('$chempubBaseUrl/compound/cid/$cid/JSON');
     final response = await http.get(url);
@@ -90,17 +120,41 @@ class ChemNOR {
 
     return {
       'cid': cid,
-      'name': _findProperty(properties, 'IUPAC Name') ?? 'Unnamed compound',
-      'formula': _findProperty(properties, 'Molecular Formula') ?? 'N/A',
-      'weight': _findProperty(properties, 'Molecular Weight') ?? 'N/A',
-      'smiles': _findProperty(properties, 'Canonical SMILES') ?? 'N/A',
+      'name': _findfvalPropertybylabel(properties, 'Allowed', 'IUPAC Name') ??
+          'Unnamed compound',
+      'formula':
+          _findProperty(properties, 'Molecular Formula') ?? 'Unnamed compound',
+      'weight': _findfvalPropertybylabelonly(properties, 'Molecular Weight') ??
+          'Unnamed compound',
+      'CSMILES': _findfvalPropertybylabel(properties, 'Absolute', 'SMILES') ??
+          'Unnamed compound',
+      'Hydrogen Bond Donor': _findivalPropertybylabel(
+              properties, 'Hydrogen Bond Donor', 'Count') ??
+          'Unnamed compound',
+      'Hydrogen Bond Acceptor': _findivalPropertybylabel(
+              properties, 'Hydrogen Bond Acceptor', 'Count') ??
+          'Unnamed compound',
+      'TPSA': _findfvalPropertybylabel(
+              properties, 'Polar Surface Area', 'Topological') ??
+          'Unnamed compound',
+      'Complexity':
+          _findfvalPropertybylabelonly(properties, 'Compound Complexity') ??
+              'Unnamed compound',
+      'charge	': _findProperty(properties, 'Charge') ?? 'N/A',
+      'Title': _findProperty(properties, 'Title') ?? 'N/A',
+      'XLogP': _findfvalPropertybylabel(properties, 'XLogP3', 'Log P') ??
+          'Unnamed compound',
     };
   }
 
-  String? _findProperty(List<dynamic> properties, String name) {
+  /// Extracts a specific property from the PubChem response.
+  ///
+  /// Returns the property value as a string if found, otherwise null.
+
+  String? _findProperty(List<dynamic> properties, String label) {
     try {
       final prop = properties.firstWhere(
-        (p) => p['urn']['label'] == name,
+        (p) => p['urn']['label'] == label,
         orElse: () => null,
       );
       return prop['value']['sval'] ?? prop['value']['fval'].toString();
@@ -109,12 +163,53 @@ class ChemNOR {
     }
   }
 
+  String? _findfvalPropertybylabel(
+      List<dynamic> properties, String name, String label) {
+    try {
+      final prop = properties.firstWhere(
+        (p) => p['urn']['name'] == name && p['urn']['label'] == label,
+        orElse: () => null,
+      );
+      return prop['value']['sval'] ?? prop['value']['fval'].toString();
+    } catch (e) {
+      return null;
+    }
+  }
+
+  String? _findivalPropertybylabel(
+      List<dynamic> properties, String name, String label) {
+    try {
+      final prop = properties.firstWhere(
+        (p) => p['urn']['name'] == name && p['urn']['label'] == label,
+        orElse: () => null,
+      );
+      return prop['value']['sval'] ?? prop['value']['ival'].toString();
+    } catch (e) {
+      return null;
+    }
+  }
+
+  String? _findfvalPropertybylabelonly(List<dynamic> properties, String label) {
+    try {
+      final prop = properties.firstWhere(
+        (p) => p['urn']['label'] == label,
+        orElse: () => null,
+      );
+      return prop['value']['sval'] ?? prop['value']['fval'].toString();
+    } catch (e) {
+      return null;
+    }
+  }
+
+  /// Formats the search results into a human-readable string.
+  ///
+  /// Includes details such as query SMILES patterns and compound properties.
   String _formatResults(
       List<Map<String, dynamic>> results, List<String> querySmiles) {
     final buffer = StringBuffer();
     final dateFormat = DateFormat('yyyy-MM-dd HH:mm:ss');
 
-    buffer.writeln('Smart Compound Search Results');
+    buffer.writeln('ChemNOR Compound Search Results');
     buffer.writeln('Generated at: ${dateFormat.format(DateTime.now())}');
     buffer.writeln('Query SMILES patterns: ${querySmiles.join(', ')}');
     buffer.writeln('====================================================\n');
@@ -128,8 +223,15 @@ class ChemNOR {
       buffer.writeln('CID: ${result['cid']}');
       buffer.writeln('Name: ${result['name']}');
       buffer.writeln('Molecular Formula: ${result['formula']}');
-      buffer.writeln('Molecular Weight: ${result['weight']}');
-      buffer.writeln('Canonical SMILES: ${result['smiles']}');
+      buffer.writeln('SMILES: ${result['CSMILES']}');
+      buffer.writeln('Hydrogen Bond Donor: ${result['Hydrogen Bond Donor']}');
+      buffer.writeln(
+          'Hydrogen Bond Acceptor: ${result['Hydrogen Bond Acceptor']}');
+      buffer.writeln('TPSA: ${result['TPSA']}');
+      buffer.writeln('Complexity: ${result['Complexity']}');
+      buffer.writeln('Charge: ${result['charge']}');
+      buffer.writeln('Title: ${result['Title']}');
+      buffer.writeln('XLogP: ${result['XLogP']}');
       buffer.writeln('--------------------------------------------');
     }
 

@@ -1,17 +1,21 @@
 # ChemNOR
 A Dart package that finds relevant chemical compounds using AI (Gemini) and PubChem.
-
+Note : A Google Cloud [apiKey] is required for all requests.
 ## Installation
-```yaml
+
+```
 dependencies:
-  smart_compound_finder: ^0.1.0
-  
+    chem_nor: ^0.1.5
+```
 
 ### usage
-import 'package:smart_compound_finder/smart_compound_finder.dart';
+
+```
+import 'package:chem_nor/chem_nor.dart';
 
 void main() async {
-  final finder = SmartCompoundFinder(genAiApiKey: 'your-api-key');
-  final results = await finder.findCompounds('drug formulation');
+  final finder = ChemNOR(genAiApiKey: 'your-api-key');
+  final results = await finder.findListOfCompounds('a carboxylic acid compound');
   print(results);
 }
+```

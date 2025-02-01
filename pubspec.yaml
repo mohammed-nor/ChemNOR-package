@@ -1,6 +1,6 @@
-name: ChemNOR
+name: chem_nor
 description: A Dart package to find relevant chemical compounds using AI and PubChem.
-version: 0.1.0
+version: 0.1.5
 repository: https://github.com/mohammed-nor/ChemNOR-package
 issue_tracker: https://github.com/mohammed-nor/ChemNOR-package/issues
 homepage: https://github.com/mohammed-nor/ChemNOR-package
@@ -8,9 +8,10 @@ environment:
   sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
-  google_generative_ai: 0.4.6
-  http: 1.1.0
-  intl: 0.19.0
+  google_generative_ai: ^0.4.6
+  http: ^1.1.0
+  intl:  ^0.19.0
+
 
 dev_dependencies:
   lints: 2.1.1

@@ -1,3 +1,3 @@
-## 1.0.0
+## 0.1.5
 
-- Initial version.
+- fixing bugs and adding features.
