@@ -32,12 +32,12 @@ class ChemNOR {
   Future<String> findListOfCompounds(String applicationDescription) async {
     try {
       // Step 1: Get relevant SMILES patterns from AI
-      final smilesList = await _getRelevantSmiles(applicationDescription);
+      final smilesList = await getRelevantSmiles(applicationDescription);
 
       // Step 2: Search PubChem for each SMILES pattern
       final Set<int> uniqueCids = {};
       for (String smiles in smilesList) {
-        final cids = await _getSubstructureCids(smiles);
+        final cids = await getSubstructureCids(smiles);
         uniqueCids.addAll(cids.take(maxResultsPerSmiles));
       }
 
@@ -45,7 +45,7 @@ class ChemNOR {
       final List<Map<String, dynamic>> results = [];
       for (int cid in uniqueCids.take(10)) {
         try {
-          results.add(await _getCompoundProperties(cid));
+          results.add(await getCompoundProperties(cid));
         } catch (e) {
           results.add({'error': 'CID $cid: ${e.toString()}'});
         }
@@ -61,7 +61,7 @@ class ChemNOR {
   /// based on the given application description.
   ///
   /// Returns a list of valid SMILES strings.
-  Future<List<String>> _getRelevantSmiles(String description) async {
+  Future<List<String>> getRelevantSmiles(String description) async {
     final prompt = '''
     Given the application: "$description", suggest 3-5 SMILES patterns representing 
     key functional groups or structural motifs relevant to this application.
@@ -90,7 +90,7 @@ class ChemNOR {
   /// Searches PubChem for compounds containing the given SMILES pattern.
   ///
   /// Returns a list of compound IDs (CIDs) matching the pattern.
-  Future<List<int>> _getSubstructureCids(String smiles) async {
+  Future<List<int>> getSubstructureCids(String smiles) async {
     final encodedSmiles = Uri.encodeComponent(smiles);
     final url = Uri.parse(
         '$chempubBaseUrl/compound/fastidentity/SMILES/$encodedSmiles/cids/JSON');
@@ -107,7 +107,7 @@ class ChemNOR {
   /// Fetches compound properties from PubChem using the given CID.
   ///
   /// Returns a map containing compound details like name, formula, weight, and SMILES.
-  Future<Map<String, dynamic>> _getCompoundProperties(int cid) async {
+  Future<Map<String, dynamic>> getCompoundProperties(int cid) async {
     final url = Uri.parse('$chempubBaseUrl/compound/cid/$cid/JSON');
     final response = await http.get(url);
 

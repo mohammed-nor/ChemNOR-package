@@ -8,14 +8,41 @@ dependencies:
     chem_nor: ^0.1.5
 ```
 
-### usage
+### usages
 
 ```
 import 'package:chem_nor/chem_nor.dart';
 
 void main() async {
   final finder = ChemNOR(genAiApiKey: 'your-api-key');
-  final results = await finder.findListOfCompounds('a carboxylic acid compound');
+  final results = await finder.findListOfCompounds('carboxylic acid compounds');
+  print(results);
+}
+```
+```
+import 'package:chem_nor/chem_nor.dart';
+
+void main() async {
+  final finder = ChemNOR(genAiApiKey: 'your-api-key');
+  final results = await finder.getSubstructureCids('CC');
+  print(results);
+}
+```
+```
+import 'package:chem_nor/chem_nor.dart';
+
+void main() async {
+  final finder = ChemNOR(genAiApiKey: 'your-api-key');
+  final results = await finder.getRelevantSmiles('carboxylic acid compounds');
+  print(results);
+}
+```
+```
+import 'package:chem_nor/chem_nor.dart';
+
+void main() async {
+  final finder = ChemNOR(genAiApiKey: 'your-api-key');
+  final results = await finder.getCompoundProperties('248');
   print(results);
 }
 ```
