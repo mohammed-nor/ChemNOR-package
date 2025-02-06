@@ -122,28 +122,26 @@ class ChemNOR {
       'cid': cid,
       'name': _findfvalPropertybylabel(properties, 'Allowed', 'IUPAC Name') ??
           'Unnamed compound',
-      'formula':
-          _findProperty(properties, 'Molecular Formula') ?? 'Unnamed compound',
-      'weight': _findfvalPropertybylabelonly(properties, 'Molecular Weight') ??
-          'Unnamed compound',
-      'CSMILES': _findfvalPropertybylabel(properties, 'Absolute', 'SMILES') ??
-          'Unnamed compound',
+      'formula': _findProperty(properties, 'Molecular Formula') ?? 'UN/A',
+      'weight':
+          _findfvalPropertybylabelonly(properties, 'Molecular Weight') ?? 'N/A',
+      'CSMILES':
+          _findfvalPropertybylabel(properties, 'Absolute', 'SMILES') ?? 'N/A',
       'Hydrogen Bond Donor': _findivalPropertybylabel(
               properties, 'Hydrogen Bond Donor', 'Count') ??
-          'Unnamed compound',
+          'N/A',
       'Hydrogen Bond Acceptor': _findivalPropertybylabel(
               properties, 'Hydrogen Bond Acceptor', 'Count') ??
-          'Unnamed compound',
+          'N/A',
       'TPSA': _findfvalPropertybylabel(
               properties, 'Polar Surface Area', 'Topological') ??
-          'Unnamed compound',
+          'N/A',
       'Complexity':
           _findfvalPropertybylabelonly(properties, 'Compound Complexity') ??
-              'Unnamed compound',
+              'N/A',
       'charge	': _findProperty(properties, 'Charge') ?? 'N/A',
       'Title': _findProperty(properties, 'Title') ?? 'N/A',
-      'XLogP': _findfvalPropertybylabel(properties, 'XLogP3', 'Log P') ??
-          'Unnamed compound',
+      'XLogP': _findfvalPropertybylabel(properties, 'XLogP3', 'Log P') ?? 'N/A',
     };
   }
 
