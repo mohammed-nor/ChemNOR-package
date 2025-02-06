@@ -27,7 +27,8 @@ void main() async {
   final results = await finder.findListOfCompounds('carboxylic acid compounds');
   print(results);
 }
-
+```
+```
 Output:
 ChemNOR Compound Search Results
 Generated at: 2025-02-06 13:55:01
