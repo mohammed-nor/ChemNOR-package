@@ -1,7 +1,7 @@
 # ChemNOR
 
 A Dart package that finds relevant chemical compounds using AI (Gemini) and PubChem.
-Note : A Google Cloud [https://ai.google.dev/gemini-api/docs/api-key](api-key) is required for all requests.
+Note : A Google Cloud [api-key](https://ai.google.dev/gemini-api/docs/api-key) is required for all requests.
 
 ## Installation
 
