@@ -76,8 +76,7 @@ class ChemNOR {
     final response = await model.generateContent([Content.text(prompt)]);
 
     // Extract SMILES using regex pattern
-    final RegExp smilesRegex =
-        RegExp(r'^[A-Za-z0-9@+\-\[\]\(\)\\/=#$.]+$', multiLine: true);
+    final RegExp smilesRegex = RegExp(r'^[A-Za-z0-9@+\-\[\]\(\)\\/=#$.]+$', multiLine: true);
     final matches = smilesRegex.allMatches(response.text ?? '');
 
     if (matches.isEmpty) {
@@ -92,8 +91,7 @@ class ChemNOR {
   /// Returns a list of compound IDs (CIDs) matching the pattern.
   Future<List<int>> getSubstructureCids(String smiles) async {
     final encodedSmiles = Uri.encodeComponent(smiles);
-    final url = Uri.parse(
-        '$chempubBaseUrl/compound/fastidentity/SMILES/$encodedSmiles/cids/JSON');
+    final url = Uri.parse('$chempubBaseUrl/compound/fastidentity/SMILES/$encodedSmiles/cids/JSON');
 
     final response = await http.get(url);
     if (response.statusCode != 200) {
@@ -117,31 +115,31 @@ class ChemNOR {
 
     final data = jsonDecode(response.body);
     final properties = data['PC_Compounds'][0]['props'];
+    final name = _findProperty(properties, 'IUPAC Name') ?? 'Unnamed compound';
+    final formula = _findProperty(properties, 'Molecular Formula') ?? 'N/A';
+    final weight = _findProperty(properties, 'Molecular Weight') ?? 'N/A';
+    final smiles = _findProperty(properties, 'Canonical SMILES') ?? 'N/A';
+    final hbDonor = _findivalPropertybylabel(properties, 'Hydrogen Bond Donor', 'Count') ?? 'N/A';
+    final hbAcceptor = _findivalPropertybylabel(properties, 'Hydrogen Bond Acceptor', 'Count') ?? 'N/A';
+    final tpsa = _findfvalPropertybylabel(properties, 'Polar Surface Area', 'Topological') ?? 'N/A';
+    final complexity = _findfvalPropertybylabelonly(properties, 'Compound Complexity') ?? 'N/A';
+    final charge = _findProperty(properties, 'Charge') ?? 'N/A';
+    final title = _findProperty(properties, 'Title') ?? 'N/A';
+    final xlogp = _findfvalPropertybylabel(properties, 'XLogP3', 'Log P') ?? 'N/A';
 
     return {
       'cid': cid,
-      'name': _findfvalPropertybylabel(properties, 'Allowed', 'IUPAC Name') ??
-          'Unnamed compound',
-      'formula': _findProperty(properties, 'Molecular Formula') ?? 'UN/A',
-      'weight':
-          _findfvalPropertybylabelonly(properties, 'Molecular Weight') ?? 'N/A',
-      'CSMILES':
-          _findfvalPropertybylabel(properties, 'Absolute', 'SMILES') ?? 'N/A',
-      'Hydrogen Bond Donor': _findivalPropertybylabel(
-              properties, 'Hydrogen Bond Donor', 'Count') ??
-          'N/A',
-      'Hydrogen Bond Acceptor': _findivalPropertybylabel(
-              properties, 'Hydrogen Bond Acceptor', 'Count') ??
-          'N/A',
-      'TPSA': _findfvalPropertybylabel(
-              properties, 'Polar Surface Area', 'Topological') ??
-          'N/A',
-      'Complexity':
-          _findfvalPropertybylabelonly(properties, 'Compound Complexity') ??
-              'N/A',
-      'charge	': _findProperty(properties, 'Charge') ?? 'N/A',
-      'Title': _findProperty(properties, 'Title') ?? 'N/A',
-      'XLogP': _findfvalPropertybylabel(properties, 'XLogP3', 'Log P') ?? 'N/A',
+      'name': name,
+      'formula': formula,
+      'weight': weight,
+      'SMILES': smiles,
+      'Hydrogen Bond Donor': hbDonor,
+      'Hydrogen Bond Acceptor': hbAcceptor,
+      'TPSA': tpsa,
+      'Complexity': complexity,
+      'charge	': charge,
+      'Title': title,
+      'XLogP': xlogp,
     };
   }
 
@@ -161,8 +159,7 @@ class ChemNOR {
     }
   }
 
-  String? _findfvalPropertybylabel(
-      List<dynamic> properties, String name, String label) {
+  String? _findfvalPropertybylabel(List<dynamic> properties, String name, String label) {
     try {
       final prop = properties.firstWhere(
         (p) => p['urn']['name'] == name && p['urn']['label'] == label,
@@ -174,8 +171,7 @@ class ChemNOR {
     }
   }
 
-  String? _findivalPropertybylabel(
-      List<dynamic> properties, String name, String label) {
+  String? _findivalPropertybylabel(List<dynamic> properties, String name, String label) {
     try {
       final prop = properties.firstWhere(
         (p) => p['urn']['name'] == name && p['urn']['label'] == label,
@@ -202,8 +198,7 @@ class ChemNOR {
   /// Formats the search results into a human-readable string.
   ///
   /// Includes details such as query SMILES patterns and compound properties.
-  String _formatResults(
-      List<Map<String, dynamic>> results, List<String> querySmiles) {
+  String _formatResults(List<Map<String, dynamic>> results, List<String> querySmiles) {
     final buffer = StringBuffer();
     final dateFormat = DateFormat('yyyy-MM-dd HH:mm:ss');
 
@@ -223,8 +218,7 @@ class ChemNOR {
       buffer.writeln('Molecular Formula: ${result['formula']}');
       buffer.writeln('SMILES: ${result['CSMILES']}');
       buffer.writeln('Hydrogen Bond Donor: ${result['Hydrogen Bond Donor']}');
-      buffer.writeln(
-          'Hydrogen Bond Acceptor: ${result['Hydrogen Bond Acceptor']}');
+      buffer.writeln('Hydrogen Bond Acceptor: ${result['Hydrogen Bond Acceptor']}');
       buffer.writeln('TPSA: ${result['TPSA']}');
       buffer.writeln('Complexity: ${result['Complexity']}');
       buffer.writeln('Charge: ${result['charge']}');

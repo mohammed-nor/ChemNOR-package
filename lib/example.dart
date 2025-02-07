@@ -1,4 +1,5 @@
-import 'package:chem_nor/chem_nor.dart';
+//import 'package:chem_nor/chem_nor.dart';
+import 'chem_nor.dart';
 
 void main() async {
   final finder = ChemNOR(genAiApiKey: 'your-api-key');
