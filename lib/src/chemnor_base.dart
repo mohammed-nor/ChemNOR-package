@@ -17,10 +17,34 @@ class ChemNOR {
   final String chempubBaseUrl = 'https://pubchem.ncbi.nlm.nih.gov/rest/pug';
 
   /// Maximum number of results per SMILES pattern.
-  final int maxResultsPerSmiles = 5;
+  final int maxResultsPerSmiles = 10;
 
   /// Constructor for ChemNOR, requires an API key for Google Generative AI.
   ChemNOR({required this.genAiApiKey});
+
+  // Object? get cid => cid;
+  //
+  // Object? get name => name;
+  //
+  // Object? get formula => formula;
+  //
+  // Object? get weight => weight;
+  //
+  // Object? get smiles => smiles;
+  //
+  // Object? get hbDonor => hbDonor;
+  //
+  // Object? get hbAcceptor => hbAcceptor;
+  //
+  // Object? get tpsa => tpsa;
+  //
+  // Object? get complexity => complexity;
+  //
+  // Object? get charge => charge;
+  //
+  // Object? get title => title;
+  //
+  // Object? get xlogp => xlogp;
 
   /// Finds relevant chemical compounds for a given application description.
   ///
@@ -57,13 +81,50 @@ class ChemNOR {
     }
   }
 
+  Future<String?> chemist(String userInput) async {
+    String _systemInstruction = '''
+    You are a professional organic chemist with extensive knowledge in:
+    - Organic synthesis
+    - Reaction mechanisms
+    - Spectroscopy interpretation (NMR, IR, Mass Spec)
+    - Retrosynthetic analysis
+    - Named reactions
+    - Stereochemistry
+    - Functional group transformations
+    
+    Your responses should be:
+    - Technical but clear
+    - Include relevant chemical structures (in text form)
+    - Use IUPAC nomenclature
+    - Provide reaction equations where applicable
+    - Highlight safety considerations
+    - Cite important references when appropriate
+    
+    If a question is not related to organic chemistry, respond with:
+    "I specialize in organic chemistry. Please ask questions related to that field."
+  ''';
+    try {
+      final model = GenerativeModel(
+        model: 'gemini-1.5-pro-latest',
+        apiKey: genAiApiKey,
+        systemInstruction: Content.system(_systemInstruction),
+      );
+
+      final response = await model.generateContent([Content.text(userInput)]);
+      return response.text;
+    } catch (e) {
+      return 'Error: ${e.toString()}';
+    }
+  }
+
   /// Uses Google Gemini AI to suggest relevant SMILES patterns
   /// based on the given application description.
   ///
   /// Returns a list of valid SMILES strings.
   Future<List<String>> getRelevantSmiles(String description) async {
-    final prompt = '''
-    Given the application: "$description", suggest 3-5 SMILES patterns representing 
+    final _prompt =
+        '''I'm a student that is very passion with chemistry and i hope that you will help me in the following task.
+    Given the application: "$description", suggest 3-10 SMILES patterns representing 
     key functional groups or structural motifs relevant to this application.
     Return ONLY valid SMILES strings, one per line, with no additional text.
     Example:
@@ -73,10 +134,11 @@ class ChemNOR {
     ''';
 
     final model = GenerativeModel(model: 'gemini-pro', apiKey: genAiApiKey);
-    final response = await model.generateContent([Content.text(prompt)]);
+    final response = await model.generateContent([Content.text(_prompt)]);
 
     // Extract SMILES using regex pattern
-    final RegExp smilesRegex = RegExp(r'^[A-Za-z0-9@+\-\[\]\(\)\\/=#$.]+$', multiLine: true);
+    final RegExp smilesRegex =
+        RegExp(r'^[A-Za-z0-9@+\-\[\]\(\)\\/=#$.]+$', multiLine: true);
     final matches = smilesRegex.allMatches(response.text ?? '');
 
     if (matches.isEmpty) {
@@ -91,7 +153,8 @@ class ChemNOR {
   /// Returns a list of compound IDs (CIDs) matching the pattern.
   Future<List<int>> getSubstructureCids(String smiles) async {
     final encodedSmiles = Uri.encodeComponent(smiles);
-    final url = Uri.parse('$chempubBaseUrl/compound/fastidentity/SMILES/$encodedSmiles/cids/JSON');
+    final url = Uri.parse(
+        '$chempubBaseUrl/compound/fastidentity/SMILES/$encodedSmiles/cids/JSON');
 
     final response = await http.get(url);
     if (response.statusCode != 200) {
@@ -113,33 +176,43 @@ class ChemNOR {
       throw Exception('Failed to fetch properties for CID $cid');
     }
 
-    final data = jsonDecode(response.body);
-    final properties = data['PC_Compounds'][0]['props'];
-    final name = _findProperty(properties, 'IUPAC Name') ?? 'Unnamed compound';
-    final formula = _findProperty(properties, 'Molecular Formula') ?? 'N/A';
-    final weight = _findProperty(properties, 'Molecular Weight') ?? 'N/A';
-    final smiles = _findProperty(properties, 'Canonical SMILES') ?? 'N/A';
-    final hbDonor = _findivalPropertybylabel(properties, 'Hydrogen Bond Donor', 'Count') ?? 'N/A';
-    final hbAcceptor = _findivalPropertybylabel(properties, 'Hydrogen Bond Acceptor', 'Count') ?? 'N/A';
-    final tpsa = _findfvalPropertybylabel(properties, 'Polar Surface Area', 'Topological') ?? 'N/A';
-    final complexity = _findfvalPropertybylabelonly(properties, 'Compound Complexity') ?? 'N/A';
-    final charge = _findProperty(properties, 'Charge') ?? 'N/A';
-    final title = _findProperty(properties, 'Title') ?? 'N/A';
-    final xlogp = _findfvalPropertybylabel(properties, 'XLogP3', 'Log P') ?? 'N/A';
+    final _data = jsonDecode(response.body);
+    final _properties = _data['PC_Compounds'][0]['props'];
+    final _name =
+        _findProperty(_properties, 'IUPAC Name') ?? 'Unnamed compound';
+    final _formula = _findProperty(_properties, 'Molecular Formula') ?? 'N/A';
+    final _weight = _findProperty(_properties, 'Molecular Weight') ?? 'N/A';
+    final _smiles = _findProperty(_properties, 'Canonical SMILES') ?? 'N/A';
+    final _hbDonor =
+        _findivalPropertybylabel(_properties, 'Hydrogen Bond Donor', 'Count') ??
+            'N/A';
+    final _hbAcceptor = _findivalPropertybylabel(
+            _properties, 'Hydrogen Bond Acceptor', 'Count') ??
+        'N/A';
+    final _tpsa = _findfvalPropertybylabel(
+            _properties, 'Polar Surface Area', 'Topological') ??
+        'N/A';
+    final _complexity =
+        _findfvalPropertybylabelonly(_properties, 'Compound Complexity') ??
+            'N/A';
+    final _charge = _findProperty(_properties, 'Charge') ?? 'N/A';
+    final _title = _findProperty(_properties, 'Title') ?? 'N/A';
+    final _xlogp =
+        _findfvalPropertybylabel(_properties, 'XLogP3', 'Log P') ?? 'N/A';
 
     return {
       'cid': cid,
-      'name': name,
-      'formula': formula,
-      'weight': weight,
-      'SMILES': smiles,
-      'Hydrogen Bond Donor': hbDonor,
-      'Hydrogen Bond Acceptor': hbAcceptor,
-      'TPSA': tpsa,
-      'Complexity': complexity,
-      'charge	': charge,
-      'Title': title,
-      'XLogP': xlogp,
+      'name': _name,
+      'formula': _formula,
+      'weight': _weight,
+      'SMILES': _smiles,
+      'Hydrogen Bond Donor': _hbDonor,
+      'Hydrogen Bond Acceptor': _hbAcceptor,
+      'TPSA': _tpsa,
+      'Complexity': _complexity,
+      'charge	': _charge,
+      'Title': _title,
+      'XLogP': _xlogp,
     };
   }
 
@@ -159,7 +232,8 @@ class ChemNOR {
     }
   }
 
-  String? _findfvalPropertybylabel(List<dynamic> properties, String name, String label) {
+  String? _findfvalPropertybylabel(
+      List<dynamic> properties, String name, String label) {
     try {
       final prop = properties.firstWhere(
         (p) => p['urn']['name'] == name && p['urn']['label'] == label,
@@ -171,7 +245,8 @@ class ChemNOR {
     }
   }
 
-  String? _findivalPropertybylabel(List<dynamic> properties, String name, String label) {
+  String? _findivalPropertybylabel(
+      List<dynamic> properties, String name, String label) {
     try {
       final prop = properties.firstWhere(
         (p) => p['urn']['name'] == name && p['urn']['label'] == label,
@@ -198,7 +273,8 @@ class ChemNOR {
   /// Formats the search results into a human-readable string.
   ///
   /// Includes details such as query SMILES patterns and compound properties.
-  String _formatResults(List<Map<String, dynamic>> results, List<String> querySmiles) {
+  String _formatResults(
+      List<Map<String, dynamic>> results, List<String> querySmiles) {
     final buffer = StringBuffer();
     final dateFormat = DateFormat('yyyy-MM-dd HH:mm:ss');
 
@@ -218,7 +294,8 @@ class ChemNOR {
       buffer.writeln('Molecular Formula: ${result['formula']}');
       buffer.writeln('SMILES: ${result['CSMILES']}');
       buffer.writeln('Hydrogen Bond Donor: ${result['Hydrogen Bond Donor']}');
-      buffer.writeln('Hydrogen Bond Acceptor: ${result['Hydrogen Bond Acceptor']}');
+      buffer.writeln(
+          'Hydrogen Bond Acceptor: ${result['Hydrogen Bond Acceptor']}');
       buffer.writeln('TPSA: ${result['TPSA']}');
       buffer.writeln('Complexity: ${result['Complexity']}');
       buffer.writeln('Charge: ${result['charge']}');

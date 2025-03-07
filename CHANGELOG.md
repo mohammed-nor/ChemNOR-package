@@ -1,3 +1,3 @@
-## 0.1.7
+## 0.2.2
 
-- fixing bugs and adding features.
+- fixing minor bugs .
