@@ -2,7 +2,8 @@ import 'package:chem_nor/chem_nor.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  final finder = ChemNOR(genAiApiKey: 'APIkey');
+  final finder =
+      ChemNOR(genAiApiKey: 'AIzaSyCR80a7Gb4kSGd5rX9ingZhJKSw9b9hQgQ');
   dynamic properties = await finder.getCompoundProperties(248);
   print(properties);
   //print(finder.charge);

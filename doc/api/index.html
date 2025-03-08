@@ -4,7 +4,6 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="generator" content="made with love by dartdoc 7.0.0-dev">
   <meta name="description" content="chem_nor API docs, for the Dart programming language.">
   <title>chem_nor - Dart API docs</title>
 
@@ -12,20 +11,16 @@
   
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
   
   <link rel="stylesheet" href="static-assets/github.css?v1">
   <link rel="stylesheet" href="static-assets/styles.css?v1">
   <link rel="icon" href="static-assets/favicon.png?v1">
-
   
 </head>
 
-
 <body data-base-href="" data-using-base-href="false" class="light-theme">
-
 <div id="overlay-under-drawer"></div>
-
 <header id="title">
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
@@ -35,29 +30,28 @@
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
-  <div class="toggle" id="theme-button">
+  <div class="toggle" id="theme-button" title="Toggle brightness">
     <label for="theme">
       <input type="checkbox" id="theme" value="light-theme">
       <span id="dark-theme-button" class="material-symbols-outlined">
-        brightness_4
+        dark_mode
       </span>
       <span id="light-theme-button" class="material-symbols-outlined">
-        brightness_5
+        light_mode
       </span>
     </label>
   </div>
 </header>
 <main>
-
   <div id="dartdoc-main-content" class="main-content">
       
 <section class="desc markdown">
-  <h1 id="chemnor">ChemNOR</h1>
-<p>A Dart package that finds relevant chemical compounds using AI (Gemini) and PubChem.
-Note : A Google Cloud <code>apiKey</code> is required for all requests.</p>
+  <h1 id="chemnor---_chemical-heuristic-evaluation-of-molecules-networking-for-optimized-reactivity_">ChemNOR - <em>Chemical Heuristic Evaluation of Molecules Networking for Optimized Reactivity</em></h1>
+<p>A Dart package that finds relevant chemical compounds using AI (Gemini) and PubChem. Also you can use it to chat with your Ai chemist!
+Note : A Google Cloud <a href="https://ai.google.dev/gemini-api/docs/api-key">API-key</a> is required for all requests.</p>
 <h2 id="installation">Installation</h2>
 <pre class="language-dart"><code>dependencies:
-    chem_nor: ^0.1.7
+    chem_nor: ^0.2.2
 </code></pre>
 <h2 id="usages">usages</h2>
 <p>Finds relevant chemical compounds for a given application description.</p>
@@ -175,8 +169,50 @@ void main() async {
   print(results);
 }
 </code></pre>
-<pre class="language-dart"><code>Output:
-{cid: 248, name: carboxymethyl(trimethyl)ammonium, formula: C5H12NO2+, weight: 118.15, CSMILES: C[N+](C)(C)CC(=O)O, Hydrogen Bond Donor: 1, Hydrogen Bond Acceptor: 2, TPSA: 37.3, Complexity: 93.1, charge	: N/A, Title: N/A, XLogP: N/A}
+<pre class="language-dart"><code>Output: {cid: 248, name: carboxymethyl(trimethyl)ammonium, formula: C5H12NO2+, weight: 118.15, CSMILES: C[N+](C)(C)CC(=O)O, Hydrogen Bond Donor: 1, Hydrogen Bond Acceptor: 2, TPSA: 37.3, Complexity: 93.1, charge	: N/A, Title: N/A, XLogP: N/A}
+</code></pre>
+<p>Giving the ability to chat with Ai using text as an input.
+return a text if only the question is related to chemistry that is containing compound description.</p>
+<pre class="language-dart"><code>import 'package:chem_nor/chem_nor.dart';
+
+void main() async {
+  final finder = ChemNOR(genAiApiKey: 'your-api-key');
+  dynamic chat = await finder.Chemist('hello , please educate me about carboxymethyl(trimethyl)ammonium ');
+  print(chat);
+}
+</code></pre>
+<pre class="language-dart"><code>Carboxymethyl(trimethyl)ammonium, more accurately referred to as (carboxymethyl)trimethylammonium, is a quaternary ammonium cation with the formula  [(CH&lt;sub&gt;3&lt;/sub&gt;)&lt;sub&gt;3&lt;/sub&gt;N&lt;sup&gt;+&lt;/sup&gt;CH&lt;sub&gt;2&lt;/sub&gt;COOH].  It's often found as an inner salt or zwitterion due to the presence of both positive and negative charges within the molecule.  The negative charge resides on the carboxylate group (-COO&lt;sup&gt;-&lt;/sup&gt;) and the positive charge on the quaternary nitrogen.  This internal salt formation is depicted as:
+
+
+(CH3)3N+CH2COO-
+
+**Key properties and characteristics:**
+
+* **High polarity and water solubility:** Due to the zwitterionic nature, (carboxymethyl)trimethylammonium compounds are highly polar and readily dissolve in water.
+* **Crystalline solids:**  They typically exist as crystalline solids in their pure form.
+* **Amphoteric behavior:**  While existing predominantly as a zwitterion near neutral pH, (carboxymethyl)trimethylammonium can act as both an acid (donating a proton from the carboxylic acid group) and a base (accepting a proton, though less readily, at the carboxylate group).  This depends on the pH of the solution.
+* **Derivatives and applications:** This moiety is often encountered as part of larger molecules, notably in certain polymers and as a functional group in various applications.  For example, it's found in some betaines, which are types of amphoteric surfactants.  A common example is *cocamidopropyl betaine*, used in personal care products.
+
+**Synthesis:**
+
+(Carboxymethyl)trimethylammonium can be synthesized through the reaction of trimethylamine with chloroacetic acid:
+
+
+N(CH3)3 + ClCH2COOH  ---&gt; (CH3)3N+CH2COO- + HCl
+
+
+*Safety Considerations:*
+
+* Trimethylamine is a flammable gas with a strong odor. Handle in a well-ventilated area and use appropriate personal protective equipment (PPE).
+* Chloroacetic acid is corrosive and can cause severe burns.  Handle with extreme caution using appropriate PPE.  The reaction itself generates HCl, which is also corrosive.  The reaction should be carried out in a fume hood.
+
+
+**Spectroscopic characteristics:**
+
+* **NMR:**  The &lt;sup&gt;1&lt;/sup&gt;H NMR spectrum would show distinct signals for the methyl groups attached to nitrogen and the methylene group adjacent to the carboxylate. The chemical shifts would be influenced by the solvent and pH.
+* **IR:** The IR spectrum would show characteristic absorptions for the carboxylate group (strong band around 1600 cm&lt;sup&gt;-1&lt;/sup&gt;) and C-N stretches.
+
+It's important to remember that while the zwitterionic form is prevalent, the actual equilibrium between the various charged states depends on the pH of the surrounding medium.
 </code></pre>
 </section>
 
@@ -185,14 +221,7 @@ void main() async {
           <h2>Libraries</h2>
         <dl>
           <dt id="chem_nor">
-  <span class="name"><a href="chem_nor/chem_nor-library.html">chem_nor</a></span> 
-
-</dt>
-<dd>
-</dd>
-
-          <dt id="example">
-  <span class="name"><a href="example/example-library.html">example</a></span> 
+  <span class="name"><a href="chem_nor/">chem_nor</a></span> 
 
 </dt>
 <dd>
@@ -200,9 +229,7 @@ void main() async {
 
         </dl>
       </section>
-
   </div> <!-- /.main-content -->
-
   <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
     <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
 <header id="header-search-sidebar" class="hidden-l">
@@ -210,43 +237,32 @@ void main() async {
     <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
 </header>
-
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="https://github.com/mohammed-nor/ChemNOR-package">chem_nor package</a></li>
 </ol>
 
-
     <h5 class="hidden-xs"><span class="package-name">chem_nor</span> <span class="package-kind">package</span></h5>
     <ol>
       <li class="section-title">Libraries</li>
-      <li><a href="chem_nor/chem_nor-library.html">chem_nor</a></li>
-      <li><a href="example/example-library.html">example</a></li>
+      <li><a href="chem_nor/">chem_nor</a></li>
 </ol>
 
   </div>
-
   <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
   </div>
-
 </main>
-
 <footer>
   <span class="no-break">
     chem_nor
-      0.1.7
+      0.2.2
   </span>
-
   
 </footer>
-
 
 
 <script src="static-assets/highlight.pack.js?v1"></script>
 <script src="static-assets/docs.dart.js"></script>
 
-
-
 </body>
-
 </html>
 
