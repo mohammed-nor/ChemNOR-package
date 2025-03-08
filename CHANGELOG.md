@@ -1,3 +1,3 @@
-## 0.2.2
+## 0.3.0
 
-- fixing minor bugs .
+- the package is no longer being depended on: google_generative_ai.
