@@ -1,6 +1,9 @@
 # ChemNOR
 
-ChemNOR (_Chemical Heuristic Evaluation of Molecules Networking for Optimized Reactivity_) is a Dart package that finds relevant chemical compounds using AI (Gemini) and PubChem. Also you can use it to chat with your Ai chemist!
+ChemNOR (_Chemical Heuristic Evaluation of Molecules Networking for Optimized Reactivity_).
+Dart package that finds relevant chemical compounds using AI (Gemini) and PubChem.
+level up your chemistry knowledge and use it to chat with your Ai chemist!
+
 
 Note : A Google Cloud [API-key](https://ai.google.dev/gemini-api/docs/api-key) is required for all requests.
 
@@ -8,7 +11,7 @@ Note : A Google Cloud [API-key](https://ai.google.dev/gemini-api/docs/api-key) i
 
 ```
 dependencies:
-    chem_nor: ^0.2.2
+    chem_nor: ^0.3.1
 ```
 
 ## usages

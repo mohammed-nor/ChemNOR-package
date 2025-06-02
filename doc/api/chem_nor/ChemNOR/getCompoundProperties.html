@@ -84,27 +84,17 @@
 
   final _data = jsonDecode(response.body);
   final _properties = _data[&#39;PC_Compounds&#39;][0][&#39;props&#39;];
-  final _name =
-      _findProperty(_properties, &#39;IUPAC Name&#39;) ?? &#39;Unnamed compound&#39;;
+  final _name = _findProperty(_properties, &#39;IUPAC Name&#39;) ?? &#39;Unnamed compound&#39;;
   final _formula = _findProperty(_properties, &#39;Molecular Formula&#39;) ?? &#39;N&#47;A&#39;;
   final _weight = _findProperty(_properties, &#39;Molecular Weight&#39;) ?? &#39;N&#47;A&#39;;
   final _smiles = _findProperty(_properties, &#39;Canonical SMILES&#39;) ?? &#39;N&#47;A&#39;;
-  final _hbDonor =
-      _findivalPropertybylabel(_properties, &#39;Hydrogen Bond Donor&#39;, &#39;Count&#39;) ??
-          &#39;N&#47;A&#39;;
-  final _hbAcceptor = _findivalPropertybylabel(
-          _properties, &#39;Hydrogen Bond Acceptor&#39;, &#39;Count&#39;) ??
-      &#39;N&#47;A&#39;;
-  final _tpsa = _findfvalPropertybylabel(
-          _properties, &#39;Polar Surface Area&#39;, &#39;Topological&#39;) ??
-      &#39;N&#47;A&#39;;
-  final _complexity =
-      _findfvalPropertybylabelonly(_properties, &#39;Compound Complexity&#39;) ??
-          &#39;N&#47;A&#39;;
+  final _hbDonor = _findivalPropertybylabel(_properties, &#39;Hydrogen Bond Donor&#39;, &#39;Count&#39;) ?? &#39;N&#47;A&#39;;
+  final _hbAcceptor = _findivalPropertybylabel(_properties, &#39;Hydrogen Bond Acceptor&#39;, &#39;Count&#39;) ?? &#39;N&#47;A&#39;;
+  final _tpsa = _findfvalPropertybylabel(_properties, &#39;Polar Surface Area&#39;, &#39;Topological&#39;) ?? &#39;N&#47;A&#39;;
+  final _complexity = _findfvalPropertybylabelonly(_properties, &#39;Compound Complexity&#39;) ?? &#39;N&#47;A&#39;;
   final _charge = _findProperty(_properties, &#39;Charge&#39;) ?? &#39;N&#47;A&#39;;
   final _title = _findProperty(_properties, &#39;Title&#39;) ?? &#39;N&#47;A&#39;;
-  final _xlogp =
-      _findfvalPropertybylabel(_properties, &#39;XLogP3&#39;, &#39;Log P&#39;) ?? &#39;N&#47;A&#39;;
+  final _xlogp = _findfvalPropertybylabel(_properties, &#39;XLogP3&#39;, &#39;Log P&#39;) ?? &#39;N&#47;A&#39;;
 
   return {
     &#39;cid&#39;: cid,
@@ -148,7 +138,7 @@
 <footer>
   <span class="no-break">
     chem_nor
-      0.2.2
+      0.3.0
   </span>
   
 </footer>
