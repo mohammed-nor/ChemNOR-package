@@ -82,33 +82,33 @@
     throw Exception(&#39;Failed to fetch properties for CID $cid&#39;);
   }
 
-  final _data = jsonDecode(response.body);
-  final _properties = _data[&#39;PC_Compounds&#39;][0][&#39;props&#39;];
-  final _name = _findProperty(_properties, &#39;IUPAC Name&#39;) ?? &#39;Unnamed compound&#39;;
-  final _formula = _findProperty(_properties, &#39;Molecular Formula&#39;) ?? &#39;N&#47;A&#39;;
-  final _weight = _findProperty(_properties, &#39;Molecular Weight&#39;) ?? &#39;N&#47;A&#39;;
-  final _smiles = _findProperty(_properties, &#39;Canonical SMILES&#39;) ?? &#39;N&#47;A&#39;;
-  final _hbDonor = _findivalPropertybylabel(_properties, &#39;Hydrogen Bond Donor&#39;, &#39;Count&#39;) ?? &#39;N&#47;A&#39;;
-  final _hbAcceptor = _findivalPropertybylabel(_properties, &#39;Hydrogen Bond Acceptor&#39;, &#39;Count&#39;) ?? &#39;N&#47;A&#39;;
-  final _tpsa = _findfvalPropertybylabel(_properties, &#39;Polar Surface Area&#39;, &#39;Topological&#39;) ?? &#39;N&#47;A&#39;;
-  final _complexity = _findfvalPropertybylabelonly(_properties, &#39;Compound Complexity&#39;) ?? &#39;N&#47;A&#39;;
-  final _charge = _findProperty(_properties, &#39;Charge&#39;) ?? &#39;N&#47;A&#39;;
-  final _title = _findProperty(_properties, &#39;Title&#39;) ?? &#39;N&#47;A&#39;;
-  final _xlogp = _findfvalPropertybylabel(_properties, &#39;XLogP3&#39;, &#39;Log P&#39;) ?? &#39;N&#47;A&#39;;
+  final data = jsonDecode(response.body);
+  final properties = data[&#39;PC_Compounds&#39;][0][&#39;props&#39;];
+  final name = _findProperty(properties, &#39;IUPAC Name&#39;) ?? &#39;Unnamed compound&#39;;
+  final formula = _findProperty(properties, &#39;Molecular Formula&#39;) ?? &#39;N&#47;A&#39;;
+  final weight = _findProperty(properties, &#39;Molecular Weight&#39;) ?? &#39;N&#47;A&#39;;
+  final smiles = _findProperty(properties, &#39;Canonical SMILES&#39;) ?? &#39;N&#47;A&#39;;
+  final hbDonor = _findivalPropertybylabel(properties, &#39;Hydrogen Bond Donor&#39;, &#39;Count&#39;) ?? &#39;N&#47;A&#39;;
+  final hbAcceptor = _findivalPropertybylabel(properties, &#39;Hydrogen Bond Acceptor&#39;, &#39;Count&#39;) ?? &#39;N&#47;A&#39;;
+  final tpsa = _findfvalPropertybylabel(properties, &#39;Polar Surface Area&#39;, &#39;Topological&#39;) ?? &#39;N&#47;A&#39;;
+  final complexity = _findfvalPropertybylabelonly(properties, &#39;Compound Complexity&#39;) ?? &#39;N&#47;A&#39;;
+  final charge = _findProperty(properties, &#39;Charge&#39;) ?? &#39;N&#47;A&#39;;
+  final title = _findProperty(properties, &#39;Title&#39;) ?? &#39;N&#47;A&#39;;
+  final xlogp = _findfvalPropertybylabel(properties, &#39;XLogP3&#39;, &#39;Log P&#39;) ?? &#39;N&#47;A&#39;;
 
   return {
     &#39;cid&#39;: cid,
-    &#39;name&#39;: _name,
-    &#39;formula&#39;: _formula,
-    &#39;weight&#39;: _weight,
-    &#39;SMILES&#39;: _smiles,
-    &#39;Hydrogen Bond Donor&#39;: _hbDonor,
-    &#39;Hydrogen Bond Acceptor&#39;: _hbAcceptor,
-    &#39;TPSA&#39;: _tpsa,
-    &#39;Complexity&#39;: _complexity,
-    &#39;charge	&#39;: _charge,
-    &#39;Title&#39;: _title,
-    &#39;XLogP&#39;: _xlogp,
+    &#39;name&#39;: name,
+    &#39;formula&#39;: formula,
+    &#39;weight&#39;: weight,
+    &#39;SMILES&#39;: smiles,
+    &#39;Hydrogen Bond Donor&#39;: hbDonor,
+    &#39;Hydrogen Bond Acceptor&#39;: hbAcceptor,
+    &#39;TPSA&#39;: tpsa,
+    &#39;Complexity&#39;: complexity,
+    &#39;charge	&#39;: charge,
+    &#39;Title&#39;: title,
+    &#39;XLogP&#39;: xlogp,
   };
 }</code></pre>
 </section>
@@ -138,7 +138,7 @@
 <footer>
   <span class="no-break">
     chem_nor
-      0.3.0
+      0.3.2
   </span>
   
 </footer>

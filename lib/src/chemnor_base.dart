@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:intl/intl.dart';
@@ -57,12 +56,8 @@ class ChemNOR {
           throw Exception('Failed to generate content: ${response.statusCode} ${response.request}');
         }
       } catch (e) {
-        if (e is SocketException) {
-          print('Network error: ${e.message}. Retrying...');
-          await Future.delayed(Duration(seconds: 2));
-        } else {
-          rethrow;
-        }
+        print('Network error: $e. Retrying...');
+        await Future.delayed(Duration(seconds: 2));
       }
     }
     throw Exception('Failed to generate content after multiple attempts.');
