@@ -19,12 +19,13 @@ class ChemNOR {
   /// Maximum number of results per SMILES pattern.
   final int maxResultsPerSmiles = 10;
 
-  final String model = 'gemini-2.0-flash';
+  final String model = 'gemini-2.5-flash';
 
   /// Constructor for ChemNOR, requires an API key for Google Generative AI.
   ChemNOR({required this.genAiApiKey});
 
   Future<String> generateContent(String userInput, String systemInstruction) async {
+    ///https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=GEMINI_API_KEY
     final url = Uri.parse('https://generativelanguage.googleapis.com/v1beta/models/$model:generateContent?key=$genAiApiKey');
 
     final headers = {
@@ -53,7 +54,7 @@ class ChemNOR {
           final Map<String, dynamic> data = jsonDecode(response.body);
           return data['candidates'][0]['content']['parts'][0]['text'];
         } else {
-          throw Exception('Failed to generate content: ${response.statusCode}');
+          throw Exception('Failed to generate content: ${response.statusCode} ${response.request}');
         }
       } catch (e) {
         if (e is SocketException) {
@@ -127,7 +128,7 @@ class ChemNOR {
   }
 
   Future<String?> chemist(String userInput) async {
-    String _systemInstruction = '''
+    String systemInstruction = '''
     You are a professional organic chemist with extensive knowledge in:
     - Organic synthesis
     - Reaction mechanisms
@@ -150,7 +151,7 @@ class ChemNOR {
   ''';
     try {
       final model = ChemNOR(genAiApiKey: genAiApiKey);
-      final response = await model.generateContent(userInput, _systemInstruction);
+      final response = await model.generateContent(userInput, systemInstruction);
       return response;
     } catch (e) {
       return 'Error: ${e.toString()}';
@@ -162,7 +163,7 @@ class ChemNOR {
   ///
   /// Returns a list of valid SMILES strings.
   Future<List<String>> getRelevantSmiles(String description) async {
-    final _prompt = '''I'm a student that is very passion with chemistry and i hope that you will help me in the following task.
+    final prompt = '''I'm a student that is very passion with chemistry and i hope that you will help me in the following task.
     Given the application: "$description", suggest 3-10 SMILES patterns representing 
     key functional groups or structural motifs relevant to this application.
     Return ONLY valid SMILES strings, one per line, with no additional text.
@@ -171,11 +172,11 @@ class ChemNOR {
     c1ccccc1
     NC(=O)N
     ''';
-    String _systemInstruction = '''If a question is not related to organic chemistry of a specific application, respond with:
+    String systemInstruction = '''If a question is not related to organic chemistry of a specific application, respond with:
     "I specialize in organic chemistry. Please ask questions related to that field."''';
 
     final model = ChemNOR(genAiApiKey: genAiApiKey);
-    final response = await model.generateContent(_prompt, _systemInstruction);
+    final response = await model.generateContent(prompt, systemInstruction);
 
     // Extract SMILES using regex pattern
     final RegExp smilesRegex = RegExp(r'^[A-Za-z0-9@+\-\[\]\(\)\\/=#$.]+$', multiLine: true);
@@ -215,33 +216,33 @@ class ChemNOR {
       throw Exception('Failed to fetch properties for CID $cid');
     }
 
-    final _data = jsonDecode(response.body);
-    final _properties = _data['PC_Compounds'][0]['props'];
-    final _name = _findProperty(_properties, 'IUPAC Name') ?? 'Unnamed compound';
-    final _formula = _findProperty(_properties, 'Molecular Formula') ?? 'N/A';
-    final _weight = _findProperty(_properties, 'Molecular Weight') ?? 'N/A';
-    final _smiles = _findProperty(_properties, 'Canonical SMILES') ?? 'N/A';
-    final _hbDonor = _findivalPropertybylabel(_properties, 'Hydrogen Bond Donor', 'Count') ?? 'N/A';
-    final _hbAcceptor = _findivalPropertybylabel(_properties, 'Hydrogen Bond Acceptor', 'Count') ?? 'N/A';
-    final _tpsa = _findfvalPropertybylabel(_properties, 'Polar Surface Area', 'Topological') ?? 'N/A';
-    final _complexity = _findfvalPropertybylabelonly(_properties, 'Compound Complexity') ?? 'N/A';
-    final _charge = _findProperty(_properties, 'Charge') ?? 'N/A';
-    final _title = _findProperty(_properties, 'Title') ?? 'N/A';
-    final _xlogp = _findfvalPropertybylabel(_properties, 'XLogP3', 'Log P') ?? 'N/A';
+    final data = jsonDecode(response.body);
+    final properties = data['PC_Compounds'][0]['props'];
+    final name = _findProperty(properties, 'IUPAC Name') ?? 'Unnamed compound';
+    final formula = _findProperty(properties, 'Molecular Formula') ?? 'N/A';
+    final weight = _findProperty(properties, 'Molecular Weight') ?? 'N/A';
+    final smiles = _findProperty(properties, 'Canonical SMILES') ?? 'N/A';
+    final hbDonor = _findivalPropertybylabel(properties, 'Hydrogen Bond Donor', 'Count') ?? 'N/A';
+    final hbAcceptor = _findivalPropertybylabel(properties, 'Hydrogen Bond Acceptor', 'Count') ?? 'N/A';
+    final tpsa = _findfvalPropertybylabel(properties, 'Polar Surface Area', 'Topological') ?? 'N/A';
+    final complexity = _findfvalPropertybylabelonly(properties, 'Compound Complexity') ?? 'N/A';
+    final charge = _findProperty(properties, 'Charge') ?? 'N/A';
+    final title = _findProperty(properties, 'Title') ?? 'N/A';
+    final xlogp = _findfvalPropertybylabel(properties, 'XLogP3', 'Log P') ?? 'N/A';
 
     return {
       'cid': cid,
-      'name': _name,
-      'formula': _formula,
-      'weight': _weight,
-      'SMILES': _smiles,
-      'Hydrogen Bond Donor': _hbDonor,
-      'Hydrogen Bond Acceptor': _hbAcceptor,
-      'TPSA': _tpsa,
-      'Complexity': _complexity,
-      'charge	': _charge,
-      'Title': _title,
-      'XLogP': _xlogp,
+      'name': name,
+      'formula': formula,
+      'weight': weight,
+      'SMILES': smiles,
+      'Hydrogen Bond Donor': hbDonor,
+      'Hydrogen Bond Acceptor': hbAcceptor,
+      'TPSA': tpsa,
+      'Complexity': complexity,
+      'charge	': charge,
+      'Title': title,
+      'XLogP': xlogp,
     };
   }
 
@@ -330,5 +331,52 @@ class ChemNOR {
     }
 
     return buffer.toString();
+  }
+
+  Future findListOfCompoundsJSN(String applicationDescription) async {
+    try {
+      // Step 1: Get relevant SMILES patterns from AI
+      final smilesList = await getRelevantSmiles(applicationDescription);
+
+      // Step 2: Search PubChem for each SMILES pattern
+      final Set<int> uniqueCids = {};
+      for (String smiles in smilesList) {
+        try {
+          final cids = await getSubstructureCids(smiles);
+          uniqueCids.addAll(cids.take(maxResultsPerSmiles));
+        } catch (e) {
+          // Optionally handle or log errors from getSubstructureCids
+          print('Error fetching CIDs for SMILES $smiles: $e');
+        }
+      }
+
+      if (uniqueCids.isEmpty) {
+        return jsonEncode({'query_smiles': smilesList, 'results': [], 'message': 'No compounds found for the generated SMILES patterns.'});
+      }
+
+      // Step 3: Fetch properties for collected CIDs
+      final List<Map<String, dynamic>> compoundPropertiesList = [];
+      for (int cid in uniqueCids.take(10)) {
+        // Limiting to top 10 unique CIDs
+        try {
+          compoundPropertiesList.add(await getCompoundProperties(cid));
+        } catch (e) {
+          // Include error information for specific CIDs in the JSON response
+          compoundPropertiesList.add({'cid': cid, 'error': 'Failed to fetch properties: ${e.toString()}'});
+        }
+      }
+
+      // Prepare the data for JSON encoding
+      final Map<String, dynamic> jsonData = {
+        'query_application_description': applicationDescription,
+        'generated_smiles_patterns': smilesList,
+        'retrieved_compounds': compoundPropertiesList,
+      };
+
+      return jsonEncode(jsonData);
+    } catch (e) {
+      // Return a JSON formatted error message
+      return jsonEncode({'error': 'An overall error occurred: ${e.toString()}'});
+    }
   }
 }

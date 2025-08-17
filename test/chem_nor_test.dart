@@ -1,8 +1,8 @@
 import 'package:chem_nor/chem_nor.dart';
-import 'package:test/test.dart';
+import 'package:chem_nor/key.dart';
 
 void main() async {
-  final finder = ChemNOR(genAiApiKey: 'API-KEY');
+  final finder = ChemNOR(genAiApiKey: key);
   dynamic properties = await finder.getCompoundProperties(248);
   print(properties);
   dynamic list = await finder.getSubstructureCids('CC');
@@ -11,4 +11,6 @@ void main() async {
   print(smiles);
   dynamic chat = await finder.chemist('hello , please educate me about carboxymethyl(trimethyl)ammonium ');
   print(chat);
+  dynamic propertie = await finder.findListOfCompoundsJSN('carboxylic acid compounds');
+  print(propertie);
 }
