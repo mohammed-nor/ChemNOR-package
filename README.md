@@ -10,7 +10,7 @@ Note : A Google Cloud [API-key](https://ai.google.dev/gemini-api/docs/api-key) i
 
 ```
 dependencies:
-    chem_nor: ^0.3.1
+    chem_nor: ^0.3.2
 ```
 
 ## usages
@@ -21,7 +21,7 @@ Finds relevant chemical compounds for a given application description.
 * Searches PubChem for matching compounds.
 * Retrieves properties of the top compounds found.
 
-  Returns a formatted string containing search results as Text or in JSON format using the `findListOfCompoundsJSN` method:
+Returns a formatted string containing search results as Text or in JSON format using the `findListOfCompoundsJSN` method:
 
 ```
 import 'package:chem_nor/chem_nor.dart';
