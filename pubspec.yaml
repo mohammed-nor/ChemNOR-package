@@ -1,6 +1,6 @@
 name: chem_nor
 description: Dart package that finds relevant chemical compounds using AI(Gemini) and PubChem. Use it to level up your chemistry knowledge and chat with your Ai chemist!
-version: 0.3.1
+version: 0.3.2
 repository: https://github.com/mohammed-nor/ChemNOR-package
 issue_tracker: https://github.com/mohammed-nor/ChemNOR-package/issues
 homepage: https://github.com/mohammed-nor/ChemNOR-package
@@ -13,5 +13,5 @@ dependencies:
 
 
 dev_dependencies:
-  lints: ^5.1.1
-  test: 1.25.15
+  lints: ^6.0.0
+  test: ^1.26.3

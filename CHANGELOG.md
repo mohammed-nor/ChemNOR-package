@@ -1,3 +1,4 @@
-## 0.3.1
+## 0.3.2
 
-- the package is no longer being depended on: google_generative_ai.
+- upgrading the gemini version to the leatest
+- adding findListOfCompoundsJSN method

@@ -4,7 +4,6 @@ ChemNOR (_Chemical Heuristic Evaluation of Molecules Networking for Optimized Re
 Dart package that finds relevant chemical compounds using AI (Gemini) and PubChem.
 level up your chemistry knowledge and use it to chat with your Ai chemist!
 
-
 Note : A Google Cloud [API-key](https://ai.google.dev/gemini-api/docs/api-key) is required for all requests.
 
 ## Installation
@@ -21,7 +20,7 @@ Finds relevant chemical compounds for a given application description.
 * Uses AI to generate SMILES patterns.
 * Searches PubChem for matching compounds.
 * Retrieves properties of the top compounds found.
-  Returns a formatted string containing search results.
+  Returns a formatted string containing search results as Text or in JSON format using the `findListOfCompoundsJSN` method:
 
 ```
 import 'package:chem_nor/chem_nor.dart';
@@ -101,6 +100,20 @@ XLogP: 0.6
 --------------------------------------------
 ```
 
+```
+import 'package:chem_nor/chem_nor.dart';
+
+void main() async {
+  final finder = ChemNOR(genAiApiKey: 'your-api-key');
+  final results = await finder.findListOfCompoundsJSN('carboxylic acid compounds');
+  print(results);
+}
+```
+
+```
+Output: {"query_application_description":"carboxylic acid compounds","generated_smiles_patterns":["C(=O)O","c1ccccc1C(=O)O","OC(=O)C(=O)O","C=CC(=O)O","CC(=O)C(=O)O","OC(C(=O)O)C","NC(C(=O)O)C","OC(=O)CCC(=O)O"],"retrieved_compounds":[{"cid":284,"name":"formic acid","formula":"CH2O2","weight":"46.025","SMILES":"N/A","Hydrogen Bond Donor":"1","Hydrogen Bond Acceptor":"2","TPSA":"37.3","Complexity":"10.3","charge\t":"N/A","Title":"N/A","XLogP":"N/A"},{"cid":243,"name":"benzoic acid","formula":"C7H6O2","weight":"122.12","SMILES":"N/A","Hydrogen Bond Donor":"1","Hydrogen Bond Acceptor":"2","TPSA":"37.3","Complexity":"103","charge\t":"N/A","Title":"N/A","XLogP":"1.9"},{"cid":971,"name":"oxalic acid","formula":"C2H2O4","weight":"90.03","SMILES":"N/A","Hydrogen Bond Donor":"2","Hydrogen Bond Acceptor":"4","TPSA":"74.6","Complexity":"71.5","charge\t":"N/A","Title":"N/A","XLogP":"N/A"},{"cid":6581,"name":"acrylic acid","formula":"C3H4O2","weight":"72.06","SMILES":"N/A","Hydrogen Bond Donor":"1","Hydrogen Bond Acceptor":"2","TPSA":"37.3","Complexity":"55.9","charge\t":"N/A","Title":"N/A","XLogP":"0.3"},{"cid":1060,"name":"2-oxopropanoic acid","formula":"C3H4O3","weight":"88.06","SMILES":"N/A","Hydrogen Bond Donor":"1","Hydrogen Bond Acceptor":"3","TPSA":"54.4","Complexity":"84","charge\t":"N/A","Title":"N/A","XLogP":"N/A"},{"cid":612,"name":"2-hydroxypropanoic acid","formula":"C3H6O3","weight":"90.08","SMILES":"N/A","Hydrogen Bond Donor":"2","Hydrogen Bond Acceptor":"3","TPSA":"57.5","Complexity":"59.1","charge\t":"N/A","Title":"N/A","XLogP":"-0.7"},{"cid":602,"name":"2-aminopropanoic acid","formula":"C3H7NO2","weight":"89.09","SMILES":"N/A","Hydrogen Bond Donor":"2","Hydrogen Bond Acceptor":"3","TPSA":"63.3","Complexity":"61.8","charge\t":"N/A","Title":"N/A","XLogP":"-3"},{"cid":1110,"name":"succinic acid","formula":"C4H6O4","weight":"118.09","SMILES":"N/A","Hydrogen Bond Donor":"2","Hydrogen Bond Acceptor":"4","TPSA":"74.6","Complexity":"92.6","charge\t":"N/A","Title":"N/A","XLogP":"-0.6"}]}
+```
+
 Searches PubChem for compounds containing the given SMILES pattern.
 Returns a list of compound IDs (CIDs) matching the pattern.
 
@@ -132,7 +145,7 @@ void main() async {
 ```
 
 ```
-Output: ['C(=O)O', 'O=C(O)O', 'C(=O)C', 'C(=O)OC', 'C(=O)CC']
+Output: [C(=O)O, CC(=O)O, c1ccccc1C(=O)O, OC(=O)C(=O)O, C=CC(=O)O, CC(O)C(=O)O, C(=O)[O-], C(=O)OC, C(=O)N]
 ```
 
 Fetches compound properties from PubChem using the given CID.
@@ -149,7 +162,7 @@ void main() async {
 ```
 
 ```
-Output: {cid: 248, name: carboxymethyl(trimethyl)ammonium, formula: C5H12NO2+, weight: 118.15, CSMILES: C[N+](C)(C)CC(=O)O, Hydrogen Bond Donor: 1, Hydrogen Bond Acceptor: 2, TPSA: 37.3, Complexity: 93.1, charge	: N/A, Title: N/A, XLogP: N/A}
+Output: {cid: 248, name: carboxymethyl(trimethyl)ammonium, formula: C5H12NO2+, weight: 118.15, SMILES: N/A, Hydrogen Bond Donor: 1, Hydrogen Bond Acceptor: 2, TPSA: 37.3, Complexity: 93.1, charge	: N/A, Title: N/A, XLogP: N/A}
 ```
 
 Giving the ability to chat with Ai using text as an input.
@@ -166,36 +179,103 @@ void main() async {
 ```
 
 ```
-Carboxymethyl(trimethyl)ammonium, more accurately referred to as (carboxymethyl)trimethylammonium, is a quaternary ammonium cation with the formula  [(CH<sub>3</sub>)<sub>3</sub>N<sup>+</sup>CH<sub>2</sub>COOH].  It's often found as an inner salt or zwitterion due to the presence of both positive and negative charges within the molecule.  The negative charge resides on the carboxylate group (-COO<sup>-</sup>) and the positive charge on the quaternary nitrogen.  This internal salt formation is depicted as:
+You've asked about **carboxymethyl(trimethyl)ammonium**. This compound is a fascinating example in organic chemistry, particularly known for its zwitterionic nature. While your given name describes the cationic part, the compound typically exists as an internal salt, commonly known as **glycine betaine**.
 
+Let's break down its chemistry:
 
-(CH3)3N+CH2COO-
+### 1. Chemical Structure and Nomenclature
 
-**Key properties and characteristics:**
+The name "carboxymethyl(trimethyl)ammonium" refers to the quaternary ammonium cation with a carboxymethyl group attached to the nitrogen. However, due to the acidic nature of the carboxylic acid group (pKa ~2.3-2.5) and the basicity of the trimethylamine moiety, the proton from the carboxylic acid readily transfers to the nitrogen in a formal sense, or more accurately, the carboxylate anion is formed and exists as an internal ion pair with the quaternary ammonium center. This results in a zwitterionic structure.
 
-* **High polarity and water solubility:** Due to the zwitterionic nature, (carboxymethyl)trimethylammonium compounds are highly polar and readily dissolve in water.
-* **Crystalline solids:**  They typically exist as crystalline solids in their pure form.
-* **Amphoteric behavior:**  While existing predominantly as a zwitterion near neutral pH, (carboxymethyl)trimethylammonium can act as both an acid (donating a proton from the carboxylic acid group) and a base (accepting a proton, though less readily, at the carboxylate group).  This depends on the pH of the solution.
-* **Derivatives and applications:** This moiety is often encountered as part of larger molecules, notably in certain polymers and as a functional group in various applications.  For example, it's found in some betaines, which are types of amphoteric surfactants.  A common example is *cocamidopropyl betaine*, used in personal care products.
+*   **Common Name:** Glycine betaine, Betaine, Trimethylglycine (TMG)
+*   **IUPAC Name (for the zwitterion):** 2-(trimethylammonio)ethanoate
+    *   The term "ethanoate" comes from acetic acid (ethanoic acid), where the methylene group (-CH2-) is attached to the nitrogen.
+    *   "Trimethylammonio" describes the positively charged nitrogen with three methyl groups.
 
-**Synthesis:**
+*   **Chemical Structure (Zwitterion Form):**
+    ```
+          O
+         //
+    (CH3)3N+ - CH2 - C
+                   \
+                    O-
+    ```
+    (Linear representation: (CH3)3N$^+$-CH2-COO$^-$)
 
-(Carboxymethyl)trimethylammonium can be synthesized through the reaction of trimethylamine with chloroacetic acid:
+*   **Molecular Formula:** C$_{5}$H$_{11}$NO$_{2}$ (note: the IUPAC name C5H13NO2 for the protonated form vs C5H11NO2 for the zwitterion)
+*   **Molar Mass:** 117.15 g/mol
 
+### 2. Classification
 
-N(CH3)3 + ClCH2COOH  ---> (CH3)3N+CH2COO- + HCl
+*   **Quaternary Ammonium Compound:** It contains a nitrogen atom bonded to four carbon atoms, giving it a permanent positive charge.
+*   **Betaine:** A specific type of zwitterionic compound that has a positively charged functional group (like a quaternary ammonium group) and a negatively charged functional group (like a carboxylate group) that are not adjacent, and the overall molecule is neutral. Glycine betaine is the simplest N-methylated betaine.
+*   **Amino Acid Derivative:** It can be considered a derivative of the amino acid glycine (H$_{2}$N-CH$_{2}$-COOH) where the amine nitrogen is fully methylated and exists as a quaternary ammonium center.
 
+### 3. Key Properties
 
-*Safety Considerations:*
+*   **Physical State:** Typically a white crystalline solid at room temperature.
+*   **Solubility:** Highly soluble in water due to its zwitterionic nature, which facilitates strong interactions with water molecules. Sparingly soluble in ethanol.
+*   **Amphoteric Nature:** Although it is an internal salt, its zwitterionic structure means it can accept or donate protons in specific conditions. However, the internal proton transfer from carboxylic acid to nitrogen is already complete.
+*   **Stability:** Relatively stable, especially in its solid form. It's not particularly reactive under normal storage conditions.
 
-* Trimethylamine is a flammable gas with a strong odor. Handle in a well-ventilated area and use appropriate personal protective equipment (PPE).
-* Chloroacetic acid is corrosive and can cause severe burns.  Handle with extreme caution using appropriate PPE.  The reaction itself generates HCl, which is also corrosive.  The reaction should be carried out in a fume hood.
+### 4. Organic Synthesis
 
+Glycine betaine can be synthesized through several routes, commonly involving the alkylation of an appropriate precursor:
 
-**Spectroscopic characteristics:**
+*   **Method 1: Alkylation of Glycine:**
+    Glycine itself can be exhaustively methylated using a strong methylating agent in the presence of a base.
+    **Reactants:** Glycine (H$_{2}$N-CH$_{2}$-COOH), Methylating agent (e.g., Methyl Iodide (CH$_{3}$I), Dimethyl Sulfate ((CH$_{3}$O)$_{2}$SO$_{2}$)), Base (e.g., Na$_{2}$CO$_{3}$, NaOH).
+    **Reaction Equation (simplified):**
+    `H2N-CH2-COOH + 3 CH3I + 2 Base → (CH3)3N+-CH2-COO- + 3 HI (or salt)`
+    This is an S$_{N}$2 reaction where the nitrogen's lone pair acts as a nucleophile. Multiple alkylations occur until the quaternary ammonium salt is formed.
 
-* **NMR:**  The <sup>1</sup>H NMR spectrum would show distinct signals for the methyl groups attached to nitrogen and the methylene group adjacent to the carboxylate. The chemical shifts would be influenced by the solvent and pH.
-* **IR:** The IR spectrum would show characteristic absorptions for the carboxylate group (strong band around 1600 cm<sup>-1</sup>) and C-N stretches.
+*   **Method 2: Reaction of Trimethylamine with Chloroacetic Acid:**
+    This is a common and efficient laboratory and industrial synthesis. Trimethylamine acts as a nucleophile to displace the chloride from chloroacetic acid.
+    **Reactants:** Trimethylamine (N(CH$_{3}$)$_{3}$), Chloroacetic Acid (Cl-CH$_{2}$-COOH).
+    **Reaction Equation:**
+    `N(CH3)3 + Cl-CH2-COOH → (CH3)3N+-CH2-COOH · Cl-`
+    (trimethylammonium chloroacetate, a salt)
+    This salt then readily converts to the zwitterion (glycine betaine) either by internal proton transfer or by deprotonation in the presence of a mild base:
+    `(CH3)3N+-CH2-COOH · Cl- <=> (CH3)3N+-CH2-COO- + HCl` (internal salt formation)
 
-It's important to remember that while the zwitterionic form is prevalent, the actual equilibrium between the various charged states depends on the pH of the surrounding medium.
+### 5. Spectroscopy Interpretation
+
+*   **$^1$H NMR Spectroscopy:**
+    *   **δ ~3.7-3.9 ppm (singlet, 2H):** Characteristic of the methylene protons (-CH$_{2}$-) adjacent to both the positively charged nitrogen and the carboxylate group. Their signal is shifted downfield due to the electron-withdrawing effects.
+    *   **δ ~3.2-3.4 ppm (singlet, 9H):** The nine equivalent protons of the three methyl groups attached to the quaternary ammonium nitrogen. Also shifted downfield due to the positive charge on nitrogen.
+*   **IR Spectroscopy:**
+    *   **~1550-1610 cm$^{-1}$ (strong, broad):** Asymmetric stretching vibration of the carboxylate anion (COO$^{-}$). This is a key distinguishing feature from a neutral carboxylic acid C=O (~1700-1725 cm$^{-1}$).
+    *   **~1400 cm$^{-1}$ (medium):** Symmetric stretching vibration of the carboxylate anion.
+    *   **2800-3000 cm$^{-1}$:** C-H stretches from methyl and methylene groups.
+*   **Mass Spectrometry (MS):**
+    *   **Molecular Ion (M+):** Typically observed at m/z 117 (for C$_{5}$H$_{11}$NO$_{2}$).
+    *   **Fragmentation:** Common fragmentation patterns might include loss of a methyl group (M-15), loss of CO$_{2}$ (M-44), or other characteristic cleavages depending on the ionization method.
+
+### 6. Applications
+
+Glycine betaine is biologically significant and has various industrial applications:
+
+*   **Nutritional Supplement:** Widely used as a dietary supplement. It acts as a methyl donor in various metabolic pathways, particularly in the methionine cycle, where it helps in the remethylation of homocysteine to methionine. It's beneficial for liver health, cardiovascular health (by lowering homocysteine levels), and athletic performance.
+*   **Osmolyte:** In biology, it functions as an osmoprotectant, helping cells and organisms maintain osmotic balance and protect against stress (e.g., high salinity, extreme temperatures).
+*   **Food Industry:** Used as a food additive, humectant, and flavor enhancer in certain products.
+*   **Cosmetics and Personal Care:** Incorporated into skin care and hair care products as a moisturizer, humectant, and anti-static agent due to its zwitterionic nature which can interact with charged surfaces (like hair).
+
+### 7. Safety Considerations
+
+Glycine betaine is generally regarded as safe (GRAS) by regulatory bodies like the FDA when used as a food ingredient or supplement at recommended doses.
+
+*   **Handling:** As a pure chemical, it should be handled with standard laboratory safety practices, including wearing appropriate personal protective equipment (lab coat, gloves, eye protection).
+*   **Storage:** Store in a cool, dry place, away from incompatible materials.
+*   **Toxicity:** Acute toxicity is low. High doses might lead to gastrointestinal discomfort (nausea, diarrhea) or a "fishy" body odor due to its metabolism into trimethylamine.
+*   **MSDS (Material Safety Data Sheet):** Always consult the specific MSDS for the product being used for detailed information on hazards, handling, storage, and first aid.
+
+In summary, carboxymethyl(trimethyl)ammonium, most commonly known as glycine betaine, is a crucial zwitterionic compound with diverse roles in biochemistry and practical applications, synthesized via straightforward alkylation reactions.
+
+---
+**References:**
+
+*   Clayden, J., Greeves, N., & Warren, S. (2012). *Organic Chemistry* (2nd ed.). Oxford University Press.
+*   Carey, F. A., & Sundberg, R. J. (2007). *Advanced Organic Chemistry Part B: Reactions and Synthesis* (5th ed.). Springer.
+*   PubChem. (Accessed various dates). National Library of Medicine. [https://pubchem.ncbi.nlm.nih.gov/](https://pubchem.ncbi.nlm.nih.gov/)
+*   Craig, G. B. (2004). Betaine: a new role for an old nutrient. *Journal of the American Dietetic Association*, 104(2), 273-274.
 ```
