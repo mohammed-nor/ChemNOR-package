@@ -20,6 +20,7 @@ Finds relevant chemical compounds for a given application description.
 * Uses AI to generate SMILES patterns.
 * Searches PubChem for matching compounds.
 * Retrieves properties of the top compounds found.
+
   Returns a formatted string containing search results as Text or in JSON format using the `findListOfCompoundsJSN` method:
 
 ```
