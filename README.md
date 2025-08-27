@@ -10,7 +10,7 @@ Note : A Google Cloud [API-key](https://ai.google.dev/gemini-api/docs/api-key) i
 
 ```yaml
 dependencies:
-    chem_nor: ^0.3.2
+    chem_nor: ^0.4.0
 ```
 
 ## usages
