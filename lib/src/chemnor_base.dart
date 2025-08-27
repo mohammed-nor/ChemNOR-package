@@ -23,9 +23,11 @@ class ChemNOR {
   /// Constructor for ChemNOR, requires an API key for Google Generative AI.
   ChemNOR({required this.genAiApiKey});
 
-  Future<String> generateContent(String userInput, String systemInstruction) async {
+  Future<String> generateContent(
+      String userInput, String systemInstruction) async {
     ///https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=GEMINI_API_KEY
-    final url = Uri.parse('https://generativelanguage.googleapis.com/v1beta/models/$model:generateContent?key=$genAiApiKey');
+    final url = Uri.parse(
+        'https://generativelanguage.googleapis.com/v1beta/models/$model:generateContent?key=$genAiApiKey');
 
     final headers = {
       'Content-Type': 'application/json',
@@ -53,7 +55,8 @@ class ChemNOR {
           final Map<String, dynamic> data = jsonDecode(response.body);
           return data['candidates'][0]['content']['parts'][0]['text'];
         } else {
-          throw Exception('Failed to generate content: ${response.statusCode} ${response.request}');
+          throw Exception(
+              'Failed to generate content: ${response.statusCode} ${response.request}');
         }
       } catch (e) {
         print('Network error: $e. Retrying...');
@@ -146,7 +149,8 @@ class ChemNOR {
   ''';
     try {
       final model = ChemNOR(genAiApiKey: genAiApiKey);
-      final response = await model.generateContent(userInput, systemInstruction);
+      final response =
+          await model.generateContent(userInput, systemInstruction);
       return response;
     } catch (e) {
       return 'Error: ${e.toString()}';
@@ -158,7 +162,8 @@ class ChemNOR {
   ///
   /// Returns a list of valid SMILES strings.
   Future<List<String>> getRelevantSmiles(String description) async {
-    final prompt = '''I'm a student that is very passion with chemistry and i hope that you will help me in the following task.
+    final prompt =
+        '''I'm a student that is very passion with chemistry and i hope that you will help me in the following task.
     Given the application: "$description", suggest 3-10 SMILES patterns representing 
     key functional groups or structural motifs relevant to this application.
     Return ONLY valid SMILES strings, one per line, with no additional text.
@@ -167,14 +172,16 @@ class ChemNOR {
     c1ccccc1
     NC(=O)N
     ''';
-    String systemInstruction = '''If a question is not related to organic chemistry of a specific application, respond with:
+    String systemInstruction =
+        '''If a question is not related to organic chemistry of a specific application, respond with:
     "I specialize in organic chemistry. Please ask questions related to that field."''';
 
     final model = ChemNOR(genAiApiKey: genAiApiKey);
     final response = await model.generateContent(prompt, systemInstruction);
 
     // Extract SMILES using regex pattern
-    final RegExp smilesRegex = RegExp(r'^[A-Za-z0-9@+\-\[\]\(\)\\/=#$.]+$', multiLine: true);
+    final RegExp smilesRegex =
+        RegExp(r'^[A-Za-z0-9@+\-\[\]\(\)\\/=#$.]+$', multiLine: true);
     final matches = smilesRegex.allMatches(response);
 
     if (matches.isEmpty) {
@@ -189,7 +196,8 @@ class ChemNOR {
   /// Returns a list of compound IDs (CIDs) matching the pattern.
   Future<List<int>> getSubstructureCids(String smiles) async {
     final encodedSmiles = Uri.encodeComponent(smiles);
-    final url = Uri.parse('$chempubBaseUrl/compound/fastidentity/SMILES/$encodedSmiles/cids/JSON');
+    final url = Uri.parse(
+        '$chempubBaseUrl/compound/fastidentity/SMILES/$encodedSmiles/cids/JSON');
 
     final response = await http.get(url);
     if (response.statusCode != 200) {
@@ -217,13 +225,22 @@ class ChemNOR {
     final formula = _findProperty(properties, 'Molecular Formula') ?? 'N/A';
     final weight = _findProperty(properties, 'Molecular Weight') ?? 'N/A';
     final smiles = _findProperty(properties, 'Canonical SMILES') ?? 'N/A';
-    final hbDonor = _findivalPropertybylabel(properties, 'Hydrogen Bond Donor', 'Count') ?? 'N/A';
-    final hbAcceptor = _findivalPropertybylabel(properties, 'Hydrogen Bond Acceptor', 'Count') ?? 'N/A';
-    final tpsa = _findfvalPropertybylabel(properties, 'Polar Surface Area', 'Topological') ?? 'N/A';
-    final complexity = _findfvalPropertybylabelonly(properties, 'Compound Complexity') ?? 'N/A';
+    final hbDonor =
+        _findivalPropertybylabel(properties, 'Hydrogen Bond Donor', 'Count') ??
+            'N/A';
+    final hbAcceptor = _findivalPropertybylabel(
+            properties, 'Hydrogen Bond Acceptor', 'Count') ??
+        'N/A';
+    final tpsa = _findfvalPropertybylabel(
+            properties, 'Polar Surface Area', 'Topological') ??
+        'N/A';
+    final complexity =
+        _findfvalPropertybylabelonly(properties, 'Compound Complexity') ??
+            'N/A';
     final charge = _findProperty(properties, 'Charge') ?? 'N/A';
     final title = _findProperty(properties, 'Title') ?? 'N/A';
-    final xlogp = _findfvalPropertybylabel(properties, 'XLogP3', 'Log P') ?? 'N/A';
+    final xlogp =
+        _findfvalPropertybylabel(properties, 'XLogP3', 'Log P') ?? 'N/A';
 
     return {
       'cid': cid,
@@ -257,7 +274,8 @@ class ChemNOR {
     }
   }
 
-  String? _findfvalPropertybylabel(List<dynamic> properties, String name, String label) {
+  String? _findfvalPropertybylabel(
+      List<dynamic> properties, String name, String label) {
     try {
       final prop = properties.firstWhere(
         (p) => p['urn']['name'] == name && p['urn']['label'] == label,
@@ -269,7 +287,8 @@ class ChemNOR {
     }
   }
 
-  String? _findivalPropertybylabel(List<dynamic> properties, String name, String label) {
+  String? _findivalPropertybylabel(
+      List<dynamic> properties, String name, String label) {
     try {
       final prop = properties.firstWhere(
         (p) => p['urn']['name'] == name && p['urn']['label'] == label,
@@ -296,7 +315,8 @@ class ChemNOR {
   /// Formats the search results into a human-readable string.
   ///
   /// Includes details such as query SMILES patterns and compound properties.
-  String _formatResults(List<Map<String, dynamic>> results, List<String> querySmiles) {
+  String _formatResults(
+      List<Map<String, dynamic>> results, List<String> querySmiles) {
     final buffer = StringBuffer();
     final dateFormat = DateFormat('yyyy-MM-dd HH:mm:ss');
 
@@ -316,7 +336,8 @@ class ChemNOR {
       buffer.writeln('Molecular Formula: ${result['formula']}');
       buffer.writeln('SMILES: ${result['CSMILES']}');
       buffer.writeln('Hydrogen Bond Donor: ${result['Hydrogen Bond Donor']}');
-      buffer.writeln('Hydrogen Bond Acceptor: ${result['Hydrogen Bond Acceptor']}');
+      buffer.writeln(
+          'Hydrogen Bond Acceptor: ${result['Hydrogen Bond Acceptor']}');
       buffer.writeln('TPSA: ${result['TPSA']}');
       buffer.writeln('Complexity: ${result['Complexity']}');
       buffer.writeln('Charge: ${result['charge']}');
@@ -346,7 +367,11 @@ class ChemNOR {
       }
 
       if (uniqueCids.isEmpty) {
-        return jsonEncode({'query_smiles': smilesList, 'results': [], 'message': 'No compounds found for the generated SMILES patterns.'});
+        return jsonEncode({
+          'query_smiles': smilesList,
+          'results': [],
+          'message': 'No compounds found for the generated SMILES patterns.'
+        });
       }
 
       // Step 3: Fetch properties for collected CIDs
@@ -357,7 +382,10 @@ class ChemNOR {
           compoundPropertiesList.add(await getCompoundProperties(cid));
         } catch (e) {
           // Include error information for specific CIDs in the JSON response
-          compoundPropertiesList.add({'cid': cid, 'error': 'Failed to fetch properties: ${e.toString()}'});
+          compoundPropertiesList.add({
+            'cid': cid,
+            'error': 'Failed to fetch properties: ${e.toString()}'
+          });
         }
       }
 
@@ -371,7 +399,8 @@ class ChemNOR {
       return jsonEncode(jsonData);
     } catch (e) {
       // Return a JSON formatted error message
-      return jsonEncode({'error': 'An overall error occurred: ${e.toString()}'});
+      return jsonEncode(
+          {'error': 'An overall error occurred: ${e.toString()}'});
     }
   }
 }

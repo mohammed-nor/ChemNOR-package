@@ -1,0 +1,32 @@
+name: chemnor
+description: A Dart package for finding relevant chemical compounds based on application descriptions using AI and PubChem.
+version: 0.1.0
+environment:
+  sdk: '>=2.12.0 <3.0.0'
+
+dependencies:
+  http: ^0.13.3
+  intl: ^0.17.0
+
+dev_dependencies:
+  test: ^1.16.0
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: com.example.chemnor
+        pluginClass: ChemnorPlugin
+      ios:
+        pluginClass: ChemnorPlugin
+      macos:
+        pluginClass: ChemnorPlugin
+      web:
+        pluginClass: ChemnorPlugin
+      windows:
+        pluginClass: ChemnorPlugin
+
+homepage: https://github.com/yourusername/chemnor
+repository: https://github.com/yourusername/chemnor
+issue_tracker: https://github.com/yourusername/chemnor/issues
+documentation: https://pub.dev/documentation/chemnor/latest/
