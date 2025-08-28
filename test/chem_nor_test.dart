@@ -17,7 +17,7 @@ void main() async {
   print(elements);
   final iupacName = await generateIupacName('CCO');
   print(iupacName);
-  final weight = MolecularWeight.calculate('H2O');
+  final weight = calculateMolecularWeight('H2O');
   print('Water molecular weight: $weight g/mol');
   final oxygen = PeriodicTable.getBySymbol('O');
   print('Oxygen: atomic number ${oxygen?.atomicNumber}, mass ${oxygen?.atomicMass}');
@@ -36,7 +36,7 @@ void main() async {
   print(nmrData['summary']);
   final irData = await simulateIrSpectrum('CCO');
   print('IR bands: ${irData['bands'].length}');
-final url = drawMolecule('CCO');
+  final url = drawMolecule('CCO');
   print('Molecule visualization URL: $url');
   final asciiArt = drawMoleculeAscii('CCO');
   print(asciiArt);

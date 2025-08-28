@@ -76,6 +76,80 @@
 based on an application description.
 </dd>
 
+          <dt id="ElementData">
+  <span class="name "><a href="../chem_nor/ElementData-class.html">ElementData</a></span> 
+
+</dt>
+<dd>
+  Periodic table data and utilities.
+</dd>
+
+          <dt id="IupacNaming">
+  <span class="name "><a href="../chem_nor/IupacNaming-class.html">IupacNaming</a></span> 
+
+</dt>
+<dd>
+  Utilities for IUPAC naming of chemical compounds.
+</dd>
+
+          <dt id="MolecularWeight">
+  <span class="name "><a href="../chem_nor/MolecularWeight-class.html">MolecularWeight</a></span> 
+
+</dt>
+<dd>
+  Provides utilities for calculating molecular weights of chemical compounds.
+</dd>
+
+          <dt id="MoleculeVisualizer">
+  <span class="name "><a href="../chem_nor/MoleculeVisualizer-class.html">MoleculeVisualizer</a></span> 
+
+</dt>
+<dd>
+  Provides utilities for visualizing chemical structures from SMILES notation
+</dd>
+
+          <dt id="PeriodicTable">
+  <span class="name "><a href="../chem_nor/PeriodicTable-class.html">PeriodicTable</a></span> 
+
+</dt>
+<dd>
+  Utility class for periodic table operations
+</dd>
+
+          <dt id="ReactionBalancer">
+  <span class="name "><a href="../chem_nor/ReactionBalancer-class.html">ReactionBalancer</a></span> 
+
+</dt>
+<dd>
+  A class for balancing chemical equations
+</dd>
+
+          <dt id="SafetyData">
+  <span class="name "><a href="../chem_nor/SafetyData-class.html">SafetyData</a></span> 
+
+</dt>
+<dd>
+  Provides access to chemical safety data, including hazard classifications,
+safety precautions, and regulatory information.
+</dd>
+
+          <dt id="SmilesParser">
+  <span class="name "><a href="../chem_nor/SmilesParser-class.html">SmilesParser</a></span> 
+
+</dt>
+<dd>
+  A parser for SMILES (Simplified Molecular Input Line Entry System) notation.
+</dd>
+
+          <dt id="Spectroscopy">
+  <span class="name "><a href="../chem_nor/Spectroscopy-class.html">Spectroscopy</a></span> 
+
+</dt>
+<dd>
+  Provides utilities for simulating and interpreting various spectroscopic data
+including NMR, IR, UV-Vis and Mass Spectrometry based on molecular structures.
+</dd>
+
       </dl>
     </section>
 
@@ -84,7 +158,251 @@ based on an application description.
 
 
 
+    <section class="summary offset-anchor" id="properties">
+      <h2>Properties</h2>
+      <dl class="properties">
+          <dt id="periodicTable" class="property">
+  <span class="name"><a href="../chem_nor/periodicTable.html">periodicTable</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span>, <span class="type-parameter"><a href="../chem_nor/ElementData-class.html">ElementData</a></span>&gt;</span></span>
+  
 
+</dt>
+<dd>
+  Periodic table with data for all elements
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="functions">
+      <h2>Functions</h2>
+      <dl class="callables">
+          <dt id="calculateMolecularWeight" class="callable">
+  <span class="name"><a href="../chem_nor/calculateMolecularWeight.html">calculateMolecularWeight</a></span><span class="signature">(<wbr><span class="parameter" id="calculateMolecularWeight-param-formula"><span class="type-annotation"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span> <span class="parameter-name">formula</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/double-class.html">double</a>?</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Convenience function to calculate molecular weight from a chemical formula.
+  
+
+</dd>
+
+          <dt id="convertMolesToGrams" class="callable">
+  <span class="name"><a href="../chem_nor/convertMolesToGrams.html">convertMolesToGrams</a></span><span class="signature">(<wbr><span class="parameter" id="convertMolesToGrams-param-moles"><span class="type-annotation"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/double-class.html">double</a></span> <span class="parameter-name">moles</span>, </span><span class="parameter" id="convertMolesToGrams-param-molarMass"><span class="type-annotation"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/double-class.html">double</a></span> <span class="parameter-name">molarMass</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/double-class.html">double</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Unit conversion utilities.
+  
+
+</dd>
+
+          <dt id="drawMolecule" class="callable">
+  <span class="name"><a href="../chem_nor/drawMolecule.html">drawMolecule</a></span><span class="signature">(<wbr><span class="parameter" id="drawMolecule-param-smiles"><span class="type-annotation"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span> <span class="parameter-name">smiles</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Draw a molecule visualization based on its SMILES string
+  
+
+</dd>
+
+          <dt id="drawMoleculeAscii" class="callable">
+  <span class="name"><a href="../chem_nor/drawMoleculeAscii.html">drawMoleculeAscii</a></span><span class="signature">(<wbr><span class="parameter" id="drawMoleculeAscii-param-smiles"><span class="type-annotation"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span> <span class="parameter-name">smiles</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Generate an ASCII art representation of a molecule
+  
+
+</dd>
+
+          <dt id="generateIupacName" class="callable">
+  <span class="name"><a href="../chem_nor/generateIupacName.html">generateIupacName</a></span><span class="signature">(<wbr><span class="parameter" id="generateIupacName-param-smiles"><span class="type-annotation"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span> <span class="parameter-name">smiles</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a>?</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Convenience function to generate an IUPAC name from a SMILES notation.
+  
+
+</dd>
+
+          <dt id="getMoleculeSvg" class="callable">
+  <span class="name"><a href="../chem_nor/getMoleculeSvg.html">getMoleculeSvg</a></span><span class="signature">(<wbr><span class="parameter" id="getMoleculeSvg-param-smiles"><span class="type-annotation"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span> <span class="parameter-name">smiles</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Get an SVG representation of a molecule
+  
+
+</dd>
+
+          <dt id="getSafetyData" class="callable">
+  <span class="name"><a href="../chem_nor/getSafetyData.html">getSafetyData</a></span><span class="signature">(<wbr><span class="parameter" id="getSafetyData-param-chemical"><span class="type-annotation"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span> <span class="parameter-name">chemical</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Convenience function to get safety data for a chemical.
+  
+
+</dd>
+
+          <dt id="getSmilesDetails" class="callable">
+  <span class="name"><a href="../chem_nor/getSmilesDetails.html">getSmilesDetails</a></span><span class="signature">(<wbr><span class="parameter" id="getSmilesDetails-param-smiles"><span class="type-annotation"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span> <span class="parameter-name">smiles</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Gets detailed information about a molecule from its SMILES string.
+  
+
+</dd>
+
+          <dt id="interpretNmr" class="callable">
+  <span class="name"><a href="../chem_nor/interpretNmr.html">interpretNmr</a></span><span class="signature">(<wbr><span class="parameter" id="interpretNmr-param-smiles"><span class="type-annotation"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span> <span class="parameter-name">smiles</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Interprets a 1H NMR spectrum from a SMILES string
+  
+
+</dd>
+
+          <dt id="isSmilesValid" class="callable">
+  <span class="name"><a href="../chem_nor/isSmilesValid.html">isSmilesValid</a></span><span class="signature">(<wbr><span class="parameter" id="isSmilesValid-param-smiles"><span class="type-annotation"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span> <span class="parameter-name">smiles</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/bool-class.html">bool</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Validates if a SMILES string is properly formatted.
+  
+
+</dd>
+
+          <dt id="parseFormula" class="callable">
+  <span class="name"><a href="../chem_nor/parseFormula.html">parseFormula</a></span><span class="signature">(<wbr><span class="parameter" id="parseFormula-param-formula"><span class="type-annotation"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span> <span class="parameter-name">formula</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span>, <span class="type-parameter"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/int-class.html">int</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Parses chemical formulas into a map of element symbols and their counts.
+Example: "C6H12O6" =&gt; {"C": 6, "H": 12, "O": 6}
+  
+
+</dd>
+
+          <dt id="parseSmiles" class="callable">
+  <span class="name"><a href="../chem_nor/parseSmiles.html">parseSmiles</a></span><span class="signature">(<wbr><span class="parameter" id="parseSmiles-param-smiles"><span class="type-annotation"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span> <span class="parameter-name">smiles</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Parses SMILES strings and returns structural information.
+  
+
+</dd>
+
+          <dt id="saveMoleculeImage" class="callable">
+  <span class="name"><a href="../chem_nor/saveMoleculeImage.html">saveMoleculeImage</a></span><span class="signature">(<wbr><span class="parameter" id="saveMoleculeImage-param-smiles"><span class="type-annotation"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span> <span class="parameter-name">smiles</span>, </span><span class="parameter" id="saveMoleculeImage-param-filePath"><span class="type-annotation"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span> <span class="parameter-name">filePath</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Save a molecule visualization to a file
+  
+
+</dd>
+
+          <dt id="simulateCarbonNmr" class="callable">
+  <span class="name"><a href="../chem_nor/simulateCarbonNmr.html">simulateCarbonNmr</a></span><span class="signature">(<wbr><span class="parameter" id="simulateCarbonNmr-param-smiles"><span class="type-annotation"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span> <span class="parameter-name">smiles</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Simulates a carbon NMR spectrum from a SMILES string
+  
+
+</dd>
+
+          <dt id="simulateIrSpectrum" class="callable">
+  <span class="name"><a href="../chem_nor/simulateIrSpectrum.html">simulateIrSpectrum</a></span><span class="signature">(<wbr><span class="parameter" id="simulateIrSpectrum-param-smiles"><span class="type-annotation"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span> <span class="parameter-name">smiles</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Simulates an IR spectrum from a SMILES string
+  
+
+</dd>
+
+          <dt id="simulateMassSpectrum" class="callable">
+  <span class="name"><a href="../chem_nor/simulateMassSpectrum.html">simulateMassSpectrum</a></span><span class="signature">(<wbr><span class="parameter" id="simulateMassSpectrum-param-smiles"><span class="type-annotation"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span> <span class="parameter-name">smiles</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Simulates a mass spectrum from a SMILES string
+  
+
+</dd>
+
+          <dt id="simulateProtonNmr" class="callable">
+  <span class="name"><a href="../chem_nor/simulateProtonNmr.html">simulateProtonNmr</a></span><span class="signature">(<wbr><span class="parameter" id="simulateProtonNmr-param-smiles"><span class="type-annotation"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span> <span class="parameter-name">smiles</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Simulates a proton NMR spectrum from a SMILES string
+  
+
+</dd>
+
+      </dl>
+    </section>
 
 
   </div> <!-- /.main-content -->
@@ -115,7 +433,7 @@ based on an application description.
 <footer>
   <span class="no-break">
     chem_nor
-      0.3.2
+      0.4.1
   </span>
   
 </footer>

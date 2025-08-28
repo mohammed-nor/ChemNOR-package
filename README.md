@@ -10,11 +10,11 @@ Note : A Google Cloud [API-key](https://ai.google.dev/gemini-api/docs/api-key) i
 
 ```yaml
 dependencies:
-    chem_nor: ^0.4.0
+    chem_nor: ^0.4.1
 ```
 
-## usages
-
+## Core ChemNOR functionality
+### 1. Finds Relevant Chemical 
 Finds relevant chemical compounds for a given application description.
 
 * Uses AI to generate SMILES patterns.
@@ -166,6 +166,7 @@ void main() async {
 Output: {cid: 248, name: carboxymethyl(trimethyl)ammonium, formula: C5H12NO2+, weight: 118.15, SMILES: N/A, Hydrogen Bond Donor: 1, Hydrogen Bond Acceptor: 2, TPSA: 37.3, Complexity: 93.1, charge	: N/A, Title: N/A, XLogP: N/A}
 ```
 
+### 2. Chemist
 Giving the ability to chat with Ai using text as an input.
 return a text if only the question is related to chemistry that is containing compound description.
 
@@ -279,12 +280,12 @@ In summary, carboxymethyl(trimethyl)ammonium, most commonly known as glycine bet
 *   Carey, F. A., & Sundberg, R. J. (2007). *Advanced Organic Chemistry Part B: Reactions and Synthesis* (5th ed.). Springer.
 *   PubChem. (Accessed various dates). National Library of Medicine. [https://pubchem.ncbi.nlm.nih.gov/](https://pubchem.ncbi.nlm.nih.gov/)
 *   Craig, G. B. (2004). Betaine: a new role for an old nutrient. *Journal of the American Dietetic Association*, 104(2), 273-274.
-
-## Additional Module Documentation
+```
+## Additional ChemNOR functionality
 
 In addition to the core ChemNOR functionality, this package offers several chemistry-related modules:
 
-### Formula Parser
+### 1. Formula Parser
 
 Parses chemical formulas into a map of element symbols and their counts.
 
@@ -365,7 +366,7 @@ Automatically balances chemical equations.
 import 'package:chem_nor/chem_nor.dart';
 
 void main() {
-  final balanced = balanceEquation('H2 + O2 = H2O');
+  final balanced = ReactionBalancer.balance('H2 + O2 = H2O');
   print(balanced);
 }
 ```
@@ -470,7 +471,7 @@ O
 
 ```
 
-### Complete Package Usage
+## Complete Package Usage
 
 Combine these modules for comprehensive chemical analysis:
 

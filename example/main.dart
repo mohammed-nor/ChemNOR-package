@@ -1,13 +1,42 @@
 import 'package:chem_nor/chem_nor.dart';
 
 void main() async {
-  final finder = ChemNOR(genAiApiKey: 'APIkey');
+  final finder = ChemNOR(genAiApiKey: "key");
   dynamic properties = await finder.getCompoundProperties(248);
   print(properties);
   dynamic list = await finder.getSubstructureCids('CC');
   print(list);
   final smiles = await finder.getRelevantSmiles('carboxylic acid compounds');
   print(smiles);
-  dynamic question = await finder.chemist('hello , please educate me about carboxymethyl(trimethyl)ammonium ');
-  print(question);
+  dynamic chat = await finder.chemist('hello , please educate me about carboxymethyl(trimethyl)ammonium ');
+  print(chat);
+  dynamic propertie = await finder.findListOfCompoundsJSN('carboxylic acid compounds');
+  print(propertie);
+  final elements = parseFormula('H2SO4');
+  print(elements);
+  final iupacName = await generateIupacName('CCO');
+  print(iupacName);
+  final weight = calculateMolecularWeight('H2O');
+  print('Water molecular weight: $weight g/mol');
+  final oxygen = PeriodicTable.getBySymbol('O');
+  print('Oxygen: atomic number ${oxygen?.atomicNumber}, mass ${oxygen?.atomicMass}');
+  final metals = PeriodicTable.getByCategory('transition metal');
+  print('Number of transition metals: ${metals.length}');
+  final balanced = ReactionBalancer.balance('H2 + O2 = H2O');
+  print(balanced);
+  final safetyInfo = await getSafetyData('acetone');
+  print('Signal word: ${safetyInfo['signal_word']}');
+  print('Hazard statements: ${safetyInfo['hazard_statements']}');
+  final structure = parseSmiles('CCO');
+  print(structure);
+  final isValid = isSmilesValid('C1=CC=CC=C1');
+  print('Is benzene SMILES valid? $isValid');
+  final nmrData = await simulateProtonNmr('CCO');
+  print(nmrData['summary']);
+  final irData = await simulateIrSpectrum('CCO');
+  print('IR bands: ${irData['bands'].length}');
+  final url = drawMolecule('CCO');
+  print('Molecule visualization URL: $url');
+  final asciiArt = drawMoleculeAscii('CCO');
+  print(asciiArt);
 }

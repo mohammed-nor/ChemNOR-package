@@ -160,3 +160,6 @@ class MolecularWeight {
 }
 
 /// Convenience function to calculate molecular weight from a chemical formula.
+Future<double?> calculateMolecularWeight(String formula) async {
+  return MolecularWeight.calculate(formula);
+}

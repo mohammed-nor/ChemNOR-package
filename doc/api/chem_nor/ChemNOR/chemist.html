@@ -57,8 +57,8 @@
 
     <section class="multi-line-signature">
       
-<span class="returntype"><a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span>&gt;</span></span>
-<span class="name ">chemist</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="chemist-param-userInput"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">userInput</span></span></li>
+<span class="returntype"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a>?</span>&gt;</span></span>
+<span class="name ">chemist</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="chemist-param-userInput"><span class="type-annotation"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span> <span class="parameter-name">userInput</span></span></li>
 </ol>)
 
       
@@ -94,7 +94,8 @@
 &#39;&#39;&#39;;
   try {
     final model = ChemNOR(genAiApiKey: genAiApiKey);
-    final response = await model.generateContent(userInput, systemInstruction);
+    final response =
+        await model.generateContent(userInput, systemInstruction);
     return response;
   } catch (e) {
     return &#39;Error: ${e.toString()}&#39;;
@@ -127,7 +128,7 @@
 <footer>
   <span class="no-break">
     chem_nor
-      0.3.2
+      0.4.1
   </span>
   
 </footer>

@@ -52,10 +52,11 @@ Dart package that finds relevant chemical compounds using AI (Gemini) and PubChe
 level up your chemistry knowledge and use it to chat with your Ai chemist!</p>
 <p>Note : A Google Cloud <a href="https://ai.google.dev/gemini-api/docs/api-key">API-key</a> is required for all requests.</p>
 <h2 id="installation">Installation</h2>
-<pre class="language-dart"><code>dependencies:
-    chem_nor: ^0.3.2
+<pre class="language-yaml"><code class="language-yaml">dependencies:
+    chem_nor: ^0.4.1
 </code></pre>
 <h2 id="usages">usages</h2>
+<h3 id="finds-relevant-chemical">Finds Relevant Chemical</h3>
 <p>Finds relevant chemical compounds for a given application description.</p>
 <ul>
 <li>Uses AI to generate SMILES patterns.</li>
@@ -63,7 +64,7 @@ level up your chemistry knowledge and use it to chat with your Ai chemist!</p>
 <li>Retrieves properties of the top compounds found.</li>
 </ul>
 <p>Returns a formatted string containing search results as Text or in JSON format using the <code>findListOfCompoundsJSN</code> method:</p>
-<pre class="language-dart"><code>import 'package:chem_nor/chem_nor.dart';
+<pre class="language-dart"><code class="language-dart">import 'package:chem_nor/chem_nor.dart';
 
 void main() async {
   final finder = ChemNOR(genAiApiKey: 'your-api-key');
@@ -137,7 +138,7 @@ Title: N/A
 XLogP: 0.6
 --------------------------------------------
 </code></pre>
-<pre class="language-dart"><code>import 'package:chem_nor/chem_nor.dart';
+<pre class="language-dart"><code class="language-dart">import 'package:chem_nor/chem_nor.dart';
 
 void main() async {
   final finder = ChemNOR(genAiApiKey: 'your-api-key');
@@ -149,7 +150,7 @@ void main() async {
 </code></pre>
 <p>Searches PubChem for compounds containing the given SMILES pattern.
 Returns a list of compound IDs (CIDs) matching the pattern.</p>
-<pre class="language-dart"><code>import 'package:chem_nor/chem_nor.dart';
+<pre class="language-dart"><code class="language-dart">import 'package:chem_nor/chem_nor.dart';
 
 void main() async {
   final finder = ChemNOR(genAiApiKey: 'your-api-key');
@@ -161,7 +162,7 @@ void main() async {
 </code></pre>
 <p>Uses Google Gemini AI to suggest relevant SMILES patterns based on the given application description.
 Returns a list of valid SMILES strings.</p>
-<pre class="language-dart"><code>import 'package:chem_nor/chem_nor.dart';
+<pre class="language-dart"><code class="language-dart">import 'package:chem_nor/chem_nor.dart';
 
 void main() async {
   final finder = ChemNOR(genAiApiKey: 'your-api-key');
@@ -173,7 +174,7 @@ void main() async {
 </code></pre>
 <p>Fetches compound properties from PubChem using the given CID.
 Returns a map containing compound details like name, formula, weight, and SMILES.</p>
-<pre class="language-dart"><code>import 'package:chem_nor/chem_nor.dart';
+<pre class="language-dart"><code class="language-dart">import 'package:chem_nor/chem_nor.dart';
 
 void main() async {
   final finder = ChemNOR(genAiApiKey: 'your-api-key');
@@ -183,9 +184,10 @@ void main() async {
 </code></pre>
 <pre class="language-dart"><code>Output: {cid: 248, name: carboxymethyl(trimethyl)ammonium, formula: C5H12NO2+, weight: 118.15, SMILES: N/A, Hydrogen Bond Donor: 1, Hydrogen Bond Acceptor: 2, TPSA: 37.3, Complexity: 93.1, charge	: N/A, Title: N/A, XLogP: N/A}
 </code></pre>
+<h3 id="chemist">Chemist</h3>
 <p>Giving the ability to chat with Ai using text as an input.
 return a text if only the question is related to chemistry that is containing compound description.</p>
-<pre class="language-dart"><code>import 'package:chem_nor/chem_nor.dart';
+<pre class="language-dart"><code class="language-dart">import 'package:chem_nor/chem_nor.dart';
 
 void main() async {
   final finder = ChemNOR(genAiApiKey: 'your-api-key');
@@ -293,6 +295,182 @@ In summary, carboxymethyl(trimethyl)ammonium, most commonly known as glycine bet
 *   PubChem. (Accessed various dates). National Library of Medicine. [https://pubchem.ncbi.nlm.nih.gov/](https://pubchem.ncbi.nlm.nih.gov/)
 *   Craig, G. B. (2004). Betaine: a new role for an old nutrient. *Journal of the American Dietetic Association*, 104(2), 273-274.
 </code></pre>
+<h2 id="additional-module-documentation">Additional Module Documentation</h2>
+<p>In addition to the core ChemNOR functionality, this package offers several chemistry-related modules:</p>
+<h3 id="formula-parser">Formula Parser</h3>
+<p>Parses chemical formulas into a map of element symbols and their counts.</p>
+<pre class="language-dart"><code class="language-dart">import 'package:chem_nor/chem_nor.dart';
+
+void main() {
+  final elements = parseFormula('H2SO4');
+  print(elements);
+}
+</code></pre>
+<pre class="language-dart"><code>Output: {H: 2, S: 1, O: 4}
+</code></pre>
+<h3 id="2-iupac-naming">2. IUPAC Naming</h3>
+<p>Generates IUPAC names from SMILES notation using PubChem.</p>
+<pre class="language-dart"><code class="language-dart">import 'package:chem_nor/chem_nor.dart';
+
+void main() async {
+  final iupacName = await generateIupacName('CCO');
+  print(iupacName);
+}
+</code></pre>
+<pre class="language-dart"><code>Output: ethanol
+</code></pre>
+<h3 id="3-molecular-weight">3. Molecular Weight</h3>
+<p>Calculates molecular weights from chemical formulas.</p>
+<pre class="language-dart"><code class="language-dart">import 'package:chem_nor/chem_nor.dart';
+
+void main() {
+  final weight = calculateMolecularWeight('H2O');
+  print('Water molecular weight: $weight g/mol');
+}
+</code></pre>
+<pre class="language-dart"><code>Output: Water molecular weight: 18.01528 g/mol
+</code></pre>
+<h3 id="4-periodic-table">4. Periodic Table</h3>
+<p>Access detailed information about chemical elements.</p>
+<pre class="language-dart"><code class="language-dart">import 'package:chem_nor/chem_nor.dart';
+
+void main() {
+  final oxygen = PeriodicTable.getBySymbol('O');
+  print('Oxygen: atomic number ${oxygen?.atomicNumber}, mass ${oxygen?.atomicMass}');
+  
+  final metals = PeriodicTable.getByCategory('transition metal');
+  print('Number of transition metals: ${metals.length}');
+}
+</code></pre>
+<pre class="language-dart"><code>Output: 
+Oxygen: atomic number 8, mass 15.999
+Number of transition metals: 38
+</code></pre>
+<h3 id="5-reaction-balancer">5. Reaction Balancer</h3>
+<p>Automatically balances chemical equations.</p>
+<pre class="language-dart"><code class="language-dart">import 'package:chem_nor/chem_nor.dart';
+
+void main() {
+  final balanced = ReactionBalancer.balance('H2 + O2 = H2O');
+  print(balanced);
+}
+</code></pre>
+<pre class="language-dart"><code>Output: 2H2 + O2 = 2H2O
+</code></pre>
+<h3 id="6-safety-data">6. Safety Data</h3>
+<p>Retrieves chemical safety information including GHS classifications and hazard codes.</p>
+<pre class="language-dart"><code class="language-dart">import 'package:chem_nor/chem_nor.dart';
+
+void main() async {
+  final safetyInfo = await getSafetyData('acetone');
+  
+  print('Signal word: ${safetyInfo['signal_word']}');
+  print('Hazard statements: ${safetyInfo['hazard_statements']}');
+}
+</code></pre>
+<pre class="language-dart"><code>Output:
+Signal word: Danger
+Hazard statements: {H225, H319, H336}
+</code></pre>
+<h3 id="7-smiles-parser">7. SMILES Parser</h3>
+<p>Analyzes SMILES (Simplified Molecular Input Line Entry System) notation to extract structural information.</p>
+<pre class="language-dart"><code class="language-dart">import 'package:chem_nor/chem_nor.dart';
+
+void main() {
+  final structure = parseSmiles('CCO');
+  print(structure);
+  
+  final isValid = isSmilesValid('C1=CC=CC=C1');
+  print('Is benzene SMILES valid? $isValid');
+}
+</code></pre>
+<pre class="language-dart"><code>Output:
+{atomCounts: {C: 2, O: 1}, bondCounts: {single: 2, double: 0, triple: 0, aromatic: 0}, rings: 0, branches: 0, aromaticAtoms: 0}
+Is benzene SMILES valid? true
+</code></pre>
+<h3 id="8-spectroscopy">8. Spectroscopy</h3>
+<p>Simulates spectroscopic data (NMR, IR, Mass) based on molecular structures.</p>
+<pre class="language-dart"><code class="language-dart">import 'package:chem_nor/chem_nor.dart';
+
+void main() async {
+  final nmrData = await simulateProtonNmr('CCO');
+  print(nmrData['summary']);
+  
+  final irData = await simulateIrSpectrum('CCO');
+  print('IR bands: ${irData['bands'].length}');
+}
+</code></pre>
+<pre class="language-dart"><code>Output:
+¹H NMR prediction for ethanol:
+
+δ 0.9 ppm (triplet, 3H) - Methyl group (-CH₃)
+δ 3.5 ppm (singlet (broad), 1H) - Hydroxyl group (-OH)
+δ 3.6 ppm (quartet, 2H) - CH₂ adjacent to oxygen
+
+IR bands: 4
+</code></pre>
+<h3 id="9-visualization">9. Visualization</h3>
+<p>Visualizes chemical structures from SMILES notation.</p>
+<pre class="language-dart"><code class="language-dart">import 'package:chem_nor/chem_nor.dart';
+
+void main() {
+  final url = drawMolecule('CCO');
+  print('Molecule visualization URL: $url');
+  
+  final asciiArt = drawMoleculeAscii('CCO');
+  print(asciiArt);
+}
+</code></pre>
+<pre class="language-dart"><code>Output:
+Molecule visualization URL: https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/smiles/CCO/PNG
+ASCII Molecule: CCO
+==============================
+C ─ ─ 
+O
+
+</code></pre>
+<h3 id="complete-package-usage">Complete Package Usage</h3>
+<p>Combine these modules for comprehensive chemical analysis:</p>
+<pre class="language-dart"><code class="language-dart">import 'package:chem_nor/chem_nor.dart';
+
+void main() async {
+  // Initialize ChemNOR with your API key
+  final chemNor = ChemNOR(genAiApiKey: 'your-api-key');
+  
+  // Find compounds related to a query
+  final compounds = await chemNor.findListOfCompounds('analgesic compounds');
+  
+  // For the first compound found, perform comprehensive analysis
+  if (compounds.isNotEmpty) {
+    // Extract SMILES from the results (implementation details may vary)
+    final smiles = 'CC(=O)OC1=CC=CC=C1C(=O)O'; // Aspirin example
+    
+    // Get the IUPAC name
+    final name = await generateIupacName(smiles);
+    
+    // Calculate molecular weight
+    final formula = 'C9H8O4'; // Aspirin formula
+    final weight = calculateMolecularWeight(formula);
+    
+    // Get safety information
+    final safety = await getSafetyData('aspirin');
+    
+    // Simulate spectroscopic data
+    final nmrData = await simulateProtonNmr(smiles);
+    
+    // Generate visualization
+    final visUrl = drawMolecule(smiles);
+    
+    // Print comprehensive report
+    print('Compound: $name');
+    print('Formula: $formula');
+    print('Molecular Weight: $weight g/mol');
+    print('Safety Signal Word: ${safety['signal_word']}');
+    print('NMR Summary: ${nmrData['summary']}');
+    print('Visualization: $visUrl');
+  }
+}
+</code></pre>
 </section>
 
 
@@ -341,7 +519,7 @@ In summary, carboxymethyl(trimethyl)ammonium, most commonly known as glycine bet
 <footer>
   <span class="no-break">
     chem_nor
-      0.3.2
+      0.4.1
   </span>
   
 </footer>
