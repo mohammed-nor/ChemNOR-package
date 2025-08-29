@@ -38,6 +38,4 @@ void main() async {
   print('IR bands: ${irData['bands'].length}');
   final url = drawMolecule('CCO');
   print('Molecule visualization URL: $url');
-  final asciiArt = drawMoleculeAscii('CCO');
-  print(asciiArt);
 }

@@ -1,7 +1,7 @@
 import 'package:chem_nor/chem_nor.dart';
 
 void main() async {
-  final finder = ChemNOR(genAiApiKey: "key");
+  final finder = ChemNOR(genAiApiKey: "AIzaSyCR80a7Gb4kSGd5rX9ingZhJKSw9b9hQgQ");
   dynamic properties = await finder.getCompoundProperties(248);
   print(properties);
   dynamic list = await finder.getSubstructureCids('CC');
@@ -34,7 +34,7 @@ void main() async {
   final nmrData = await simulateProtonNmr('CCO');
   print(nmrData['summary']);
   final irData = await simulateIrSpectrum('CCO');
-  print('IR bands: ${irData['bands'].length}');
+  print('IR bands: ${irData['bands']}');
   final url = drawMolecule('CCO');
   print('Molecule visualization URL: $url');
   final asciiArt = drawMoleculeAscii('CCO');

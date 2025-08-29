@@ -27,27 +27,21 @@ class ChemNOR {
     ///https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=GEMINI_API_KEY
     final url = Uri.parse('https://generativelanguage.googleapis.com/v1beta/models/$model:generateContent?key=$genAiApiKey');
 
-    final headers = {
-      'Content-Type': 'application/json',
-    };
+    final headers = {'Content-Type': 'application/json'};
 
     final Map<String, dynamic> requestBody = {
       'contents': [
         {
           'parts': [
             {'text': systemInstruction},
-            {'text': userInput}
-          ]
-        }
-      ]
+            {'text': userInput},
+          ],
+        },
+      ],
     };
     for (int i = 0; i < 3; i++) {
       try {
-        final response = await http.post(
-          url,
-          headers: headers,
-          body: jsonEncode(requestBody),
-        );
+        final response = await http.post(url, headers: headers, body: jsonEncode(requestBody));
 
         if (response.statusCode == 200) {
           final Map<String, dynamic> data = jsonDecode(response.body);
@@ -117,6 +111,36 @@ class ChemNOR {
       }
 
       return _formatResults(results, smilesList);
+    } catch (e) {
+      return 'Error: ${e.toString()}';
+    }
+  }
+
+  Future<String?> chat(String userInput, String context) async {
+    String systemInstruction = '''
+    You are a professional organic chemist with extensive knowledge in:
+    - Organic synthesis
+    - Reaction mechanisms
+    - Spectroscopy interpretation (NMR, IR, Mass Spec)
+    - Retrosynthetic analysis
+    - Named reactions
+    - Stereochemistry
+    - Functional group transformations
+    
+    Your responses should be:
+    - Technical but clear
+    - Include relevant chemical structures (in text form)
+    - Use IUPAC nomenclature
+    - Provide reaction equations where applicable
+    - Highlight safety considerations
+    - Cite important references when appropriate
+    
+    consider the following context: ${context}
+  ''';
+    try {
+      final model = ChemNOR(genAiApiKey: genAiApiKey);
+      final response = await model.generateContent(userInput, systemInstruction);
+      return response;
     } catch (e) {
       return 'Error: ${e.toString()}';
     }
@@ -247,10 +271,7 @@ class ChemNOR {
 
   String? _findProperty(List<dynamic> properties, String label) {
     try {
-      final prop = properties.firstWhere(
-        (p) => p['urn']['label'] == label,
-        orElse: () => null,
-      );
+      final prop = properties.firstWhere((p) => p['urn']['label'] == label, orElse: () => null);
       return prop['value']['sval'] ?? prop['value']['fval'].toString();
     } catch (e) {
       return null;
@@ -259,10 +280,7 @@ class ChemNOR {
 
   String? _findfvalPropertybylabel(List<dynamic> properties, String name, String label) {
     try {
-      final prop = properties.firstWhere(
-        (p) => p['urn']['name'] == name && p['urn']['label'] == label,
-        orElse: () => null,
-      );
+      final prop = properties.firstWhere((p) => p['urn']['name'] == name && p['urn']['label'] == label, orElse: () => null);
       return prop['value']['sval'] ?? prop['value']['fval'].toString();
     } catch (e) {
       return null;
@@ -271,10 +289,7 @@ class ChemNOR {
 
   String? _findivalPropertybylabel(List<dynamic> properties, String name, String label) {
     try {
-      final prop = properties.firstWhere(
-        (p) => p['urn']['name'] == name && p['urn']['label'] == label,
-        orElse: () => null,
-      );
+      final prop = properties.firstWhere((p) => p['urn']['name'] == name && p['urn']['label'] == label, orElse: () => null);
       return prop['value']['sval'] ?? prop['value']['ival'].toString();
     } catch (e) {
       return null;
@@ -283,10 +298,7 @@ class ChemNOR {
 
   String? _findfvalPropertybylabelonly(List<dynamic> properties, String label) {
     try {
-      final prop = properties.firstWhere(
-        (p) => p['urn']['label'] == label,
-        orElse: () => null,
-      );
+      final prop = properties.firstWhere((p) => p['urn']['label'] == label, orElse: () => null);
       return prop['value']['sval'] ?? prop['value']['fval'].toString();
     } catch (e) {
       return null;
@@ -362,11 +374,7 @@ class ChemNOR {
       }
 
       // Prepare the data for JSON encoding
-      final Map<String, dynamic> jsonData = {
-        'query_application_description': applicationDescription,
-        'generated_smiles_patterns': smilesList,
-        'retrieved_compounds': compoundPropertiesList,
-      };
+      final Map<String, dynamic> jsonData = {'query_application_description': applicationDescription, 'generated_smiles_patterns': smilesList, 'retrieved_compounds': compoundPropertiesList};
 
       return jsonEncode(jsonData);
     } catch (e) {

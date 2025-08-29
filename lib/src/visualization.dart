@@ -71,53 +71,7 @@ class MoleculeVisualizer {
     return filePath;
   }
 
-  /// Creates a simple ASCII art representation of a molecule
-  ///
-  /// This is useful for console applications or when graphical
-  /// visualization is not available
-  static String generateAsciiArt(String smiles) {
-    if (!isSmilesValid(smiles)) {
-      return 'Invalid SMILES string provided';
-    }
 
-    // Parse the SMILES to get structure information
-    final structure = parseSmiles(smiles);
-    final atomCounts = structure['atomCounts'] as Map<String, int>;
-    final rings = structure['rings'] as int;
-    final branches = structure['branches'] as int;
-
-    // Generate a simple ASCII representation
-    final buffer = StringBuffer();
-
-    buffer.writeln('ASCII Molecule: $smiles');
-    buffer.writeln('=' * 30);
-
-    // Create a representation of atoms
-    atomCounts.forEach((element, count) {
-      buffer.write('$element');
-      if (count > 1) buffer.write(' ─ ' * (count - 1));
-      buffer.writeln();
-    });
-
-    // Add rings representation
-    if (rings > 0) {
-      buffer.writeln('\nRings (${rings}):');
-      for (int i = 0; i < rings; i++) {
-        buffer.writeln('  ○');
-      }
-    }
-
-    // Add branches representation
-    if (branches > 0) {
-      buffer.writeln('\nBranches (${branches}):');
-      for (int i = 0; i < branches; i++) {
-        buffer.writeln('  │');
-        buffer.writeln('  └─');
-      }
-    }
-
-    return buffer.toString();
-  }
 
   /// Returns the molecule structure as a data URL
   ///
@@ -134,11 +88,6 @@ class MoleculeVisualizer {
 /// Returns a URL to view the molecule
 String drawMolecule(String smiles) {
   return MoleculeVisualizer.getPubChemVisualizationUrl(smiles);
-}
-
-/// Generate an ASCII art representation of a molecule
-String drawMoleculeAscii(String smiles) {
-  return MoleculeVisualizer.generateAsciiArt(smiles);
 }
 
 /// Save a molecule visualization to a file
