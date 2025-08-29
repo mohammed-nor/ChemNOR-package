@@ -88,11 +88,7 @@
     }
 
     if (uniqueCids.isEmpty) {
-      return jsonEncode({
-        &#39;query_smiles&#39;: smilesList,
-        &#39;results&#39;: [],
-        &#39;message&#39;: &#39;No compounds found for the generated SMILES patterns.&#39;
-      });
+      return jsonEncode({&#39;query_smiles&#39;: smilesList, &#39;results&#39;: [], &#39;message&#39;: &#39;No compounds found for the generated SMILES patterns.&#39;});
     }
 
     &#47;&#47; Step 3: Fetch properties for collected CIDs
@@ -103,25 +99,17 @@
         compoundPropertiesList.add(await getCompoundProperties(cid));
       } catch (e) {
         &#47;&#47; Include error information for specific CIDs in the JSON response
-        compoundPropertiesList.add({
-          &#39;cid&#39;: cid,
-          &#39;error&#39;: &#39;Failed to fetch properties: ${e.toString()}&#39;
-        });
+        compoundPropertiesList.add({&#39;cid&#39;: cid, &#39;error&#39;: &#39;Failed to fetch properties: ${e.toString()}&#39;});
       }
     }
 
     &#47;&#47; Prepare the data for JSON encoding
-    final Map&lt;String, dynamic&gt; jsonData = {
-      &#39;query_application_description&#39;: applicationDescription,
-      &#39;generated_smiles_patterns&#39;: smilesList,
-      &#39;retrieved_compounds&#39;: compoundPropertiesList,
-    };
+    final Map&lt;String, dynamic&gt; jsonData = {&#39;query_application_description&#39;: applicationDescription, &#39;generated_smiles_patterns&#39;: smilesList, &#39;retrieved_compounds&#39;: compoundPropertiesList};
 
     return jsonEncode(jsonData);
   } catch (e) {
     &#47;&#47; Return a JSON formatted error message
-    return jsonEncode(
-        {&#39;error&#39;: &#39;An overall error occurred: ${e.toString()}&#39;});
+    return jsonEncode({&#39;error&#39;: &#39;An overall error occurred: ${e.toString()}&#39;});
   }
 }</code></pre>
 </section>
@@ -151,7 +139,7 @@
 <footer>
   <span class="no-break">
     chem_nor
-      0.4.1
+      0.4.2
   </span>
   
 </footer>

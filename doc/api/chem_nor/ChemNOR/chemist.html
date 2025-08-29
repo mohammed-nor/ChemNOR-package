@@ -94,8 +94,7 @@
 &#39;&#39;&#39;;
   try {
     final model = ChemNOR(genAiApiKey: genAiApiKey);
-    final response =
-        await model.generateContent(userInput, systemInstruction);
+    final response = await model.generateContent(userInput, systemInstruction);
     return response;
   } catch (e) {
     return &#39;Error: ${e.toString()}&#39;;
@@ -128,7 +127,7 @@
 <footer>
   <span class="no-break">
     chem_nor
-      0.4.1
+      0.4.2
   </span>
   
 </footer>

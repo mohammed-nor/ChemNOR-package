@@ -76,8 +76,7 @@ based on the given application description.</p>
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">Future&lt;List&lt;String&gt;&gt; getRelevantSmiles(String description) async {
-  final prompt =
-      &#39;&#39;&#39;I&#39;m a student that is very passion with chemistry and i hope that you will help me in the following task.
+  final prompt = &#39;&#39;&#39;I&#39;m a student that is very passion with chemistry and i hope that you will help me in the following task.
   Given the application: &quot;$description&quot;, suggest 3-10 SMILES patterns representing
   key functional groups or structural motifs relevant to this application.
   Return ONLY valid SMILES strings, one per line, with no additional text.
@@ -86,16 +85,14 @@ based on the given application description.</p>
   c1ccccc1
   NC(=O)N
   &#39;&#39;&#39;;
-  String systemInstruction =
-      &#39;&#39;&#39;If a question is not related to organic chemistry of a specific application, respond with:
+  String systemInstruction = &#39;&#39;&#39;If a question is not related to organic chemistry of a specific application, respond with:
   &quot;I specialize in organic chemistry. Please ask questions related to that field.&quot;&#39;&#39;&#39;;
 
   final model = ChemNOR(genAiApiKey: genAiApiKey);
   final response = await model.generateContent(prompt, systemInstruction);
 
   &#47;&#47; Extract SMILES using regex pattern
-  final RegExp smilesRegex =
-      RegExp(r&#39;^[A-Za-z0-9@+\-\[\]\(\)\\&#47;=#$.]+$&#39;, multiLine: true);
+  final RegExp smilesRegex = RegExp(r&#39;^[A-Za-z0-9@+\-\[\]\(\)\\&#47;=#$.]+$&#39;, multiLine: true);
   final matches = smilesRegex.allMatches(response);
 
   if (matches.isEmpty) {
@@ -131,7 +128,7 @@ based on the given application description.</p>
 <footer>
   <span class="no-break">
     chem_nor
-      0.4.1
+      0.4.2
   </span>
   
 </footer>

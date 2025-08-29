@@ -53,10 +53,10 @@ level up your chemistry knowledge and use it to chat with your Ai chemist!</p>
 <p>Note : A Google Cloud <a href="https://ai.google.dev/gemini-api/docs/api-key">API-key</a> is required for all requests.</p>
 <h2 id="installation">Installation</h2>
 <pre class="language-yaml"><code class="language-yaml">dependencies:
-    chem_nor: ^0.4.1
+    chem_nor: ^0.4.2
 </code></pre>
-<h2 id="usages">usages</h2>
-<h3 id="finds-relevant-chemical">Finds Relevant Chemical</h3>
+<h2 id="core-chemnor-functionality">Core ChemNOR functionality</h2>
+<h3 id="1-finds-relevant-chemical">1. Finds Relevant Chemical</h3>
 <p>Finds relevant chemical compounds for a given application description.</p>
 <ul>
 <li>Uses AI to generate SMILES patterns.</li>
@@ -184,9 +184,10 @@ void main() async {
 </code></pre>
 <pre class="language-dart"><code>Output: {cid: 248, name: carboxymethyl(trimethyl)ammonium, formula: C5H12NO2+, weight: 118.15, SMILES: N/A, Hydrogen Bond Donor: 1, Hydrogen Bond Acceptor: 2, TPSA: 37.3, Complexity: 93.1, charge	: N/A, Title: N/A, XLogP: N/A}
 </code></pre>
-<h3 id="chemist">Chemist</h3>
+<h3 id="2-chemist">2. Chemist</h3>
 <p>Giving the ability to chat with Ai using text as an input.
-return a text if only the question is related to chemistry that is containing compound description.</p>
+return a text if only the question is related to chemistry that is containing compound description.
+you can also use the <code>chat</code> method to ask whatever you like with the ability to take the chat context as an additional imput.</p>
 <pre class="language-dart"><code class="language-dart">import 'package:chem_nor/chem_nor.dart';
 
 void main() async {
@@ -295,9 +296,9 @@ In summary, carboxymethyl(trimethyl)ammonium, most commonly known as glycine bet
 *   PubChem. (Accessed various dates). National Library of Medicine. [https://pubchem.ncbi.nlm.nih.gov/](https://pubchem.ncbi.nlm.nih.gov/)
 *   Craig, G. B. (2004). Betaine: a new role for an old nutrient. *Journal of the American Dietetic Association*, 104(2), 273-274.
 </code></pre>
-<h2 id="additional-module-documentation">Additional Module Documentation</h2>
+<h2 id="additional-chemnor-functionality">Additional ChemNOR functionality</h2>
 <p>In addition to the core ChemNOR functionality, this package offers several chemistry-related modules:</p>
-<h3 id="formula-parser">Formula Parser</h3>
+<h3 id="1-formula-parser">1. Formula Parser</h3>
 <p>Parses chemical formulas into a map of element symbols and their counts.</p>
 <pre class="language-dart"><code class="language-dart">import 'package:chem_nor/chem_nor.dart';
 
@@ -416,20 +417,13 @@ IR bands: 4
 void main() {
   final url = drawMolecule('CCO');
   print('Molecule visualization URL: $url');
-  
-  final asciiArt = drawMoleculeAscii('CCO');
-  print(asciiArt);
 }
 </code></pre>
 <pre class="language-dart"><code>Output:
 Molecule visualization URL: https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/smiles/CCO/PNG
-ASCII Molecule: CCO
-==============================
-C ─ ─ 
-O
 
 </code></pre>
-<h3 id="complete-package-usage">Complete Package Usage</h3>
+<h2 id="complete-package-usage">Complete Package Usage</h2>
 <p>Combine these modules for comprehensive chemical analysis:</p>
 <pre class="language-dart"><code class="language-dart">import 'package:chem_nor/chem_nor.dart';
 
@@ -519,7 +513,7 @@ void main() async {
 <footer>
   <span class="no-break">
     chem_nor
-      0.4.1
+      0.4.2
   </span>
   
 </footer>

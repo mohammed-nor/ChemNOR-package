@@ -88,22 +88,13 @@
   final formula = _findProperty(properties, &#39;Molecular Formula&#39;) ?? &#39;N&#47;A&#39;;
   final weight = _findProperty(properties, &#39;Molecular Weight&#39;) ?? &#39;N&#47;A&#39;;
   final smiles = _findProperty(properties, &#39;Canonical SMILES&#39;) ?? &#39;N&#47;A&#39;;
-  final hbDonor =
-      _findivalPropertybylabel(properties, &#39;Hydrogen Bond Donor&#39;, &#39;Count&#39;) ??
-          &#39;N&#47;A&#39;;
-  final hbAcceptor = _findivalPropertybylabel(
-          properties, &#39;Hydrogen Bond Acceptor&#39;, &#39;Count&#39;) ??
-      &#39;N&#47;A&#39;;
-  final tpsa = _findfvalPropertybylabel(
-          properties, &#39;Polar Surface Area&#39;, &#39;Topological&#39;) ??
-      &#39;N&#47;A&#39;;
-  final complexity =
-      _findfvalPropertybylabelonly(properties, &#39;Compound Complexity&#39;) ??
-          &#39;N&#47;A&#39;;
+  final hbDonor = _findivalPropertybylabel(properties, &#39;Hydrogen Bond Donor&#39;, &#39;Count&#39;) ?? &#39;N&#47;A&#39;;
+  final hbAcceptor = _findivalPropertybylabel(properties, &#39;Hydrogen Bond Acceptor&#39;, &#39;Count&#39;) ?? &#39;N&#47;A&#39;;
+  final tpsa = _findfvalPropertybylabel(properties, &#39;Polar Surface Area&#39;, &#39;Topological&#39;) ?? &#39;N&#47;A&#39;;
+  final complexity = _findfvalPropertybylabelonly(properties, &#39;Compound Complexity&#39;) ?? &#39;N&#47;A&#39;;
   final charge = _findProperty(properties, &#39;Charge&#39;) ?? &#39;N&#47;A&#39;;
   final title = _findProperty(properties, &#39;Title&#39;) ?? &#39;N&#47;A&#39;;
-  final xlogp =
-      _findfvalPropertybylabel(properties, &#39;XLogP3&#39;, &#39;Log P&#39;) ?? &#39;N&#47;A&#39;;
+  final xlogp = _findfvalPropertybylabel(properties, &#39;XLogP3&#39;, &#39;Log P&#39;) ?? &#39;N&#47;A&#39;;
 
   return {
     &#39;cid&#39;: cid,
@@ -147,7 +138,7 @@
 <footer>
   <span class="no-break">
     chem_nor
-      0.4.1
+      0.4.2
   </span>
   
 </footer>

@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the chempubBaseUrl property from the ChemNOR class, for the Dart programming language.">
-  <title>chempubBaseUrl property - ChemNOR class - chem_nor library - Dart API</title>
+  <meta name="description" content="API docs for the chat method from the ChemNOR class, for the Dart programming language.">
+  <title>chat method - ChemNOR class - chem_nor library - Dart API</title>
 
 
   
@@ -27,9 +27,9 @@
     <li><a href="../../index.html">chem_nor</a></li>
     <li><a href="../../chem_nor/">chem_nor.dart</a></li>
     <li><a href="../../chem_nor/ChemNOR-class.html">ChemNOR</a></li>
-    <li class="self-crumb">chempubBaseUrl property</li>
+    <li class="self-crumb">chat method</li>
   </ol>
-  <div class="self-name">chempubBaseUrl</div>
+  <div class="self-name">chat</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -52,33 +52,60 @@
     data-above-sidebar="chem_nor&#47;ChemNOR-class-sidebar.html"
     data-below-sidebar="">
     <div>
-<h1><span class="kind-property">chempubBaseUrl</span> property 
+<h1><span class="kind-method">chat</span> method 
 </h1></div>
 
+    <section class="multi-line-signature">
+      
+<span class="returntype"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a>?</span>&gt;</span></span>
+<span class="name ">chat</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="chat-param-userInput"><span class="type-annotation"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span> <span class="parameter-name">userInput</span>, </span></li>
+<li><span class="parameter" id="chat-param-context"><span class="type-annotation"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span> <span class="parameter-name">context</span></span></li>
+</ol>)
+
+      
+
+    </section>
     
-      <section class="multi-line-signature">
-        
-        <a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a>
-        <span class="name ">chempubBaseUrl</span>
-        <div class="features"><span class="feature">final</span></div>
 
-      </section>
-      
-<section class="desc markdown">
-  <p>Base URL for PubChem API.</p>
-</section>
 
-      
+    
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">final String chempubBaseUrl = &#39;https:&#47;&#47;pubchem.ncbi.nlm.nih.gov&#47;rest&#47;pug&#39;;</code></pre>
+  <pre class="language-dart"><code class="language-dart">Future&lt;String?&gt; chat(String userInput, String context) async {
+  String systemInstruction = &#39;&#39;&#39;
+  You are a professional organic chemist with extensive knowledge in:
+  - Organic synthesis
+  - Reaction mechanisms
+  - Spectroscopy interpretation (NMR, IR, Mass Spec)
+  - Retrosynthetic analysis
+  - Named reactions
+  - Stereochemistry
+  - Functional group transformations
+
+  Your responses should be:
+  - Technical but clear
+  - Include relevant chemical structures (in text form)
+  - Use IUPAC nomenclature
+  - Provide reaction equations where applicable
+  - Highlight safety considerations
+  - Cite important references when appropriate
+
+  consider the following context: ${context}
+&#39;&#39;&#39;;
+  try {
+    final model = ChemNOR(genAiApiKey: genAiApiKey);
+    final response = await model.generateContent(userInput, systemInstruction);
+    return response;
+  } catch (e) {
+    return &#39;Error: ${e.toString()}&#39;;
+  }
+}</code></pre>
 </section>
 
 
-    
-</div> <!-- /.main-content -->
-<div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
-  <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
 <header id="header-search-sidebar" class="hidden-l">
   <form class="search-sidebar" role="search">
     <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
@@ -88,13 +115,13 @@
     <li><a href="../../index.html">chem_nor</a></li>
     <li><a href="../../chem_nor/">chem_nor</a></li>
     <li><a href="../../chem_nor/ChemNOR-class.html">ChemNOR</a></li>
-    <li class="self-crumb">chempubBaseUrl property</li>
+    <li class="self-crumb">chat method</li>
 </ol>
 
-  <h5>ChemNOR class</h5>
-  <div id="dartdoc-sidebar-left-content"></div>
-</div><!--/.sidebar-offcanvas-->
-<div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+    <h5>ChemNOR class</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
+  </div><!--/.sidebar-offcanvas-->
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
 </div><!--/.sidebar-offcanvas-->
 </main>
 <footer>

@@ -10,7 +10,7 @@ Note : A Google Cloud [API-key](https://ai.google.dev/gemini-api/docs/api-key) i
 
 ```yaml
 dependencies:
-    chem_nor: ^0.4.1
+    chem_nor: ^0.4.2
 ```
 
 ## Core ChemNOR functionality
@@ -169,6 +169,7 @@ Output: {cid: 248, name: carboxymethyl(trimethyl)ammonium, formula: C5H12NO2+, w
 ### 2. Chemist
 Giving the ability to chat with Ai using text as an input.
 return a text if only the question is related to chemistry that is containing compound description.
+you can also use the `chat` method to ask whatever you like with the ability to take the chat context as an additional imput.
 
 ```dart
 import 'package:chem_nor/chem_nor.dart';
@@ -455,19 +456,12 @@ import 'package:chem_nor/chem_nor.dart';
 void main() {
   final url = drawMolecule('CCO');
   print('Molecule visualization URL: $url');
-  
-  final asciiArt = drawMoleculeAscii('CCO');
-  print(asciiArt);
 }
 ```
 
 ```
 Output:
 Molecule visualization URL: https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/smiles/CCO/PNG
-ASCII Molecule: CCO
-==============================
-C ─ ─ 
-O
 
 ```
 
