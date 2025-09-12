@@ -71,8 +71,6 @@ class MoleculeVisualizer {
     return filePath;
   }
 
-
-
   /// Returns the molecule structure as a data URL
   ///
   /// This can be used in HTML img tags directly without additional HTTP requests
