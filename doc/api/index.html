@@ -53,9 +53,26 @@ level up your chemistry knowledge and use it to chat with your Ai chemist!</p>
 <p>Note : A Google Cloud <a href="https://ai.google.dev/gemini-api/docs/api-key">API-key</a> is required for all requests.</p>
 <h2 id="installation">Installation</h2>
 <pre class="language-yaml"><code class="language-yaml">dependencies:
-    chem_nor: ^0.4.2
+    chem_nor: ^0.4.3
 </code></pre>
 <h2 id="core-chemnor-functionality">Core ChemNOR functionality</h2>
+<p>To use ChemNOR , you can initialize it by :</p>
+<ul>
+<li>Using the default model (gemini-2.5-flash)</li>
+</ul>
+<pre class="language-dart"><code class="language-dart">final chemNor = ChemNOR(genAiApiKey: 'your-api-key');
+</code></pre>
+<ul>
+<li>Using a specify model from the following list <code>gemini-1.5-flash, gemini-2.0-flash, gemini-2.0-flash-lite, gemini-2.5-pro, gemini-2.5-flash </code></li>
+</ul>
+<pre class="language-dart"><code class="language-dart">final chemNor2 = ChemNOR(
+  genAiApiKey: 'your-api-key',
+  model: GeminiModel.gemini_2_5_pro
+);
+</code></pre>
+<p>Note : to Get list of available models :</p>
+<pre class="language-dart"><code class="language-dart">print(ChemNOR.availableModels);
+</code></pre>
 <h3 id="1-finds-relevant-chemical">1. Finds Relevant Chemical</h3>
 <p>Finds relevant chemical compounds for a given application description.</p>
 <ul>
@@ -513,7 +530,7 @@ void main() async {
 <footer>
   <span class="no-break">
     chem_nor
-      0.4.2
+      0.4.3
   </span>
   
 </footer>

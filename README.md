@@ -10,10 +10,29 @@ Note : A Google Cloud [API-key](https://ai.google.dev/gemini-api/docs/api-key) i
 
 ```yaml
 dependencies:
-    chem_nor: ^0.4.3
+    chem_nor: ^0.5.0
 ```
 
 ## Core ChemNOR functionality
+To use ChemNOR , you can initialize it by : 
+- Using the default model (gemini-2.5-flash)
+```dart
+final chemNor = ChemNOR(genAiApiKey: 'your-api-key');
+```
+
+- Using a specify model from the following list `gemini-1.5-flash, gemini-2.0-flash, gemini-2.0-flash-lite, gemini-2.5-pro, gemini-2.5-flash `
+```dart
+final chemNor2 = ChemNOR(
+  genAiApiKey: 'your-api-key',
+  model: GeminiModel.gemini_2_5_pro
+);
+```
+
+Note : to Get list of available models :
+```dart
+print(ChemNOR.availableModels);
+```
+
 ### 1. Finds Relevant Chemical 
 Finds relevant chemical compounds for a given application description.
 

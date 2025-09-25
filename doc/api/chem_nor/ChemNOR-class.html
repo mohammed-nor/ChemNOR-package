@@ -71,10 +71,11 @@ to find compounds matching those patterns.</p>
     <h2>Constructors</h2>
     <dl class="constructor-summary-list">
         <dt id="ChemNOR" class="callable">
-          <span class="name"><a href="../chem_nor/ChemNOR/ChemNOR.html">ChemNOR</a></span><span class="signature">({<span class="parameter" id="-param-genAiApiKey"><span>required</span> <span class="type-annotation"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span> <span class="parameter-name">genAiApiKey</span></span>})</span>
+          <span class="name"><a href="../chem_nor/ChemNOR/ChemNOR.html">ChemNOR</a></span><span class="signature">({<span class="parameter" id="-param-genAiApiKey"><span>required</span> <span class="type-annotation"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span> <span class="parameter-name">genAiApiKey</span>, </span><span class="parameter" id="-param-model"><span class="type-annotation"><a href="../chem_nor/GeminiModel.html">GeminiModel</a></span> <span class="parameter-name">model</span> = <span class="default-value">GeminiModel.gemini2_5Flash</span></span>})</span>
         </dt>
         <dd>
           Constructor for ChemNOR, requires an API key for Google Generative AI.
+Optionally specify a Gemini model to use (defaults to gemini-2.5-flash).
         </dd>
     </dl>
   </section>
@@ -139,7 +140,7 @@ to find compounds matching those patterns.</p>
 
 </dt>
 <dd>
-  
+  The Gemini model to use for AI-assisted tasks
   <div class="features"><span class="feature">final</span></div>
 
 </dd>
@@ -225,7 +226,7 @@ to find compounds matching those patterns.</p>
 
 </dt>
 <dd>
-  
+  Generates content using Google Gemini AI based on user input and system instruction.
   
 
 </dd>
@@ -320,6 +321,23 @@ based on the given application description.
     </dl>
   </section>
     
+  <section class="summary offset-anchor" id="static-properties">
+    <h2>Static Properties</h2>
+    <dl class="properties">
+        <dt id="availableModels" class="property">
+  <span class="name"><a href="../chem_nor/ChemNOR/availableModels.html">availableModels</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span>&gt;</span></span>
+  
+
+</dt>
+<dd>
+  List of all available Gemini model names
+  <div class="features"><span class="feature">no setter</span></div>
+
+</dd>
+
+    </dl>
+  </section>
     
     
 
@@ -346,7 +364,7 @@ based on the given application description.
 <footer>
   <span class="no-break">
     chem_nor
-      0.4.2
+      0.4.3
   </span>
   
 </footer>

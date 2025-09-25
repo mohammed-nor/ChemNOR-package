@@ -83,9 +83,7 @@ class IupacNaming {
     String? name = _findProperty(properties, 'IUPAC Name') ?? _findProperty(properties, 'Preferred IUPAC Name');
 
     // If IUPAC name is not found, fall back to other names
-    if (name == null) {
-      name = _findProperty(properties, 'Systematic Name') ?? _findProperty(properties, 'Traditional Name') ?? 'Unnamed compound';
-    }
+    name ??= _findProperty(properties, 'Systematic Name') ?? _findProperty(properties, 'Traditional Name') ?? 'Unnamed compound';
 
     return {
       'name': name,

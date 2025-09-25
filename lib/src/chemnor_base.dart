@@ -2,6 +2,31 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:intl/intl.dart';
 
+/// Available Gemini AI models
+enum GeminiModel {
+  gemini1_5Flash('gemini-1.5-flash'),
+  gemini2_0Flash('gemini-2.0-flash'),
+  gemini2_0FlashLite('gemini-2.0-flash-lite'),
+  gemini2_5Pro('gemini-2.5-pro'),
+  gemini2_5Flash('gemini-2.5-flash'); // Default model
+
+  final String apiName;
+  const GeminiModel(this.apiName);
+
+  // Removed toString() override - users will access .apiName directly
+
+  /// Get all available model names as strings
+  static List<String> get allModelNames => GeminiModel.values.map((e) => e.apiName).toList();
+
+  /// Convert a string to a GeminiModel
+  static GeminiModel fromString(String modelName) {
+    return GeminiModel.values.firstWhere(
+      (model) => model.apiName == modelName,
+      orElse: () => GeminiModel.gemini2_5Flash, // Default if not found
+    );
+  }
+}
+
 /// ChemNOR class is responsible for finding relevant chemical compounds
 /// based on an application description.
 ///
@@ -18,11 +43,25 @@ class ChemNOR {
   /// Maximum number of results per SMILES pattern.
   final int maxResultsPerSmiles = 10;
 
-  final String model = 'gemini-2.5-flash';
+  /// The Gemini model to use for AI-assisted tasks
+  final String model;
 
   /// Constructor for ChemNOR, requires an API key for Google Generative AI.
-  ChemNOR({required this.genAiApiKey});
+  /// Optionally specify a Gemini model to use (defaults to gemini-2.5-flash).
+  ChemNOR({
+    required this.genAiApiKey,
+    GeminiModel model = GeminiModel.gemini2_5Flash,
+  }) : model = model.apiName;
 
+  /// List of all available Gemini model names
+  static List<String> get availableModels => GeminiModel.allModelNames;
+
+  /// Generates content using Google Gemini AI based on user input and system instruction.
+  ///
+  /// - `userInput`: The input provided by the user, describing the application or query.
+  /// - `systemInstruction`: The system's instruction or prompt for the AI model.
+  ///
+  /// Returns the generated content as a string.
   Future<String> generateContent(String userInput, String systemInstruction) async {
     ///https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=GEMINI_API_KEY
     final url = Uri.parse('https://generativelanguage.googleapis.com/v1beta/models/$model:generateContent?key=$genAiApiKey');
@@ -135,7 +174,7 @@ class ChemNOR {
     - Highlight safety considerations
     - Cite important references when appropriate
     
-    consider the following context: ${context}
+    consider the following context: $context
   ''';
     try {
       final model = ChemNOR(genAiApiKey: genAiApiKey);

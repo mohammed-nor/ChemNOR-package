@@ -1,7 +1,8 @@
 import 'package:chem_nor/chem_nor.dart';
 
 void main() async {
-  final finder = ChemNOR(genAiApiKey: "key");
+  print(ChemNOR.availableModels);
+  final finder = ChemNOR(genAiApiKey: "key", model: GeminiModel.gemini2_5Pro);
   dynamic properties = await finder.getCompoundProperties(248);
   print(properties);
   dynamic list = await finder.getSubstructureCids('CC');
@@ -34,7 +35,7 @@ void main() async {
   final nmrData = await simulateProtonNmr('CCO');
   print(nmrData['summary']);
   final irData = await simulateIrSpectrum('CCO');
-  print('IR bands: ${irData['bands']}');
+  print('IR bands: ${irData['bands'].length}');
   final url = drawMolecule('CCO');
   print('Molecule visualization URL: $url');
 }
