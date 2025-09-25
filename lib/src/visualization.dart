@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 import 'dart:typed_data';
 import 'package:http/http.dart' as http;
 import 'smiles_parser.dart';
@@ -59,18 +58,6 @@ class MoleculeVisualizer {
     return response.body;
   }
 
-  /// Saves a molecule visualization as a PNG file
-  ///
-  /// Returns the path to the saved file
-  static Future<String> saveMoleculeImage(String smiles, String filePath, {int width = defaultWidth, int height = defaultHeight}) async {
-    final imageData = await fetchMoleculeImage(smiles, width: width, height: height);
-
-    final file = File(filePath);
-    await file.writeAsBytes(imageData);
-
-    return filePath;
-  }
-
   /// Returns the molecule structure as a data URL
   ///
   /// This can be used in HTML img tags directly without additional HTTP requests
@@ -86,11 +73,6 @@ class MoleculeVisualizer {
 /// Returns a URL to view the molecule
 String drawMolecule(String smiles) {
   return MoleculeVisualizer.getPubChemVisualizationUrl(smiles);
-}
-
-/// Save a molecule visualization to a file
-Future<String> saveMoleculeImage(String smiles, String filePath) {
-  return MoleculeVisualizer.saveMoleculeImage(smiles, filePath);
 }
 
 /// Get an SVG representation of a molecule
