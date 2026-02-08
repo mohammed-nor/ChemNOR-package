@@ -33,17 +33,14 @@
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
-  <div class="toggle" id="theme-button" title="Toggle brightness">
-    <label for="theme">
-      <input type="checkbox" id="theme" value="light-theme">
-      <span id="dark-theme-button" class="material-symbols-outlined">
-        dark_mode
-      </span>
-      <span id="light-theme-button" class="material-symbols-outlined">
-        light_mode
-      </span>
-    </label>
-  </div>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
 </header>
 <main>
 <div
@@ -57,9 +54,9 @@
 
     <section class="multi-line-signature">
       
-<span class="returntype"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span>&gt;</span></span>
-<span class="name ">generateContent</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="generateContent-param-userInput"><span class="type-annotation"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span> <span class="parameter-name">userInput</span>, </span></li>
-<li><span class="parameter" id="generateContent-param-systemInstruction"><span class="type-annotation"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span> <span class="parameter-name">systemInstruction</span></span></li>
+<span class="returntype"><a href="https://api.dart.dev/stable/3.10.8/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.10.8/dart-core/String-class.html">String</a></span>&gt;</span></span>
+<span class="name ">generateContent</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="generateContent-param-userInput"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.10.8/dart-core/String-class.html">String</a></span> <span class="parameter-name">userInput</span>, </span></li>
+<li><span class="parameter" id="generateContent-param-systemInstruction"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.10.8/dart-core/String-class.html">String</a></span> <span class="parameter-name">systemInstruction</span></span></li>
 </ol>)
 
       
@@ -79,9 +76,11 @@
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">Future&lt;String&gt; generateContent(String userInput, String systemInstruction) async {
+  <pre class="language-dart"><code class="language-dart">Future&lt;String&gt; generateContent(
+    String userInput, String systemInstruction) async {
   &#47;&#47;&#47;https:&#47;&#47;generativelanguage.googleapis.com&#47;v1beta&#47;models&#47;gemini-2.0-flash:generateContent?key=GEMINI_API_KEY
-  final url = Uri.parse(&#39;https:&#47;&#47;generativelanguage.googleapis.com&#47;v1beta&#47;models&#47;$model:generateContent?key=$genAiApiKey&#39;);
+  final url = Uri.parse(
+      &#39;https:&#47;&#47;generativelanguage.googleapis.com&#47;v1beta&#47;models&#47;$model:generateContent?key=$genAiApiKey&#39;);
 
   final headers = {&#39;Content-Type&#39;: &#39;application&#47;json&#39;};
 
@@ -95,22 +94,27 @@
       },
     ],
   };
+  var errormessage = &#39;&#39;;
   for (int i = 0; i &lt; 3; i++) {
     try {
-      final response = await http.post(url, headers: headers, body: jsonEncode(requestBody));
+      final response = await http.post(url,
+          headers: headers, body: jsonEncode(requestBody));
 
       if (response.statusCode == 200) {
         final Map&lt;String, dynamic&gt; data = jsonDecode(response.body);
         return data[&#39;candidates&#39;][0][&#39;content&#39;][&#39;parts&#39;][0][&#39;text&#39;];
       } else {
-        throw Exception(&#39;Failed to generate content: ${response.statusCode} ${response.request}&#39;);
+        throw Exception(
+            &#39;Failed to generate content: ${response.statusCode} ${response.request}&#39;);
       }
     } catch (e) {
       print(&#39;Network error: $e. Retrying...&#39;);
+      errormessage = e.toString();
       await Future.delayed(Duration(seconds: 2));
     }
   }
-  throw Exception(&#39;Failed to generate content after multiple attempts.&#39;);
+  throw Exception(
+      &#39;Failed to generate content after multiple attempts. full error: $errormessage&#39;);
 }</code></pre>
 </section>
 
@@ -139,7 +143,7 @@
 <footer>
   <span class="no-break">
     chem_nor
-      0.5.0
+      0.5.2
   </span>
   
 </footer>

@@ -33,17 +33,14 @@
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
-  <div class="toggle" id="theme-button" title="Toggle brightness">
-    <label for="theme">
-      <input type="checkbox" id="theme" value="light-theme">
-      <span id="dark-theme-button" class="material-symbols-outlined">
-        dark_mode
-      </span>
-      <span id="light-theme-button" class="material-symbols-outlined">
-        light_mode
-      </span>
-    </label>
-  </div>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
 </header>
 <main>
 <div
@@ -57,8 +54,8 @@
 
     <section class="multi-line-signature">
       
-<span class="returntype"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/Future-class.html">Future</a></span>
-<span class="name ">findListOfCompoundsJSN</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="findListOfCompoundsJSN-param-applicationDescription"><span class="type-annotation"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span> <span class="parameter-name">applicationDescription</span></span></li>
+<span class="returntype"><a href="https://api.dart.dev/stable/3.10.8/dart-core/Future-class.html">Future</a></span>
+<span class="name ">findListOfCompoundsJSN</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="findListOfCompoundsJSN-param-applicationDescription"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.10.8/dart-core/String-class.html">String</a></span> <span class="parameter-name">applicationDescription</span></span></li>
 </ol>)
 
       
@@ -88,7 +85,11 @@
     }
 
     if (uniqueCids.isEmpty) {
-      return jsonEncode({&#39;query_smiles&#39;: smilesList, &#39;results&#39;: [], &#39;message&#39;: &#39;No compounds found for the generated SMILES patterns.&#39;});
+      return jsonEncode({
+        &#39;query_smiles&#39;: smilesList,
+        &#39;results&#39;: [],
+        &#39;message&#39;: &#39;No compounds found for the generated SMILES patterns.&#39;
+      });
     }
 
     &#47;&#47; Step 3: Fetch properties for collected CIDs
@@ -99,17 +100,25 @@
         compoundPropertiesList.add(await getCompoundProperties(cid));
       } catch (e) {
         &#47;&#47; Include error information for specific CIDs in the JSON response
-        compoundPropertiesList.add({&#39;cid&#39;: cid, &#39;error&#39;: &#39;Failed to fetch properties: ${e.toString()}&#39;});
+        compoundPropertiesList.add({
+          &#39;cid&#39;: cid,
+          &#39;error&#39;: &#39;Failed to fetch properties: ${e.toString()}&#39;
+        });
       }
     }
 
     &#47;&#47; Prepare the data for JSON encoding
-    final Map&lt;String, dynamic&gt; jsonData = {&#39;query_application_description&#39;: applicationDescription, &#39;generated_smiles_patterns&#39;: smilesList, &#39;retrieved_compounds&#39;: compoundPropertiesList};
+    final Map&lt;String, dynamic&gt; jsonData = {
+      &#39;query_application_description&#39;: applicationDescription,
+      &#39;generated_smiles_patterns&#39;: smilesList,
+      &#39;retrieved_compounds&#39;: compoundPropertiesList
+    };
 
     return jsonEncode(jsonData);
   } catch (e) {
     &#47;&#47; Return a JSON formatted error message
-    return jsonEncode({&#39;error&#39;: &#39;An overall error occurred: ${e.toString()}&#39;});
+    return jsonEncode(
+        {&#39;error&#39;: &#39;An overall error occurred: ${e.toString()}&#39;});
   }
 }</code></pre>
 </section>
@@ -139,7 +148,7 @@
 <footer>
   <span class="no-break">
     chem_nor
-      0.5.0
+      0.5.2
   </span>
   
 </footer>

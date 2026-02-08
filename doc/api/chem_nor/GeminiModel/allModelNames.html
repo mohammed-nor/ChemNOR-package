@@ -33,17 +33,14 @@
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
-  <div class="toggle" id="theme-button" title="Toggle brightness">
-    <label for="theme">
-      <input type="checkbox" id="theme" value="light-theme">
-      <span id="dark-theme-button" class="material-symbols-outlined">
-        dark_mode
-      </span>
-      <span id="light-theme-button" class="material-symbols-outlined">
-        light_mode
-      </span>
-    </label>
-  </div>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
 </header>
 <main>
 <div
@@ -62,7 +59,7 @@
   <section id="getter">
     <section class="multi-line-signature">
       
-      <span class="returntype"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span>&gt;</span></span>
+      <span class="returntype"><a href="https://api.dart.dev/stable/3.10.8/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.10.8/dart-core/String-class.html">String</a></span>&gt;</span></span>
       get
       <span class="name ">allModelNames</span>
       
@@ -76,7 +73,8 @@
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">static List&lt;String&gt; get allModelNames =&gt; GeminiModel.values.map((e) =&gt; e.apiName).toList();</code></pre>
+  <pre class="language-dart"><code class="language-dart">static List&lt;String&gt; get allModelNames =&gt;
+    GeminiModel.values.map((e) =&gt; e.apiName).toList();</code></pre>
 </section>
 
   </section>
@@ -106,7 +104,7 @@
 <footer>
   <span class="no-break">
     chem_nor
-      0.5.0
+      0.5.2
   </span>
   
 </footer>

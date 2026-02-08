@@ -33,17 +33,14 @@
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
-  <div class="toggle" id="theme-button" title="Toggle brightness">
-    <label for="theme">
-      <input type="checkbox" id="theme" value="light-theme">
-      <span id="dark-theme-button" class="material-symbols-outlined">
-        dark_mode
-      </span>
-      <span id="light-theme-button" class="material-symbols-outlined">
-        light_mode
-      </span>
-    </label>
-  </div>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
 </header>
 <main>
 <div
@@ -58,7 +55,7 @@
     <section class="multi-line-signature">
       
 <span class="returntype"><a href="../../chem_nor/ElementData-class.html">ElementData</a>?</span>
-<span class="name ">getBySymbol</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="getBySymbol-param-symbol"><span class="type-annotation"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span> <span class="parameter-name">symbol</span></span></li>
+<span class="name ">getBySymbol</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="getBySymbol-param-symbol"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.10.8/dart-core/String-class.html">String</a></span> <span class="parameter-name">symbol</span></span></li>
 </ol>)
 
       
@@ -103,7 +100,7 @@
 <footer>
   <span class="no-break">
     chem_nor
-      0.5.0
+      0.5.2
   </span>
   
 </footer>

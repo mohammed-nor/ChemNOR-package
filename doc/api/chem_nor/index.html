@@ -31,17 +31,14 @@
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
-  <div class="toggle" id="theme-button" title="Toggle brightness">
-    <label for="theme">
-      <input type="checkbox" id="theme" value="light-theme">
-      <span id="dark-theme-button" class="material-symbols-outlined">
-        dark_mode
-      </span>
-      <span id="light-theme-button" class="material-symbols-outlined">
-        light_mode
-      </span>
-    </label>
-  </div>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
 </header>
 <main>
 <div
@@ -176,7 +173,7 @@ including NMR, IR, UV-Vis and Mass Spectrometry based on molecular structures.
       <dl class="properties">
           <dt id="periodicTable" class="property">
   <span class="name"><a href="../chem_nor/periodicTable.html">periodicTable</a></span>
-  <span class="signature">&#8594; <a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span>, <span class="type-parameter"><a href="../chem_nor/ElementData-class.html">ElementData</a></span>&gt;</span></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.10.8/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.10.8/dart-core/String-class.html">String</a></span>, <span class="type-parameter"><a href="../chem_nor/ElementData-class.html">ElementData</a></span>&gt;</span></span>
   
 
 </dt>
@@ -193,8 +190,8 @@ including NMR, IR, UV-Vis and Mass Spectrometry based on molecular structures.
       <h2>Functions</h2>
       <dl class="callables">
           <dt id="calculateMolecularWeight" class="callable">
-  <span class="name"><a href="../chem_nor/calculateMolecularWeight.html">calculateMolecularWeight</a></span><span class="signature">(<wbr><span class="parameter" id="calculateMolecularWeight-param-formula"><span class="type-annotation"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span> <span class="parameter-name">formula</span></span>)
-    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/double-class.html">double</a>?</span>&gt;</span></span>
+  <span class="name"><a href="../chem_nor/calculateMolecularWeight.html">calculateMolecularWeight</a></span><span class="signature">(<wbr><span class="parameter" id="calculateMolecularWeight-param-formula"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.10.8/dart-core/String-class.html">String</a></span> <span class="parameter-name">formula</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.10.8/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.10.8/dart-core/double-class.html">double</a>?</span>&gt;</span></span>
   </span>
   
 
@@ -206,8 +203,8 @@ including NMR, IR, UV-Vis and Mass Spectrometry based on molecular structures.
 </dd>
 
           <dt id="convertMolesToGrams" class="callable">
-  <span class="name"><a href="../chem_nor/convertMolesToGrams.html">convertMolesToGrams</a></span><span class="signature">(<wbr><span class="parameter" id="convertMolesToGrams-param-moles"><span class="type-annotation"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/double-class.html">double</a></span> <span class="parameter-name">moles</span>, </span><span class="parameter" id="convertMolesToGrams-param-molarMass"><span class="type-annotation"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/double-class.html">double</a></span> <span class="parameter-name">molarMass</span></span>)
-    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/double-class.html">double</a></span>
+  <span class="name"><a href="../chem_nor/convertMolesToGrams.html">convertMolesToGrams</a></span><span class="signature">(<wbr><span class="parameter" id="convertMolesToGrams-param-moles"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.10.8/dart-core/double-class.html">double</a></span> <span class="parameter-name">moles</span>, </span><span class="parameter" id="convertMolesToGrams-param-molarMass"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.10.8/dart-core/double-class.html">double</a></span> <span class="parameter-name">molarMass</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.10.8/dart-core/double-class.html">double</a></span>
   </span>
   
 
@@ -219,8 +216,8 @@ including NMR, IR, UV-Vis and Mass Spectrometry based on molecular structures.
 </dd>
 
           <dt id="drawMolecule" class="callable">
-  <span class="name"><a href="../chem_nor/drawMolecule.html">drawMolecule</a></span><span class="signature">(<wbr><span class="parameter" id="drawMolecule-param-smiles"><span class="type-annotation"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span> <span class="parameter-name">smiles</span></span>)
-    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span>
+  <span class="name"><a href="../chem_nor/drawMolecule.html">drawMolecule</a></span><span class="signature">(<wbr><span class="parameter" id="drawMolecule-param-smiles"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.10.8/dart-core/String-class.html">String</a></span> <span class="parameter-name">smiles</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.10.8/dart-core/String-class.html">String</a></span>
   </span>
   
 
@@ -232,8 +229,8 @@ including NMR, IR, UV-Vis and Mass Spectrometry based on molecular structures.
 </dd>
 
           <dt id="generateIupacName" class="callable">
-  <span class="name"><a href="../chem_nor/generateIupacName.html">generateIupacName</a></span><span class="signature">(<wbr><span class="parameter" id="generateIupacName-param-smiles"><span class="type-annotation"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span> <span class="parameter-name">smiles</span></span>)
-    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a>?</span>&gt;</span></span>
+  <span class="name"><a href="../chem_nor/generateIupacName.html">generateIupacName</a></span><span class="signature">(<wbr><span class="parameter" id="generateIupacName-param-smiles"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.10.8/dart-core/String-class.html">String</a></span> <span class="parameter-name">smiles</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.10.8/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.10.8/dart-core/String-class.html">String</a>?</span>&gt;</span></span>
   </span>
   
 
@@ -245,8 +242,8 @@ including NMR, IR, UV-Vis and Mass Spectrometry based on molecular structures.
 </dd>
 
           <dt id="getMoleculeSvg" class="callable">
-  <span class="name"><a href="../chem_nor/getMoleculeSvg.html">getMoleculeSvg</a></span><span class="signature">(<wbr><span class="parameter" id="getMoleculeSvg-param-smiles"><span class="type-annotation"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span> <span class="parameter-name">smiles</span></span>)
-    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span>&gt;</span></span>
+  <span class="name"><a href="../chem_nor/getMoleculeSvg.html">getMoleculeSvg</a></span><span class="signature">(<wbr><span class="parameter" id="getMoleculeSvg-param-smiles"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.10.8/dart-core/String-class.html">String</a></span> <span class="parameter-name">smiles</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.10.8/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.10.8/dart-core/String-class.html">String</a></span>&gt;</span></span>
   </span>
   
 
@@ -258,8 +255,8 @@ including NMR, IR, UV-Vis and Mass Spectrometry based on molecular structures.
 </dd>
 
           <dt id="getSafetyData" class="callable">
-  <span class="name"><a href="../chem_nor/getSafetyData.html">getSafetyData</a></span><span class="signature">(<wbr><span class="parameter" id="getSafetyData-param-chemical"><span class="type-annotation"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span> <span class="parameter-name">chemical</span></span>)
-    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>&gt;</span></span>
+  <span class="name"><a href="../chem_nor/getSafetyData.html">getSafetyData</a></span><span class="signature">(<wbr><span class="parameter" id="getSafetyData-param-chemical"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.10.8/dart-core/String-class.html">String</a></span> <span class="parameter-name">chemical</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.10.8/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.10.8/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.10.8/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>&gt;</span></span>
   </span>
   
 
@@ -271,8 +268,8 @@ including NMR, IR, UV-Vis and Mass Spectrometry based on molecular structures.
 </dd>
 
           <dt id="getSmilesDetails" class="callable">
-  <span class="name"><a href="../chem_nor/getSmilesDetails.html">getSmilesDetails</a></span><span class="signature">(<wbr><span class="parameter" id="getSmilesDetails-param-smiles"><span class="type-annotation"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span> <span class="parameter-name">smiles</span></span>)
-    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>&gt;</span></span>
+  <span class="name"><a href="../chem_nor/getSmilesDetails.html">getSmilesDetails</a></span><span class="signature">(<wbr><span class="parameter" id="getSmilesDetails-param-smiles"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.10.8/dart-core/String-class.html">String</a></span> <span class="parameter-name">smiles</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.10.8/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.10.8/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.10.8/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>&gt;</span></span>
   </span>
   
 
@@ -284,8 +281,8 @@ including NMR, IR, UV-Vis and Mass Spectrometry based on molecular structures.
 </dd>
 
           <dt id="interpretNmr" class="callable">
-  <span class="name"><a href="../chem_nor/interpretNmr.html">interpretNmr</a></span><span class="signature">(<wbr><span class="parameter" id="interpretNmr-param-smiles"><span class="type-annotation"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span> <span class="parameter-name">smiles</span></span>)
-    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span>&gt;</span></span>
+  <span class="name"><a href="../chem_nor/interpretNmr.html">interpretNmr</a></span><span class="signature">(<wbr><span class="parameter" id="interpretNmr-param-smiles"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.10.8/dart-core/String-class.html">String</a></span> <span class="parameter-name">smiles</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.10.8/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.10.8/dart-core/String-class.html">String</a></span>&gt;</span></span>
   </span>
   
 
@@ -297,8 +294,8 @@ including NMR, IR, UV-Vis and Mass Spectrometry based on molecular structures.
 </dd>
 
           <dt id="isSmilesValid" class="callable">
-  <span class="name"><a href="../chem_nor/isSmilesValid.html">isSmilesValid</a></span><span class="signature">(<wbr><span class="parameter" id="isSmilesValid-param-smiles"><span class="type-annotation"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span> <span class="parameter-name">smiles</span></span>)
-    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/bool-class.html">bool</a></span>
+  <span class="name"><a href="../chem_nor/isSmilesValid.html">isSmilesValid</a></span><span class="signature">(<wbr><span class="parameter" id="isSmilesValid-param-smiles"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.10.8/dart-core/String-class.html">String</a></span> <span class="parameter-name">smiles</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.10.8/dart-core/bool-class.html">bool</a></span>
   </span>
   
 
@@ -310,8 +307,8 @@ including NMR, IR, UV-Vis and Mass Spectrometry based on molecular structures.
 </dd>
 
           <dt id="parseFormula" class="callable">
-  <span class="name"><a href="../chem_nor/parseFormula.html">parseFormula</a></span><span class="signature">(<wbr><span class="parameter" id="parseFormula-param-formula"><span class="type-annotation"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span> <span class="parameter-name">formula</span></span>)
-    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span>, <span class="type-parameter"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/int-class.html">int</a></span>&gt;</span></span>
+  <span class="name"><a href="../chem_nor/parseFormula.html">parseFormula</a></span><span class="signature">(<wbr><span class="parameter" id="parseFormula-param-formula"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.10.8/dart-core/String-class.html">String</a></span> <span class="parameter-name">formula</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.10.8/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.10.8/dart-core/String-class.html">String</a></span>, <span class="type-parameter"><a href="https://api.dart.dev/stable/3.10.8/dart-core/int-class.html">int</a></span>&gt;</span></span>
   </span>
   
 
@@ -324,8 +321,8 @@ Example: "C6H12O6" =&gt; {"C": 6, "H": 12, "O": 6}
 </dd>
 
           <dt id="parseSmiles" class="callable">
-  <span class="name"><a href="../chem_nor/parseSmiles.html">parseSmiles</a></span><span class="signature">(<wbr><span class="parameter" id="parseSmiles-param-smiles"><span class="type-annotation"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span> <span class="parameter-name">smiles</span></span>)
-    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>
+  <span class="name"><a href="../chem_nor/parseSmiles.html">parseSmiles</a></span><span class="signature">(<wbr><span class="parameter" id="parseSmiles-param-smiles"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.10.8/dart-core/String-class.html">String</a></span> <span class="parameter-name">smiles</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.10.8/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.10.8/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>
   </span>
   
 
@@ -337,8 +334,8 @@ Example: "C6H12O6" =&gt; {"C": 6, "H": 12, "O": 6}
 </dd>
 
           <dt id="simulateCarbonNmr" class="callable">
-  <span class="name"><a href="../chem_nor/simulateCarbonNmr.html">simulateCarbonNmr</a></span><span class="signature">(<wbr><span class="parameter" id="simulateCarbonNmr-param-smiles"><span class="type-annotation"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span> <span class="parameter-name">smiles</span></span>)
-    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>&gt;</span></span>
+  <span class="name"><a href="../chem_nor/simulateCarbonNmr.html">simulateCarbonNmr</a></span><span class="signature">(<wbr><span class="parameter" id="simulateCarbonNmr-param-smiles"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.10.8/dart-core/String-class.html">String</a></span> <span class="parameter-name">smiles</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.10.8/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.10.8/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.10.8/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>&gt;</span></span>
   </span>
   
 
@@ -350,8 +347,8 @@ Example: "C6H12O6" =&gt; {"C": 6, "H": 12, "O": 6}
 </dd>
 
           <dt id="simulateIrSpectrum" class="callable">
-  <span class="name"><a href="../chem_nor/simulateIrSpectrum.html">simulateIrSpectrum</a></span><span class="signature">(<wbr><span class="parameter" id="simulateIrSpectrum-param-smiles"><span class="type-annotation"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span> <span class="parameter-name">smiles</span></span>)
-    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>&gt;</span></span>
+  <span class="name"><a href="../chem_nor/simulateIrSpectrum.html">simulateIrSpectrum</a></span><span class="signature">(<wbr><span class="parameter" id="simulateIrSpectrum-param-smiles"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.10.8/dart-core/String-class.html">String</a></span> <span class="parameter-name">smiles</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.10.8/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.10.8/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.10.8/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>&gt;</span></span>
   </span>
   
 
@@ -363,8 +360,8 @@ Example: "C6H12O6" =&gt; {"C": 6, "H": 12, "O": 6}
 </dd>
 
           <dt id="simulateMassSpectrum" class="callable">
-  <span class="name"><a href="../chem_nor/simulateMassSpectrum.html">simulateMassSpectrum</a></span><span class="signature">(<wbr><span class="parameter" id="simulateMassSpectrum-param-smiles"><span class="type-annotation"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span> <span class="parameter-name">smiles</span></span>)
-    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>&gt;</span></span>
+  <span class="name"><a href="../chem_nor/simulateMassSpectrum.html">simulateMassSpectrum</a></span><span class="signature">(<wbr><span class="parameter" id="simulateMassSpectrum-param-smiles"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.10.8/dart-core/String-class.html">String</a></span> <span class="parameter-name">smiles</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.10.8/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.10.8/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.10.8/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>&gt;</span></span>
   </span>
   
 
@@ -376,8 +373,8 @@ Example: "C6H12O6" =&gt; {"C": 6, "H": 12, "O": 6}
 </dd>
 
           <dt id="simulateProtonNmr" class="callable">
-  <span class="name"><a href="../chem_nor/simulateProtonNmr.html">simulateProtonNmr</a></span><span class="signature">(<wbr><span class="parameter" id="simulateProtonNmr-param-smiles"><span class="type-annotation"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span> <span class="parameter-name">smiles</span></span>)
-    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/3.8.0-132.0.dev/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>&gt;</span></span>
+  <span class="name"><a href="../chem_nor/simulateProtonNmr.html">simulateProtonNmr</a></span><span class="signature">(<wbr><span class="parameter" id="simulateProtonNmr-param-smiles"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.10.8/dart-core/String-class.html">String</a></span> <span class="parameter-name">smiles</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.10.8/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.10.8/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.10.8/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>&gt;</span></span>
   </span>
   
 
@@ -409,7 +406,6 @@ Example: "C6H12O6" =&gt; {"C": 6, "H": 12, "O": 6}
     <ol>
       <li class="section-title">Libraries</li>
       <li><a href="../chem_nor/">chem_nor</a></li>
-      <li><a href="../key/">key</a></li>
 </ol>
 
   </div>
@@ -420,7 +416,7 @@ Example: "C6H12O6" =&gt; {"C": 6, "H": 12, "O": 6}
 <footer>
   <span class="no-break">
     chem_nor
-      0.5.0
+      0.5.2
   </span>
   
 </footer>
