@@ -3,16 +3,18 @@ import 'package:chem_nor/key.dart';
 
 void main() async {
   print(ChemNOR.availableModels);
-  final finder = ChemNOR(genAiApiKey: key, model: GeminiModel.gemini2_5Pro);
+  final finder = ChemNOR(genAiApiKey: key, model: GeminiModel.gemini3_0Flash);
   dynamic properties = await finder.getCompoundProperties(248);
   print(properties);
   dynamic list = await finder.getSubstructureCids('CC');
   print(list);
   final smiles = await finder.getRelevantSmiles('carboxylic acid compounds');
   print(smiles);
-  dynamic chat = await finder.chemist('hello , please educate me about carboxymethyl(trimethyl)ammonium ');
+  dynamic chat = await finder.chemist(
+      'hello , please educate me about carboxymethyl(trimethyl)ammonium ');
   print(chat);
-  dynamic propertie = await finder.findListOfCompoundsJSN('carboxylic acid compounds');
+  dynamic propertie =
+      await finder.findListOfCompoundsJSN('carboxylic acid compounds');
   print(propertie);
   final elements = parseFormula('H2SO4');
   print(elements);
@@ -21,7 +23,8 @@ void main() async {
   final weight = calculateMolecularWeight('H2O');
   print('Water molecular weight: $weight g/mol');
   final oxygen = PeriodicTable.getBySymbol('O');
-  print('Oxygen: atomic number ${oxygen?.atomicNumber}, mass ${oxygen?.atomicMass}');
+  print(
+      'Oxygen: atomic number ${oxygen?.atomicNumber}, mass ${oxygen?.atomicMass}');
   final metals = PeriodicTable.getByCategory('transition metal');
   print('Number of transition metals: ${metals.length}');
   final balanced = ReactionBalancer.balance('H2 + O2 = H2O');
