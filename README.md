@@ -20,7 +20,7 @@ To use ChemNOR , you can initialize it by :
 final chemNor = ChemNOR(genAiApiKey: 'your-api-key');
 ```
 
-- Using a specify model from the following list `gemini-1.5-flash, gemini-2.0-flash, gemini-2.0-flash-lite, gemini-2.5-pro, gemini-2.5-flash `
+- Using a specify model from the following list `gemini-2.5-flash-lite,gemini-2.5-flash,gemini-2.5-pro,gemini-3-flash-preview,gemini-3-pro-preview`
 ```dart
 final chemNor2 = ChemNOR(
   genAiApiKey: 'your-api-key',
