@@ -1,59 +1,111 @@
-# ChemNOR
+<div align="center">
 
-ChemNOR (_Chemical Heuristic Evaluation of Molecules Networking for Optimized Reactivity_).
-Dart package that finds relevant chemical compounds using AI (Gemini) and PubChem.
-level up your chemistry knowledge and use it to chat with your Ai chemist!
+<img src="https://img.shields.io/badge/ChemNOR-v0.5.2-6C63FF?style=for-the-badge&logo=dart&logoColor=white" alt="ChemNOR Version"/>
 
-Note : A Google Cloud [API-key](https://ai.google.dev/gemini-api/docs/api-key) is required for all requests.
+# ⚗️ ChemNOR
 
-## Installation
+### _Chemical Heuristic Evaluation of Molecules Networking for Optimized Reactivity_
+
+A powerful **Dart package** that discovers relevant chemical compounds using **Google Gemini AI** and **PubChem** — your all-in-one chemistry toolkit.
+
+[![pub.dev](https://img.shields.io/pub/v/chem_nor?label=pub.dev&style=flat-square&color=0175C2&logo=dart)](https://pub.dev/packages/chem_nor)
+[![License](https://img.shields.io/github/license/mohammed-nor/ChemNOR-package?style=flat-square&color=green)](LICENSE)
+[![SDK](https://img.shields.io/badge/Dart%20SDK-%3E%3D3.2.0-0175C2?style=flat-square&logo=dart)](https://dart.dev)
+[![Issues](https://img.shields.io/github/issues/mohammed-nor/ChemNOR-package?style=flat-square)](https://github.com/mohammed-nor/ChemNOR-package/issues)
+
+</div>
+
+---
+
+## 📖 Overview
+
+**ChemNOR** combines the power of **Google Gemini AI** with the vast **PubChem** chemical database to give you:
+
+- 🔬 **AI-driven compound discovery** via SMILES pattern generation
+- 💬 **Conversational AI Chemist** for chemistry Q&A
+- 🧪 **Formula parsing, IUPAC naming, and molecular weight calculation**
+- 📊 **NMR, IR, and Mass spectroscopy simulation**
+- ⚖️ **Automatic chemical equation balancing**
+- 🛡️ **GHS safety data retrieval**
+- 🖼️ **Molecular structure visualization**
+
+> **Note:** A Google Cloud [API Key](https://ai.google.dev/gemini-api/docs/api-key) is required for AI features.
+
+---
+
+## 🚀 Installation
+
+Add the following to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-    chem_nor: ^0.5.2
+  chem_nor: ^0.5.2
 ```
 
-## Core ChemNOR functionality
-To use ChemNOR , you can initialize it by : 
-- Using the default model (gemini-2.5-flash)
+Then run:
+
+```bash
+dart pub get
+```
+
+---
+
+## ⚙️ Initialization
+
+### Default Model (`gemini-2.5-flash`)
+
 ```dart
+import 'package:chem_nor/chem_nor.dart';
+
 final chemNor = ChemNOR(genAiApiKey: 'your-api-key');
 ```
 
-- Using a specify model from the following list `gemini-2.5-flash-lite,gemini-2.5-flash,gemini-2.5-pro,gemini-3-flash-preview,gemini-3-pro-preview`
+### Specifying a Model
+
 ```dart
-final chemNor2 = ChemNOR(
+final chemNor = ChemNOR(
   genAiApiKey: 'your-api-key',
-  model: GeminiModel.gemini_2_5_pro
+  model: GeminiModel.gemini_2_5_pro,
 );
 ```
 
-Note : to Get list of available models :
+**Available models:**
+
+| Model | Identifier |
+|---|---|
+| Gemini 2.5 Flash Lite | `GeminiModel.gemini_2_5_flash_lite` |
+| Gemini 2.5 Flash | `GeminiModel.gemini_2_5_flash` |
+| Gemini 2.5 Pro | `GeminiModel.gemini_2_5_pro` |
+| Gemini 3 Flash Preview | `GeminiModel.gemini_3_flash_preview` |
+| Gemini 3 Pro Preview | `GeminiModel.gemini_3_pro_preview` |
+
 ```dart
+// Print all available models
 print(ChemNOR.availableModels);
 ```
 
-### 1. Finds Relevant Chemical 
-Finds relevant chemical compounds for a given application description.
+---
 
-* Uses AI to generate SMILES patterns.
-* Searches PubChem for matching compounds.
-* Retrieves properties of the top compounds found.
+## 🧬 Core Features
 
-Returns a formatted string containing search results as Text or in JSON format using the `findListOfCompoundsJSN` method:
+### 1. 🔍 Find Relevant Compounds
+
+Finds chemical compounds matching an application description using AI-generated SMILES patterns and PubChem lookups.
 
 ```dart
 import 'package:chem_nor/chem_nor.dart';
 
 void main() async {
-  final finder = ChemNOR(genAiApiKey: 'your-api-key');
-  final results = await finder.findListOfCompounds('carboxylic acid compounds');
+  final chemNor = ChemNOR(genAiApiKey: 'your-api-key');
+  final results = await chemNor.findListOfCompounds('carboxylic acid compounds');
   print(results);
 }
 ```
 
+<details>
+<summary>📄 View Text Output</summary>
+
 ```
-Output:
 ChemNOR Compound Search Results
 Generated at: 2025-02-06 13:55:01
 Query SMILES patterns: C(=O)O, O=C(O)O, C(=O)C, C(=O)OC, C(=O)CC
@@ -66,9 +118,6 @@ Hydrogen Bond Donor: 1
 Hydrogen Bond Acceptor: 2
 TPSA: 37.3
 Complexity: 10.3
-Charge: null
-Title: N/A
-XLogP: N/A
 --------------------------------------------
 CID: 767
 Name: carbonic acid
@@ -78,454 +127,275 @@ Hydrogen Bond Donor: 2
 Hydrogen Bond Acceptor: 3
 TPSA: 57.5
 Complexity: 26.3
-Charge: null
-Title: N/A
-XLogP: N/A
---------------------------------------------
-CID: 177
-Name: acetaldehyde
-Molecular Formula: C2H4O
-SMILES: CC=O
-Hydrogen Bond Donor: 0
-Hydrogen Bond Acceptor: 1
-TPSA: 17.1
-Complexity: 10.3
-Charge: null
-Title: N/A
-XLogP: N/A
---------------------------------------------
-CID: 7865
-Name: methyl formate
-Molecular Formula: C2H4O2
-SMILES: COC=O
-Hydrogen Bond Donor: 0
-Hydrogen Bond Acceptor: 2
-TPSA: 26.3
-Complexity: 18
-Charge: null
-Title: N/A
-XLogP: 0
---------------------------------------------
-CID: 527
-Name: propanal
-Molecular Formula: C3H6O
-SMILES: CCC=O
-Hydrogen Bond Donor: 0
-Hydrogen Bond Acceptor: 1
-TPSA: 17.1
-Complexity: 17.2
-Charge: null
-Title: N/A
-XLogP: 0.6
 --------------------------------------------
 ```
+</details>
+
+For **JSON output**, use `findListOfCompoundsJSN`:
 
 ```dart
-import 'package:chem_nor/chem_nor.dart';
-
-void main() async {
-  final finder = ChemNOR(genAiApiKey: 'your-api-key');
-  final results = await finder.findListOfCompoundsJSN('carboxylic acid compounds');
-  print(results);
-}
+final results = await chemNor.findListOfCompoundsJSN('carboxylic acid compounds');
+print(results);
 ```
-
-```
-Output: {"query_application_description":"carboxylic acid compounds","generated_smiles_patterns":["C(=O)O","c1ccccc1C(=O)O","OC(=O)C(=O)O","C=CC(=O)O","CC(=O)C(=O)O","OC(C(=O)O)C","NC(C(=O)O)C","OC(=O)CCC(=O)O"],"retrieved_compounds":[{"cid":284,"name":"formic acid","formula":"CH2O2","weight":"46.025","SMILES":"N/A","Hydrogen Bond Donor":"1","Hydrogen Bond Acceptor":"2","TPSA":"37.3","Complexity":"10.3","charge\t":"N/A","Title":"N/A","XLogP":"N/A"},{"cid":243,"name":"benzoic acid","formula":"C7H6O2","weight":"122.12","SMILES":"N/A","Hydrogen Bond Donor":"1","Hydrogen Bond Acceptor":"2","TPSA":"37.3","Complexity":"103","charge\t":"N/A","Title":"N/A","XLogP":"1.9"},{"cid":971,"name":"oxalic acid","formula":"C2H2O4","weight":"90.03","SMILES":"N/A","Hydrogen Bond Donor":"2","Hydrogen Bond Acceptor":"4","TPSA":"74.6","Complexity":"71.5","charge\t":"N/A","Title":"N/A","XLogP":"N/A"},{"cid":6581,"name":"acrylic acid","formula":"C3H4O2","weight":"72.06","SMILES":"N/A","Hydrogen Bond Donor":"1","Hydrogen Bond Acceptor":"2","TPSA":"37.3","Complexity":"55.9","charge\t":"N/A","Title":"N/A","XLogP":"0.3"},{"cid":1060,"name":"2-oxopropanoic acid","formula":"C3H4O3","weight":"88.06","SMILES":"N/A","Hydrogen Bond Donor":"1","Hydrogen Bond Acceptor":"3","TPSA":"54.4","Complexity":"84","charge\t":"N/A","Title":"N/A","XLogP":"N/A"},{"cid":612,"name":"2-hydroxypropanoic acid","formula":"C3H6O3","weight":"90.08","SMILES":"N/A","Hydrogen Bond Donor":"2","Hydrogen Bond Acceptor":"3","TPSA":"57.5","Complexity":"59.1","charge\t":"N/A","Title":"N/A","XLogP":"-0.7"},{"cid":602,"name":"2-aminopropanoic acid","formula":"C3H7NO2","weight":"89.09","SMILES":"N/A","Hydrogen Bond Donor":"2","Hydrogen Bond Acceptor":"3","TPSA":"63.3","Complexity":"61.8","charge\t":"N/A","Title":"N/A","XLogP":"-3"},{"cid":1110,"name":"succinic acid","formula":"C4H6O4","weight":"118.09","SMILES":"N/A","Hydrogen Bond Donor":"2","Hydrogen Bond Acceptor":"4","TPSA":"74.6","Complexity":"92.6","charge\t":"N/A","Title":"N/A","XLogP":"-0.6"}]}
-```
-
-Searches PubChem for compounds containing the given SMILES pattern.
-Returns a list of compound IDs (CIDs) matching the pattern.
-
-```dart
-import 'package:chem_nor/chem_nor.dart';
-
-void main() async {
-  final finder = ChemNOR(genAiApiKey: 'your-api-key');
-  final results = await finder.getSubstructureCids('CC');
-  print(results);
-}
-```
-
-```
-Output: [6324]
-```
-
-Uses Google Gemini AI to suggest relevant SMILES patterns based on the given application description.
-Returns a list of valid SMILES strings.
-
-```dart
-import 'package:chem_nor/chem_nor.dart';
-
-void main() async {
-  final finder = ChemNOR(genAiApiKey: 'your-api-key');
-  final results = await finder.getRelevantSmiles('carboxylic acid compounds');
-  print(results);
-}
-```
-
-```
-Output: [C(=O)O, CC(=O)O, c1ccccc1C(=O)O, OC(=O)C(=O)O, C=CC(=O)O, CC(O)C(=O)O, C(=O)[O-], C(=O)OC, C(=O)N]
-```
-
-Fetches compound properties from PubChem using the given CID.
-Returns a map containing compound details like name, formula, weight, and SMILES.
-
-```dart
-import 'package:chem_nor/chem_nor.dart';
-
-void main() async {
-  final finder = ChemNOR(genAiApiKey: 'your-api-key');
-  final results = await finder.getCompoundProperties('248');
-  print(results);
-}
-```
-
-```
-Output: {cid: 248, name: carboxymethyl(trimethyl)ammonium, formula: C5H12NO2+, weight: 118.15, SMILES: N/A, Hydrogen Bond Donor: 1, Hydrogen Bond Acceptor: 2, TPSA: 37.3, Complexity: 93.1, charge	: N/A, Title: N/A, XLogP: N/A}
-```
-
-### 2. Chemist
-Giving the ability to chat with Ai using text as an input.
-return a text if only the question is related to chemistry that is containing compound description.
-you can also use the `chat` method to ask whatever you like with the ability to take the chat context as an additional imput.
-
-```dart
-import 'package:chem_nor/chem_nor.dart';
-
-void main() async {
-  final finder = ChemNOR(genAiApiKey: 'your-api-key');
-  dynamic chat = await finder.Chemist('hello , please educate me about carboxymethyl(trimethyl)ammonium ');
-  print(chat);
-}
-```
-
-```
-You've asked about **carboxymethyl(trimethyl)ammonium**. This compound is a fascinating example in organic chemistry, particularly known for its zwitterionic nature. While your given name describes the cationic part, the compound typically exists as an internal salt, commonly known as **glycine betaine**.
-
-Let's break down its chemistry:
-
-### 1. Chemical Structure and Nomenclature
-
-The name "carboxymethyl(trimethyl)ammonium" refers to the quaternary ammonium cation with a carboxymethyl group attached to the nitrogen. However, due to the acidic nature of the carboxylic acid group (pKa ~2.3-2.5) and the basicity of the trimethylamine moiety, the proton from the carboxylic acid readily transfers to the nitrogen in a formal sense, or more accurately, the carboxylate anion is formed and exists as an internal ion pair with the quaternary ammonium center. This results in a zwitterionic structure.
-
-*   **Common Name:** Glycine betaine, Betaine, Trimethylglycine (TMG)
-*   **IUPAC Name (for the zwitterion):** 2-(trimethylammonio)ethanoate
-    *   The term "ethanoate" comes from acetic acid (ethanoic acid), where the methylene group (-CH2-) is attached to the nitrogen.
-    *   "Trimethylammonio" describes the positively charged nitrogen with three methyl groups.
-
-*   **Chemical Structure (Zwitterion Form):**
-    ```
-          O
-         //
-    (CH3)3N+ - CH2 - C
-                   \
-                    O-
-    ```
-    (Linear representation: (CH3)3N$^+$-CH2-COO$^-$)
-
-*   **Molecular Formula:** C$_{5}$H$_{11}$NO$_{2}$ (note: the IUPAC name C5H13NO2 for the protonated form vs C5H11NO2 for the zwitterion)
-*   **Molar Mass:** 117.15 g/mol
-
-### 2. Classification
-
-*   **Quaternary Ammonium Compound:** It contains a nitrogen atom bonded to four carbon atoms, giving it a permanent positive charge.
-*   **Betaine:** A specific type of zwitterionic compound that has a positively charged functional group (like a quaternary ammonium group) and a negatively charged functional group (like a carboxylate group) that are not adjacent, and the overall molecule is neutral. Glycine betaine is the simplest N-methylated betaine.
-*   **Amino Acid Derivative:** It can be considered a derivative of the amino acid glycine (H$_{2}$N-CH$_{2}$-COOH) where the amine nitrogen is fully methylated and exists as a quaternary ammonium center.
-
-### 3. Key Properties
-
-*   **Physical State:** Typically a white crystalline solid at room temperature.
-*   **Solubility:** Highly soluble in water due to its zwitterionic nature, which facilitates strong interactions with water molecules. Sparingly soluble in ethanol.
-*   **Amphoteric Nature:** Although it is an internal salt, its zwitterionic structure means it can accept or donate protons in specific conditions. However, the internal proton transfer from carboxylic acid to nitrogen is already complete.
-*   **Stability:** Relatively stable, especially in its solid form. It's not particularly reactive under normal storage conditions.
-
-### 4. Organic Synthesis
-
-Glycine betaine can be synthesized through several routes, commonly involving the alkylation of an appropriate precursor:
-
-*   **Method 1: Alkylation of Glycine:**
-    Glycine itself can be exhaustively methylated using a strong methylating agent in the presence of a base.
-    **Reactants:** Glycine (H$_{2}$N-CH$_{2}$-COOH), Methylating agent (e.g., Methyl Iodide (CH$_{3}$I), Dimethyl Sulfate ((CH$_{3}$O)$_{2}$SO$_{2}$)), Base (e.g., Na$_{2}$CO$_{3}$, NaOH).
-    **Reaction Equation (simplified):**
-    `H2N-CH2-COOH + 3 CH3I + 2 Base → (CH3)3N+-CH2-COO- + 3 HI (or salt)`
-    This is an S$_{N}$2 reaction where the nitrogen's lone pair acts as a nucleophile. Multiple alkylations occur until the quaternary ammonium salt is formed.
-
-*   **Method 2: Reaction of Trimethylamine with Chloroacetic Acid:**
-    This is a common and efficient laboratory and industrial synthesis. Trimethylamine acts as a nucleophile to displace the chloride from chloroacetic acid.
-    **Reactants:** Trimethylamine (N(CH$_{3}$)$_{3}$), Chloroacetic Acid (Cl-CH$_{2}$-COOH).
-    **Reaction Equation:**
-    `N(CH3)3 + Cl-CH2-COOH → (CH3)3N+-CH2-COOH · Cl-`
-    (trimethylammonium chloroacetate, a salt)
-    This salt then readily converts to the zwitterion (glycine betaine) either by internal proton transfer or by deprotonation in the presence of a mild base:
-    `(CH3)3N+-CH2-COOH · Cl- <=> (CH3)3N+-CH2-COO- + HCl` (internal salt formation)
-
-### 5. Spectroscopy Interpretation
-
-*   **$^1$H NMR Spectroscopy:**
-    *   **δ ~3.7-3.9 ppm (singlet, 2H):** Characteristic of the methylene protons (-CH$_{2}$-) adjacent to both the positively charged nitrogen and the carboxylate group. Their signal is shifted downfield due to the electron-withdrawing effects.
-    *   **δ ~3.2-3.4 ppm (singlet, 9H):** The nine equivalent protons of the three methyl groups attached to the quaternary ammonium nitrogen. Also shifted downfield due to the positive charge on nitrogen.
-*   **IR Spectroscopy:**
-    *   **~1550-1610 cm$^{-1}$ (strong, broad):** Asymmetric stretching vibration of the carboxylate anion (COO$^{-}$). This is a key distinguishing feature from a neutral carboxylic acid C=O (~1700-1725 cm$^{-1}$).
-    *   **~1400 cm$^{-1}$ (medium):** Symmetric stretching vibration of the carboxylate anion.
-    *   **2800-3000 cm$^{-1}$:** C-H stretches from methyl and methylene groups.
-*   **Mass Spectrometry (MS):**
-    *   **Molecular Ion (M+):** Typically observed at m/z 117 (for C$_{5}$H$_{11}$NO$_{2}$).
-    *   **Fragmentation:** Common fragmentation patterns might include loss of a methyl group (M-15), loss of CO$_{2}$ (M-44), or other characteristic cleavages depending on the ionization method.
-
-### 6. Applications
-
-Glycine betaine is biologically significant and has various industrial applications:
-
-*   **Nutritional Supplement:** Widely used as a dietary supplement. It acts as a methyl donor in various metabolic pathways, particularly in the methionine cycle, where it helps in the remethylation of homocysteine to methionine. It's beneficial for liver health, cardiovascular health (by lowering homocysteine levels), and athletic performance.
-*   **Osmolyte:** In biology, it functions as an osmoprotectant, helping cells and organisms maintain osmotic balance and protect against stress (e.g., high salinity, extreme temperatures).
-*   **Food Industry:** Used as a food additive, humectant, and flavor enhancer in certain products.
-*   **Cosmetics and Personal Care:** Incorporated into skin care and hair care products as a moisturizer, humectant, and anti-static agent due to its zwitterionic nature which can interact with charged surfaces (like hair).
-
-### 7. Safety Considerations
-
-Glycine betaine is generally regarded as safe (GRAS) by regulatory bodies like the FDA when used as a food ingredient or supplement at recommended doses.
-
-*   **Handling:** As a pure chemical, it should be handled with standard laboratory safety practices, including wearing appropriate personal protective equipment (lab coat, gloves, eye protection).
-*   **Storage:** Store in a cool, dry place, away from incompatible materials.
-*   **Toxicity:** Acute toxicity is low. High doses might lead to gastrointestinal discomfort (nausea, diarrhea) or a "fishy" body odor due to its metabolism into trimethylamine.
-*   **MSDS (Material Safety Data Sheet):** Always consult the specific MSDS for the product being used for detailed information on hazards, handling, storage, and first aid.
-
-In summary, carboxymethyl(trimethyl)ammonium, most commonly known as glycine betaine, is a crucial zwitterionic compound with diverse roles in biochemistry and practical applications, synthesized via straightforward alkylation reactions.
 
 ---
-**References:**
 
-*   Clayden, J., Greeves, N., & Warren, S. (2012). *Organic Chemistry* (2nd ed.). Oxford University Press.
-*   Carey, F. A., & Sundberg, R. J. (2007). *Advanced Organic Chemistry Part B: Reactions and Synthesis* (5th ed.). Springer.
-*   PubChem. (Accessed various dates). National Library of Medicine. [https://pubchem.ncbi.nlm.nih.gov/](https://pubchem.ncbi.nlm.nih.gov/)
-*   Craig, G. B. (2004). Betaine: a new role for an old nutrient. *Journal of the American Dietetic Association*, 104(2), 273-274.
-```
-## Additional ChemNOR functionality
+### 2. 🔎 Substructure Search
 
-In addition to the core ChemNOR functionality, this package offers several chemistry-related modules:
-
-### 1. Formula Parser
-
-Parses chemical formulas into a map of element symbols and their counts.
+Searches PubChem for compounds containing a given SMILES pattern and returns a list of matching compound IDs (CIDs).
 
 ```dart
-import 'package:chem_nor/chem_nor.dart';
-
-void main() {
-  final elements = parseFormula('H2SO4');
-  print(elements);
-}
+final cids = await chemNor.getSubstructureCids('CC');
+print(cids); // Output: [6324]
 ```
 
-```
-Output: {H: 2, S: 1, O: 4}
-```
+---
 
-### 2. IUPAC Naming
+### 3. 🤖 AI SMILES Generation
 
-Generates IUPAC names from SMILES notation using PubChem.
+Uses Gemini AI to suggest relevant SMILES patterns based on a chemical application description.
 
 ```dart
-import 'package:chem_nor/chem_nor.dart';
+final smiles = await chemNor.getRelevantSmiles('carboxylic acid compounds');
+print(smiles);
+// Output: [C(=O)O, CC(=O)O, c1ccccc1C(=O)O, OC(=O)C(=O)O, ...]
+```
 
+---
+
+### 4. 📋 Compound Properties
+
+Fetches detailed compound properties from PubChem using a CID.
+
+```dart
+final props = await chemNor.getCompoundProperties('248');
+print(props);
+// Output: {cid: 248, name: carboxymethyl(trimethyl)ammonium, formula: C5H12NO2+, weight: 118.15, ...}
+```
+
+---
+
+### 5. 💬 AI Chemist
+
+Chat with an AI chemist specializing in chemistry topics. Uses Gemini AI with chemistry-focused context.
+
+```dart
 void main() async {
-  final iupacName = await generateIupacName('CCO');
-  print(iupacName);
+  final chemNor = ChemNOR(genAiApiKey: 'your-api-key');
+  final response = await chemNor.Chemist(
+    'Please educate me about carboxymethyl(trimethyl)ammonium'
+  );
+  print(response);
 }
 ```
 
-```
-Output: ethanol
-```
+> The `Chemist` method focuses on chemistry-related questions. Use the `chat` method for general-purpose conversation with optional chat history context.
 
-### 3. Molecular Weight
+---
 
-Calculates molecular weights from chemical formulas.
+## 🧰 Additional Modules
+
+### 📐 Formula Parser
+
+Parses chemical formulas into element maps.
 
 ```dart
-import 'package:chem_nor/chem_nor.dart';
-
-void main() {
-  final weight = calculateMolecularWeight('H2O');
-  print('Water molecular weight: $weight g/mol');
-}
+final elements = parseFormula('H2SO4');
+print(elements); // Output: {H: 2, S: 1, O: 4}
 ```
 
-```
-Output: Water molecular weight: 18.01528 g/mol
-```
+---
 
-### 4. Periodic Table
+### 🏷️ IUPAC Naming
 
-Access detailed information about chemical elements.
+Generates IUPAC names from SMILES notation via PubChem.
 
 ```dart
-import 'package:chem_nor/chem_nor.dart';
-
-void main() {
-  final oxygen = PeriodicTable.getBySymbol('O');
-  print('Oxygen: atomic number ${oxygen?.atomicNumber}, mass ${oxygen?.atomicMass}');
-  
-  final metals = PeriodicTable.getByCategory('transition metal');
-  print('Number of transition metals: ${metals.length}');
-}
+final name = await generateIupacName('CCO');
+print(name); // Output: ethanol
 ```
 
-```
-Output: 
-Oxygen: atomic number 8, mass 15.999
-Number of transition metals: 38
+---
+
+### ⚖️ Molecular Weight
+
+Calculates molecular weight from a chemical formula.
+
+```dart
+final weight = calculateMolecularWeight('H2O');
+print('Water molecular weight: $weight g/mol');
+// Output: Water molecular weight: 18.01528 g/mol
 ```
 
-### 5. Reaction Balancer
+---
+
+### 🌡️ Periodic Table
+
+Access detailed information about any element.
+
+```dart
+final oxygen = PeriodicTable.getBySymbol('O');
+print('Oxygen: atomic number ${oxygen?.atomicNumber}, mass ${oxygen?.atomicMass}');
+// Output: Oxygen: atomic number 8, mass 15.999
+
+final metals = PeriodicTable.getByCategory('transition metal');
+print('Number of transition metals: ${metals.length}');
+// Output: Number of transition metals: 38
+```
+
+---
+
+### ⚗️ Reaction Balancer
 
 Automatically balances chemical equations.
 
 ```dart
-import 'package:chem_nor/chem_nor.dart';
-
-void main() {
-  final balanced = ReactionBalancer.balance('H2 + O2 = H2O');
-  print(balanced);
-}
+final balanced = ReactionBalancer.balance('H2 + O2 = H2O');
+print(balanced); // Output: 2H2 + O2 = 2H2O
 ```
 
-```
-Output: 2H2 + O2 = 2H2O
+---
+
+### 🛡️ Safety Data (GHS)
+
+Retrieves GHS chemical safety classifications and hazard codes.
+
+```dart
+final safetyInfo = await getSafetyData('acetone');
+print('Signal word: ${safetyInfo['signal_word']}');
+print('Hazard statements: ${safetyInfo['hazard_statements']}');
+// Output:
+// Signal word: Danger
+// Hazard statements: {H225, H319, H336}
 ```
 
-### 6. Safety Data
+---
 
-Retrieves chemical safety information including GHS classifications and hazard codes.
+### 🔗 SMILES Parser
+
+Analyzes SMILES notation to extract structural information.
+
+```dart
+final structure = parseSmiles('CCO');
+print(structure);
+// Output: {atomCounts: {C: 2, O: 1}, bondCounts: {single: 2, ...}, rings: 0, ...}
+
+final isValid = isSmilesValid('C1=CC=CC=C1');
+print('Is benzene SMILES valid? $isValid'); // Output: true
+```
+
+---
+
+### 📡 Spectroscopy Simulation
+
+Simulates **NMR**, **IR**, and **Mass Spectrometry** data from molecular structures.
+
+```dart
+// Proton NMR
+final nmrData = await simulateProtonNmr('CCO');
+print(nmrData['summary']);
+// Output:
+// ¹H NMR prediction for ethanol:
+// δ 0.9 ppm (triplet, 3H) - Methyl group (-CH₃)
+// δ 3.5 ppm (singlet (broad), 1H) - Hydroxyl group (-OH)
+// δ 3.6 ppm (quartet, 2H) - CH₂ adjacent to oxygen
+
+// IR Spectrum
+final irData = await simulateIrSpectrum('CCO');
+print('IR bands: ${irData['bands'].length}'); // Output: IR bands: 4
+```
+
+---
+
+### 🖼️ Molecular Visualization
+
+Generates a PubChem URL to visualize a compound from SMILES.
+
+```dart
+final url = drawMolecule('CCO');
+print(url);
+// Output: https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/smiles/CCO/PNG
+```
+
+---
+
+## 🔬 Complete Example
+
+Combine all modules for a comprehensive chemical analysis pipeline:
 
 ```dart
 import 'package:chem_nor/chem_nor.dart';
 
 void main() async {
-  final safetyInfo = await getSafetyData('acetone');
-  
-  print('Signal word: ${safetyInfo['signal_word']}');
-  print('Hazard statements: ${safetyInfo['hazard_statements']}');
-}
-```
-
-```
-Output:
-Signal word: Danger
-Hazard statements: {H225, H319, H336}
-```
-
-### 7. SMILES Parser
-
-Analyzes SMILES (Simplified Molecular Input Line Entry System) notation to extract structural information.
-
-```dart
-import 'package:chem_nor/chem_nor.dart';
-
-void main() {
-  final structure = parseSmiles('CCO');
-  print(structure);
-  
-  final isValid = isSmilesValid('C1=CC=CC=C1');
-  print('Is benzene SMILES valid? $isValid');
-}
-```
-
-```
-Output:
-{atomCounts: {C: 2, O: 1}, bondCounts: {single: 2, double: 0, triple: 0, aromatic: 0}, rings: 0, branches: 0, aromaticAtoms: 0}
-Is benzene SMILES valid? true
-```
-
-### 8. Spectroscopy
-
-Simulates spectroscopic data (NMR, IR, Mass) based on molecular structures.
-
-```dart
-import 'package:chem_nor/chem_nor.dart';
-
-void main() async {
-  final nmrData = await simulateProtonNmr('CCO');
-  print(nmrData['summary']);
-  
-  final irData = await simulateIrSpectrum('CCO');
-  print('IR bands: ${irData['bands'].length}');
-}
-```
-
-```
-Output:
-¹H NMR prediction for ethanol:
-
-δ 0.9 ppm (triplet, 3H) - Methyl group (-CH₃)
-δ 3.5 ppm (singlet (broad), 1H) - Hydroxyl group (-OH)
-δ 3.6 ppm (quartet, 2H) - CH₂ adjacent to oxygen
-
-IR bands: 4
-```
-
-### 9. Visualization
-
-Visualizes chemical structures from SMILES notation.
-
-```dart
-import 'package:chem_nor/chem_nor.dart';
-
-void main() {
-  final url = drawMolecule('CCO');
-  print('Molecule visualization URL: $url');
-}
-```
-
-```
-Output:
-Molecule visualization URL: https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/smiles/CCO/PNG
-
-```
-
-## Complete Package Usage
-
-Combine these modules for comprehensive chemical analysis:
-
-```dart
-import 'package:chem_nor/chem_nor.dart';
-
-void main() async {
-  // Initialize ChemNOR with your API key
   final chemNor = ChemNOR(genAiApiKey: 'your-api-key');
-  
-  // Find compounds related to a query
+
+  // 1. Find compounds related to a query
   final compounds = await chemNor.findListOfCompounds('analgesic compounds');
-  
-  // For the first compound found, perform comprehensive analysis
+
   if (compounds.isNotEmpty) {
-    // Extract SMILES from the results (implementation details may vary)
-    final smiles = 'CC(=O)OC1=CC=CC=C1C(=O)O'; // Aspirin example
-    
-    // Get the IUPAC name
+    final smiles = 'CC(=O)OC1=CC=CC=C1C(=O)O'; // Aspirin SMILES
+
+    // 2. Get IUPAC name
     final name = await generateIupacName(smiles);
-    
-    // Calculate molecular weight
-    final formula = 'C9H8O4'; // Aspirin formula
+
+    // 3. Calculate molecular weight
+    final formula = 'C9H8O4';
     final weight = calculateMolecularWeight(formula);
-    
-    // Get safety information
+
+    // 4. Get GHS safety information
     final safety = await getSafetyData('aspirin');
-    
-    // Simulate spectroscopic data
+
+    // 5. Simulate NMR spectrum
     final nmrData = await simulateProtonNmr(smiles);
-    
-    // Generate visualization
+
+    // 6. Generate visualization
     final visUrl = drawMolecule(smiles);
-    
-    // Print comprehensive report
-    print('Compound: $name');
-    print('Formula: $formula');
-    print('Molecular Weight: $weight g/mol');
-    print('Safety Signal Word: ${safety['signal_word']}');
-    print('NMR Summary: ${nmrData['summary']}');
-    print('Visualization: $visUrl');
+
+    // 7. Print comprehensive report
+    print('Compound:          $name');
+    print('Formula:           $formula');
+    print('Molecular Weight:  $weight g/mol');
+    print('Safety Signal:     ${safety['signal_word']}');
+    print('NMR Summary:       ${nmrData['summary']}');
+    print('Visualization:     $visUrl');
   }
 }
 ```
+
+---
+
+## 📦 Module Summary
+
+| Module | Function | Description |
+|---|---|---|
+| 🔬 ChemNOR Core | `findListOfCompounds` | AI + PubChem compound search |
+| 🔬 ChemNOR Core | `findListOfCompoundsJSN` | JSON-formatted compound search |
+| 🔬 ChemNOR Core | `getSubstructureCids` | PubChem substructure search |
+| 🔬 ChemNOR Core | `getRelevantSmiles` | AI-generated SMILES suggestions |
+| 🔬 ChemNOR Core | `getCompoundProperties` | PubChem compound property lookup |
+| 💬 Chemist | `Chemist` / `chat` | AI chemistry chatbot |
+| 📐 Formula Parser | `parseFormula` | Element map from formula |
+| 🏷️ IUPAC Naming | `generateIupacName` | SMILES → IUPAC name |
+| ⚖️ Molecular Weight | `calculateMolecularWeight` | Formula → molecular weight |
+| 🌡️ Periodic Table | `PeriodicTable.getBySymbol` | Element data lookup |
+| ⚗️ Reaction Balancer | `ReactionBalancer.balance` | Equation balancing |
+| 🛡️ Safety Data | `getSafetyData` | GHS hazard information |
+| 🔗 SMILES Parser | `parseSmiles` / `isSmilesValid` | SMILES structure analysis |
+| 📡 Spectroscopy | `simulateProtonNmr` / `simulateIrSpectrum` | Spectrum simulation |
+| 🖼️ Visualization | `drawMolecule` | PubChem structure image URL |
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+
+---
+
+<div align="center">
+
+Made with ❤️ for the chemistry and Dart community.
+
+[![GitHub](https://img.shields.io/badge/GitHub-ChemNOR--package-181717?style=flat-square&logo=github)](https://github.com/mohammed-nor/ChemNOR-package)
+
+</div>
