@@ -1,16 +1,6 @@
 <div align="center">
 
-
-<<<<<<< HEAD
-<!-- <img src="app_icon.png" alt="ChemNOR Logo" width="120" height="120" style="border-radius: 24px;" /> -->
-
-<img src="https://img.shields.io/badge/ChemNOR-v0.5.7-6C63FF?style=for-the-badge&logo=dart&logoColor=white" alt="ChemNOR Version"/>
-=======
-<img src="app_icon.png" alt="ChemNOR Logo" width="120" height="120" style="border-radius: 24px;" />
-</div>
-<div align="center">
-<img src="https://img.shields.io/badge/ChemNOR-v0.5.2-6C63FF?style=for-the-badge&logo=dart&logoColor=white" alt="ChemNOR Version"/>
->>>>>>> 7fee100fe0337d052b41cb5fd9f0eeee6af379cc
+<img src="https://img.shields.io/badge/ChemNOR-v0.5.8-6C63FF?style=for-the-badge&logo=dart&logoColor=white" alt="ChemNOR Version"/>
 
 # ChemNOR
 
@@ -49,7 +39,7 @@ Add the following to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  chem_nor: ^0.5.7
+  chem_nor: ^0.5.8
 ```
 
 Then run:

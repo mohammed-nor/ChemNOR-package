@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,145 +9,166 @@
   <title>chem_nor - Dart API docs</title>
 
 
-  
+
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    rel="stylesheet">
+
   <link rel="stylesheet" href="static-assets/github.css?v1">
   <link rel="stylesheet" href="static-assets/styles.css?v1">
   <link rel="icon" href="static-assets/favicon.png?v1">
-  
+
 </head>
 
 <body data-base-href="" data-using-base-href="false" class="light-theme">
-<div id="overlay-under-drawer"></div>
-<header id="title">
-  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
-  <ol class="breadcrumbs gt-separated dark hidden-xs">
-    <li><a href="https://github.com/mohammed-nor/ChemNOR-package">chem_nor package</a></li>
-  </ol>
-  <div class="self-name">chem_nor</div>
-  <form class="search navbar-right" role="search">
-    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
-  </form>
-  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
-    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
-      dark_mode
-    </span>
-    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
-      light_mode
-    </span>
-  </button>
-</header>
-<main>
-  <div id="dartdoc-main-content" class="main-content">
-      
-<section class="desc markdown">
-  <div align="center">
-<!-- <img src="app_icon.png" alt="ChemNOR Logo" width="120" height="120" style="border-radius: 24px;" /> -->
-<img src="https://img.shields.io/badge/ChemNOR-v0.5.7-6C63FF?style=for-the-badge&amp;logo=dart&amp;logoColor=white" alt="ChemNOR Version">
-<h1 id="chemnor">ChemNOR</h1>
-<h3 id="_chemical-heuristic-evaluation-of-molecules-networking-for-optimized-reactivity_"><em>Chemical Heuristic Evaluation of Molecules Networking for Optimized Reactivity</em></h3>
-<p>A powerful <strong>Dart package</strong> that discovers relevant chemical compounds using <strong>Google Gemini AI</strong> and <strong>PubChem</strong> — your all-in-one chemistry toolkit.</p>
-<p><a href="https://pub.dev/packages/chem_nor"><img src="https://img.shields.io/pub/v/chem_nor?label=pub.dev&amp;style=flat-square&amp;color=0175C2&amp;logo=dart" alt="pub.dev"></a>
-<a href="LICENSE"><img src="https://img.shields.io/github/license/mohammed-nor/ChemNOR-package?style=flat-square&amp;color=green" alt="License"></a>
-<a href="https://dart.dev"><img src="https://img.shields.io/badge/Dart%20SDK-%3E%3D3.2.0-0175C2?style=flat-square&amp;logo=dart" alt="SDK"></a>
-<a href="https://github.com/mohammed-nor/ChemNOR-package/issues"><img src="https://img.shields.io/github/issues/mohammed-nor/ChemNOR-package?style=flat-square" alt="Issues"></a></p>
-</div>
-<hr>
-<h2 id="-overview">📖 Overview</h2>
-<p><strong>ChemNOR</strong> combines the power of <strong>Google Gemini AI</strong> with the vast <strong>PubChem</strong> chemical database to give you:</p>
-<ul>
-<li>🔬 <strong>AI-driven compound discovery</strong> via SMILES pattern generation</li>
-<li>💬 <strong>Conversational AI Chemist</strong> for chemistry Q&amp;A</li>
-<li>🧪 <strong>Formula parsing, IUPAC naming, and molecular weight calculation</strong></li>
-<li>📊 <strong>NMR, IR, and Mass spectroscopy simulation</strong></li>
-<li>⚖️ <strong>Automatic chemical equation balancing</strong></li>
-<li>🛡️ <strong>GHS safety data retrieval</strong></li>
-<li>🖼️ <strong>Molecular structure visualization</strong></li>
-</ul>
-<blockquote>
-<p><strong>Note:</strong> A Google Cloud <a href="https://ai.google.dev/gemini-api/docs/api-key">API Key</a> is required for AI features.</p>
-</blockquote>
-<hr>
-<h2 id="-installation">🚀 Installation</h2>
-<p>Add the following to your <code>pubspec.yaml</code>:</p>
-<pre class="language-yaml"><code class="language-yaml">dependencies:
-  chem_nor: ^0.5.7
+  <div id="overlay-under-drawer"></div>
+  <header id="title">
+    <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+    <ol class="breadcrumbs gt-separated dark hidden-xs">
+      <li><a href="https://github.com/mohammed-nor/ChemNOR-package">chem_nor package</a></li>
+    </ol>
+    <div class="self-name">chem_nor</div>
+    <form class="search navbar-right" role="search">
+      <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead"
+        placeholder="Loading search...">
+    </form>
+    <button class="toggle" id="theme-button" title="Toggle between light and dark mode"
+      aria-label="Light and dark mode toggle">
+      <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+        dark_mode
+      </span>
+      <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+        light_mode
+      </span>
+    </button>
+  </header>
+  <main>
+    <div id="dartdoc-main-content" class="main-content">
+
+      <section class="desc markdown">
+        <div align="center">
+          <!-- <img src="app_icon.png" alt="ChemNOR Logo" width="120" height="120" style="border-radius: 24px;" /> -->
+          <img
+            src="https://img.shields.io/badge/ChemNOR-v0.5.8-6C63FF?style=for-the-badge&amp;logo=dart&amp;logoColor=white"
+            alt="ChemNOR Version">
+          <h1 id="chemnor">ChemNOR</h1>
+          <h3 id="_chemical-heuristic-evaluation-of-molecules-networking-for-optimized-reactivity_"><em>Chemical
+              Heuristic Evaluation of Molecules Networking for Optimized Reactivity</em></h3>
+          <p>A powerful <strong>Dart package</strong> that discovers relevant chemical compounds using <strong>Google
+              Gemini AI</strong> and <strong>PubChem</strong> — your all-in-one chemistry toolkit.</p>
+          <p><a href="https://pub.dev/packages/chem_nor"><img
+                src="https://img.shields.io/pub/v/chem_nor?label=pub.dev&amp;style=flat-square&amp;color=0175C2&amp;logo=dart"
+                alt="pub.dev"></a>
+            <a href="LICENSE"><img
+                src="https://img.shields.io/github/license/mohammed-nor/ChemNOR-package?style=flat-square&amp;color=green"
+                alt="License"></a>
+            <a href="https://dart.dev"><img
+                src="https://img.shields.io/badge/Dart%20SDK-%3E%3D3.2.0-0175C2?style=flat-square&amp;logo=dart"
+                alt="SDK"></a>
+            <a href="https://github.com/mohammed-nor/ChemNOR-package/issues"><img
+                src="https://img.shields.io/github/issues/mohammed-nor/ChemNOR-package?style=flat-square"
+                alt="Issues"></a>
+          </p>
+        </div>
+        <hr>
+        <h2 id="-overview">📖 Overview</h2>
+        <p><strong>ChemNOR</strong> combines the power of <strong>Google Gemini AI</strong> with the vast
+          <strong>PubChem</strong> chemical database to give you:</p>
+        <ul>
+          <li>🔬 <strong>AI-driven compound discovery</strong> via SMILES pattern generation</li>
+          <li>💬 <strong>Conversational AI Chemist</strong> for chemistry Q&amp;A</li>
+          <li>🧪 <strong>Formula parsing, IUPAC naming, and molecular weight calculation</strong></li>
+          <li>📊 <strong>NMR, IR, and Mass spectroscopy simulation</strong></li>
+          <li>⚖️ <strong>Automatic chemical equation balancing</strong></li>
+          <li>🛡️ <strong>GHS safety data retrieval</strong></li>
+          <li>🖼️ <strong>Molecular structure visualization</strong></li>
+        </ul>
+        <blockquote>
+          <p><strong>Note:</strong> A Google Cloud <a href="https://ai.google.dev/gemini-api/docs/api-key">API Key</a>
+            is required for AI features.</p>
+        </blockquote>
+        <hr>
+        <h2 id="-installation">🚀 Installation</h2>
+        <p>Add the following to your <code>pubspec.yaml</code>:</p>
+        <pre class="language-yaml"><code class="language-yaml">dependencies:
+  chem_nor: ^0.5.8
 </code></pre>
-<p>Then run:</p>
-<pre class="language-bash"><code class="language-bash">dart pub get
+        <p>Then run:</p>
+        <pre class="language-bash"><code class="language-bash">dart pub get
 </code></pre>
-<hr>
-<h2 id="-initialization">⚙️ Initialization</h2>
-<h3 id="default-model-gemini-25-flash">Default Model (<code>gemini-2.5-flash</code>)</h3>
-<pre class="language-dart"><code class="language-dart">import 'package:chem_nor/chem_nor.dart';
+        <hr>
+        <h2 id="-initialization">⚙️ Initialization</h2>
+        <h3 id="default-model-gemini-25-flash">Default Model (<code>gemini-2.5-flash</code>)</h3>
+        <pre class="language-dart"><code class="language-dart">import 'package:chem_nor/chem_nor.dart';
 
 final chemNor = ChemNOR(genAiApiKey: 'your-api-key');
 </code></pre>
-<h3 id="specifying-a-model">Specifying a Model</h3>
-<pre class="language-dart"><code class="language-dart">final chemNor = ChemNOR(
+        <h3 id="specifying-a-model">Specifying a Model</h3>
+        <pre class="language-dart"><code class="language-dart">final chemNor = ChemNOR(
   genAiApiKey: 'your-api-key',
   model: GeminiModel.gemini_2_5_pro.apiName,
 );
 </code></pre>
-<p>note: use .apiName to get the api name of the model
-<strong>Available models:</strong></p>
-<table>
-<thead>
-<tr>
-<th>Model</th>
-<th>Identifier</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Gemini 2.0 Flash Lite</td>
-<td><code>GeminiModel.gemini2_0flashlite.apiName</code></td>
-</tr>
-<tr>
-<td>Gemini 2.5 Flash Lite</td>
-<td><code>GeminiModel.gemini2_5flashlite.apiName</code></td>
-</tr>
-<tr>
-<td>Gemini 2.5 Flash Lite</td>
-<td><code>GeminiModel.gemini2_5flashlite.apiName</code></td>
-</tr>
-<tr>
-<td>Gemini 2.5 Flash</td>
-<td><code>GeminiModel.gemini2_5flash.apiName</code></td>
-</tr>
-<tr>
-<td>Gemini 2.5 Pro</td>
-<td><code>GeminiModel.gemini2_5pro.apiName</code></td>
-</tr>
-<tr>
-<td>Gemini 3.0 Flash</td>
-<td><code>GeminiModel.gemini3_0flash.apiName</code></td>
-</tr>
-<tr>
-<td>Gemini 3.0 Pro</td>
-<td><code>GeminiModel.gemini3_0pro.apiName</code></td>
-</tr>
-<tr>
-<td>Gemini 3.1 Flash</td>
-<td><code>GeminiModel.gemini3_1flashlive.apiName</code></td>
-</tr>
-<tr>
-<td>Gemini 3.1 Pro</td>
-<td><code>GeminiModel.gemini3_1pro.apiName</code></td>
-</tr>
-</tbody>
-</table>
-<pre class="language-dart"><code class="language-dart">// Print all available models
+        <p>note: use .apiName to get the api name of the model
+          <strong>Available models:</strong>
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>Model</th>
+              <th>Identifier</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Gemini 2.0 Flash Lite</td>
+              <td><code>GeminiModel.gemini2_0flashlite.apiName</code></td>
+            </tr>
+            <tr>
+              <td>Gemini 2.5 Flash Lite</td>
+              <td><code>GeminiModel.gemini2_5flashlite.apiName</code></td>
+            </tr>
+            <tr>
+              <td>Gemini 2.5 Flash Lite</td>
+              <td><code>GeminiModel.gemini2_5flashlite.apiName</code></td>
+            </tr>
+            <tr>
+              <td>Gemini 2.5 Flash</td>
+              <td><code>GeminiModel.gemini2_5flash.apiName</code></td>
+            </tr>
+            <tr>
+              <td>Gemini 2.5 Pro</td>
+              <td><code>GeminiModel.gemini2_5pro.apiName</code></td>
+            </tr>
+            <tr>
+              <td>Gemini 3.0 Flash</td>
+              <td><code>GeminiModel.gemini3_0flash.apiName</code></td>
+            </tr>
+            <tr>
+              <td>Gemini 3.0 Pro</td>
+              <td><code>GeminiModel.gemini3_0pro.apiName</code></td>
+            </tr>
+            <tr>
+              <td>Gemini 3.1 Flash</td>
+              <td><code>GeminiModel.gemini3_1flashlive.apiName</code></td>
+            </tr>
+            <tr>
+              <td>Gemini 3.1 Pro</td>
+              <td><code>GeminiModel.gemini3_1pro.apiName</code></td>
+            </tr>
+          </tbody>
+        </table>
+        <pre class="language-dart"><code class="language-dart">// Print all available models
 print(ChemNOR.availableModels);
 </code></pre>
-<hr>
-<h2 id="-core-features">🧬 Core Features</h2>
-<h3 id="1--find-relevant-compounds">1. 🔍 Find Relevant Compounds</h3>
-<p>Finds chemical compounds matching an application description using AI-generated SMILES patterns and PubChem lookups.</p>
-<pre class="language-dart"><code class="language-dart">import 'package:chem_nor/chem_nor.dart';
+        <hr>
+        <h2 id="-core-features">🧬 Core Features</h2>
+        <h3 id="1--find-relevant-compounds">1. 🔍 Find Relevant Compounds</h3>
+        <p>Finds chemical compounds matching an application description using AI-generated SMILES patterns and PubChem
+          lookups.</p>
+        <pre class="language-dart"><code class="language-dart">import 'package:chem_nor/chem_nor.dart';
 
 void main() async {
   final chemNor = ChemNOR(genAiApiKey: 'your-api-key');
@@ -154,9 +176,9 @@ void main() async {
   print(results);
 }
 </code></pre>
-<details>
-<summary>📄 View Text Output</summary>
-<pre class="language-dart"><code>ChemNOR Compound Search Results
+        <details>
+          <summary>📄 View Text Output</summary>
+          <pre class="language-dart"><code>ChemNOR Compound Search Results
 Generated at: 2025-02-06 13:55:01
 Query SMILES patterns: C(=O)O, O=C(O)O, C(=O)C, C(=O)OC, C(=O)CC
 ====================================================
@@ -179,35 +201,36 @@ TPSA: 57.5
 Complexity: 26.3
 --------------------------------------------
 </code></pre>
-</details>
-<p>For <strong>JSON output</strong>, use <code>findListOfCompoundsJSN</code>:</p>
-<pre class="language-dart"><code class="language-dart">final results = await chemNor.findListOfCompoundsJSN('carboxylic acid compounds');
+        </details>
+        <p>For <strong>JSON output</strong>, use <code>findListOfCompoundsJSN</code>:</p>
+        <pre class="language-dart"><code class="language-dart">final results = await chemNor.findListOfCompoundsJSN('carboxylic acid compounds');
 print(results);
 </code></pre>
-<hr>
-<h3 id="2--substructure-search">2. 🔎 Substructure Search</h3>
-<p>Searches PubChem for compounds containing a given SMILES pattern and returns a list of matching compound IDs (CIDs).</p>
-<pre class="language-dart"><code class="language-dart">final cids = await chemNor.getSubstructureCids('CC');
+        <hr>
+        <h3 id="2--substructure-search">2. 🔎 Substructure Search</h3>
+        <p>Searches PubChem for compounds containing a given SMILES pattern and returns a list of matching compound IDs
+          (CIDs).</p>
+        <pre class="language-dart"><code class="language-dart">final cids = await chemNor.getSubstructureCids('CC');
 print(cids); // Output: [6324]
 </code></pre>
-<hr>
-<h3 id="3--ai-smiles-generation">3. 🤖 AI SMILES Generation</h3>
-<p>Uses Gemini AI to suggest relevant SMILES patterns based on a chemical application description.</p>
-<pre class="language-dart"><code class="language-dart">final smiles = await chemNor.getRelevantSmiles('carboxylic acid compounds');
+        <hr>
+        <h3 id="3--ai-smiles-generation">3. 🤖 AI SMILES Generation</h3>
+        <p>Uses Gemini AI to suggest relevant SMILES patterns based on a chemical application description.</p>
+        <pre class="language-dart"><code class="language-dart">final smiles = await chemNor.getRelevantSmiles('carboxylic acid compounds');
 print(smiles);
 // Output: [C(=O)O, CC(=O)O, c1ccccc1C(=O)O, OC(=O)C(=O)O, ...]
 </code></pre>
-<hr>
-<h3 id="4--compound-properties">4. 📋 Compound Properties</h3>
-<p>Fetches detailed compound properties from PubChem using a CID.</p>
-<pre class="language-dart"><code class="language-dart">final props = await chemNor.getCompoundProperties('248');
+        <hr>
+        <h3 id="4--compound-properties">4. 📋 Compound Properties</h3>
+        <p>Fetches detailed compound properties from PubChem using a CID.</p>
+        <pre class="language-dart"><code class="language-dart">final props = await chemNor.getCompoundProperties('248');
 print(props);
 // Output: {cid: 248, name: carboxymethyl(trimethyl)ammonium, formula: C5H12NO2+, weight: 118.15, ...}
 </code></pre>
-<hr>
-<h3 id="5--ai-chemist">5. 💬 AI Chemist</h3>
-<p>Chat with an AI chemist specializing in chemistry topics. Uses Gemini AI with chemistry-focused context.</p>
-<pre class="language-dart"><code class="language-dart">void main() async {
+        <hr>
+        <h3 id="5--ai-chemist">5. 💬 AI Chemist</h3>
+        <p>Chat with an AI chemist specializing in chemistry topics. Uses Gemini AI with chemistry-focused context.</p>
+        <pre class="language-dart"><code class="language-dart">void main() async {
   final chemNor = ChemNOR(genAiApiKey: 'your-api-key');
   final response = await chemNor.Chemist(
     'Please educate me about carboxymethyl(trimethyl)ammonium'
@@ -215,33 +238,34 @@ print(props);
   print(response);
 }
 </code></pre>
-<blockquote>
-<p>The <code>Chemist</code> method focuses on chemistry-related questions. Use the <code>chat</code> method for general-purpose conversation with optional chat history context.</p>
-</blockquote>
-<hr>
-<h2 id="-additional-modules">🧰 Additional Modules</h2>
-<h3 id="-formula-parser">📐 Formula Parser</h3>
-<p>Parses chemical formulas into element maps.</p>
-<pre class="language-dart"><code class="language-dart">final elements = parseFormula('H2SO4');
+        <blockquote>
+          <p>The <code>Chemist</code> method focuses on chemistry-related questions. Use the <code>chat</code> method
+            for general-purpose conversation with optional chat history context.</p>
+        </blockquote>
+        <hr>
+        <h2 id="-additional-modules">🧰 Additional Modules</h2>
+        <h3 id="-formula-parser">📐 Formula Parser</h3>
+        <p>Parses chemical formulas into element maps.</p>
+        <pre class="language-dart"><code class="language-dart">final elements = parseFormula('H2SO4');
 print(elements); // Output: {H: 2, S: 1, O: 4}
 </code></pre>
-<hr>
-<h3 id="-iupac-naming">🏷️ IUPAC Naming</h3>
-<p>Generates IUPAC names from SMILES notation via PubChem.</p>
-<pre class="language-dart"><code class="language-dart">final name = await generateIupacName('CCO');
+        <hr>
+        <h3 id="-iupac-naming">🏷️ IUPAC Naming</h3>
+        <p>Generates IUPAC names from SMILES notation via PubChem.</p>
+        <pre class="language-dart"><code class="language-dart">final name = await generateIupacName('CCO');
 print(name); // Output: ethanol
 </code></pre>
-<hr>
-<h3 id="-molecular-weight">⚖️ Molecular Weight</h3>
-<p>Calculates molecular weight from a chemical formula.</p>
-<pre class="language-dart"><code class="language-dart">final weight = calculateMolecularWeight('H2O');
+        <hr>
+        <h3 id="-molecular-weight">⚖️ Molecular Weight</h3>
+        <p>Calculates molecular weight from a chemical formula.</p>
+        <pre class="language-dart"><code class="language-dart">final weight = calculateMolecularWeight('H2O');
 print('Water molecular weight: $weight g/mol');
 // Output: Water molecular weight: 18.01528 g/mol
 </code></pre>
-<hr>
-<h3 id="-periodic-table">🌡️ Periodic Table</h3>
-<p>Access detailed information about any element.</p>
-<pre class="language-dart"><code class="language-dart">final oxygen = PeriodicTable.getBySymbol('O');
+        <hr>
+        <h3 id="-periodic-table">🌡️ Periodic Table</h3>
+        <p>Access detailed information about any element.</p>
+        <pre class="language-dart"><code class="language-dart">final oxygen = PeriodicTable.getBySymbol('O');
 print('Oxygen: atomic number ${oxygen?.atomicNumber}, mass ${oxygen?.atomicMass}');
 // Output: Oxygen: atomic number 8, mass 15.999
 
@@ -249,36 +273,37 @@ final metals = PeriodicTable.getByCategory('transition metal');
 print('Number of transition metals: ${metals.length}');
 // Output: Number of transition metals: 38
 </code></pre>
-<hr>
-<h3 id="-reaction-balancer">⚗️ Reaction Balancer</h3>
-<p>Automatically balances chemical equations.</p>
-<pre class="language-dart"><code class="language-dart">final balanced = ReactionBalancer.balance('H2 + O2 = H2O');
+        <hr>
+        <h3 id="-reaction-balancer">⚗️ Reaction Balancer</h3>
+        <p>Automatically balances chemical equations.</p>
+        <pre class="language-dart"><code class="language-dart">final balanced = ReactionBalancer.balance('H2 + O2 = H2O');
 print(balanced); // Output: 2H2 + O2 = 2H2O
 </code></pre>
-<hr>
-<h3 id="-safety-data-ghs">🛡️ Safety Data (GHS)</h3>
-<p>Retrieves GHS chemical safety classifications and hazard codes.</p>
-<pre class="language-dart"><code class="language-dart">final safetyInfo = await getSafetyData('acetone');
+        <hr>
+        <h3 id="-safety-data-ghs">🛡️ Safety Data (GHS)</h3>
+        <p>Retrieves GHS chemical safety classifications and hazard codes.</p>
+        <pre class="language-dart"><code class="language-dart">final safetyInfo = await getSafetyData('acetone');
 print('Signal word: ${safetyInfo['signal_word']}');
 print('Hazard statements: ${safetyInfo['hazard_statements']}');
 // Output:
 // Signal word: Danger
 // Hazard statements: {H225, H319, H336}
 </code></pre>
-<hr>
-<h3 id="-smiles-parser">🔗 SMILES Parser</h3>
-<p>Analyzes SMILES notation to extract structural information.</p>
-<pre class="language-dart"><code class="language-dart">final structure = parseSmiles('CCO');
+        <hr>
+        <h3 id="-smiles-parser">🔗 SMILES Parser</h3>
+        <p>Analyzes SMILES notation to extract structural information.</p>
+        <pre class="language-dart"><code class="language-dart">final structure = parseSmiles('CCO');
 print(structure);
 // Output: {atomCounts: {C: 2, O: 1}, bondCounts: {single: 2, ...}, rings: 0, ...}
 
 final isValid = isSmilesValid('C1=CC=CC=C1');
 print('Is benzene SMILES valid? $isValid'); // Output: true
 </code></pre>
-<hr>
-<h3 id="-spectroscopy-simulation">📡 Spectroscopy Simulation</h3>
-<p>Simulates <strong>NMR</strong>, <strong>IR</strong>, and <strong>Mass Spectrometry</strong> data from molecular structures.</p>
-<pre class="language-dart"><code class="language-dart">// Proton NMR
+        <hr>
+        <h3 id="-spectroscopy-simulation">📡 Spectroscopy Simulation</h3>
+        <p>Simulates <strong>NMR</strong>, <strong>IR</strong>, and <strong>Mass Spectrometry</strong> data from
+          molecular structures.</p>
+        <pre class="language-dart"><code class="language-dart">// Proton NMR
 final nmrData = await simulateProtonNmr('CCO');
 print(nmrData['summary']);
 // Output:
@@ -291,17 +316,17 @@ print(nmrData['summary']);
 final irData = await simulateIrSpectrum('CCO');
 print('IR bands: ${irData['bands'].length}'); // Output: IR bands: 4
 </code></pre>
-<hr>
-<h3 id="-molecular-visualization">🖼️ Molecular Visualization</h3>
-<p>Generates a PubChem URL to visualize a compound from SMILES.</p>
-<pre class="language-dart"><code class="language-dart">final url = drawMolecule('CCO');
+        <hr>
+        <h3 id="-molecular-visualization">🖼️ Molecular Visualization</h3>
+        <p>Generates a PubChem URL to visualize a compound from SMILES.</p>
+        <pre class="language-dart"><code class="language-dart">final url = drawMolecule('CCO');
 print(url);
 // Output: https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/smiles/CCO/PNG
 </code></pre>
-<hr>
-<h2 id="-complete-example">🔬 Complete Example</h2>
-<p>Combine all modules for a comprehensive chemical analysis pipeline:</p>
-<pre class="language-dart"><code class="language-dart">import 'package:chem_nor/chem_nor.dart';
+        <hr>
+        <h2 id="-complete-example">🔬 Complete Example</h2>
+        <p>Combine all modules for a comprehensive chemical analysis pipeline:</p>
+        <pre class="language-dart"><code class="language-dart">import 'package:chem_nor/chem_nor.dart';
 
 void main() async {
   final chemNor = ChemNOR(genAiApiKey: 'your-api-key');
@@ -338,151 +363,155 @@ void main() async {
   }
 }
 </code></pre>
-<hr>
-<h2 id="-module-summary">📦 Module Summary</h2>
-<table>
-<thead>
-<tr>
-<th>Module</th>
-<th>Function</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>🔬 ChemNOR Core</td>
-<td><code>findListOfCompounds</code></td>
-<td>AI + PubChem compound search</td>
-</tr>
-<tr>
-<td>🔬 ChemNOR Core</td>
-<td><code>findListOfCompoundsJSN</code></td>
-<td>JSON-formatted compound search</td>
-</tr>
-<tr>
-<td>🔬 ChemNOR Core</td>
-<td><code>getSubstructureCids</code></td>
-<td>PubChem substructure search</td>
-</tr>
-<tr>
-<td>🔬 ChemNOR Core</td>
-<td><code>getRelevantSmiles</code></td>
-<td>AI-generated SMILES suggestions</td>
-</tr>
-<tr>
-<td>🔬 ChemNOR Core</td>
-<td><code>getCompoundProperties</code></td>
-<td>PubChem compound property lookup</td>
-</tr>
-<tr>
-<td>💬 Chemist</td>
-<td><code>Chemist</code> / <code>chat</code></td>
-<td>AI chemistry chatbot</td>
-</tr>
-<tr>
-<td>📐 Formula Parser</td>
-<td><code>parseFormula</code></td>
-<td>Element map from formula</td>
-</tr>
-<tr>
-<td>🏷️ IUPAC Naming</td>
-<td><code>generateIupacName</code></td>
-<td>SMILES → IUPAC name</td>
-</tr>
-<tr>
-<td>⚖️ Molecular Weight</td>
-<td><code>calculateMolecularWeight</code></td>
-<td>Formula → molecular weight</td>
-</tr>
-<tr>
-<td>🌡️ Periodic Table</td>
-<td><code>PeriodicTable.getBySymbol</code></td>
-<td>Element data lookup</td>
-</tr>
-<tr>
-<td>⚗️ Reaction Balancer</td>
-<td><code>ReactionBalancer.balance</code></td>
-<td>Equation balancing</td>
-</tr>
-<tr>
-<td>🛡️ Safety Data</td>
-<td><code>getSafetyData</code></td>
-<td>GHS hazard information</td>
-</tr>
-<tr>
-<td>🔗 SMILES Parser</td>
-<td><code>parseSmiles</code> / <code>isSmilesValid</code></td>
-<td>SMILES structure analysis</td>
-</tr>
-<tr>
-<td>📡 Spectroscopy</td>
-<td><code>simulateProtonNmr</code> / <code>simulateIrSpectrum</code></td>
-<td>Spectrum simulation</td>
-</tr>
-<tr>
-<td>🖼️ Visualization</td>
-<td><code>drawMolecule</code></td>
-<td>PubChem structure image URL</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h2 id="-license">📄 License</h2>
-<p>This project is licensed under the <strong>BSD 3-Clause License</strong> — see the <a href="LICENSE">LICENSE</a> file for details.</p>
-<hr>
-<div align="center">
-<p>Made with ❤️ for the chemistry and Dart community.</p>
-<p><a href="https://github.com/mohammed-nor/ChemNOR-package"><img src="https://img.shields.io/badge/GitHub-ChemNOR--package-181717?style=flat-square&amp;logo=github" alt="GitHub"></a></p>
-</div>
-</section>
+        <hr>
+        <h2 id="-module-summary">📦 Module Summary</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Module</th>
+              <th>Function</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>🔬 ChemNOR Core</td>
+              <td><code>findListOfCompounds</code></td>
+              <td>AI + PubChem compound search</td>
+            </tr>
+            <tr>
+              <td>🔬 ChemNOR Core</td>
+              <td><code>findListOfCompoundsJSN</code></td>
+              <td>JSON-formatted compound search</td>
+            </tr>
+            <tr>
+              <td>🔬 ChemNOR Core</td>
+              <td><code>getSubstructureCids</code></td>
+              <td>PubChem substructure search</td>
+            </tr>
+            <tr>
+              <td>🔬 ChemNOR Core</td>
+              <td><code>getRelevantSmiles</code></td>
+              <td>AI-generated SMILES suggestions</td>
+            </tr>
+            <tr>
+              <td>🔬 ChemNOR Core</td>
+              <td><code>getCompoundProperties</code></td>
+              <td>PubChem compound property lookup</td>
+            </tr>
+            <tr>
+              <td>💬 Chemist</td>
+              <td><code>Chemist</code> / <code>chat</code></td>
+              <td>AI chemistry chatbot</td>
+            </tr>
+            <tr>
+              <td>📐 Formula Parser</td>
+              <td><code>parseFormula</code></td>
+              <td>Element map from formula</td>
+            </tr>
+            <tr>
+              <td>🏷️ IUPAC Naming</td>
+              <td><code>generateIupacName</code></td>
+              <td>SMILES → IUPAC name</td>
+            </tr>
+            <tr>
+              <td>⚖️ Molecular Weight</td>
+              <td><code>calculateMolecularWeight</code></td>
+              <td>Formula → molecular weight</td>
+            </tr>
+            <tr>
+              <td>🌡️ Periodic Table</td>
+              <td><code>PeriodicTable.getBySymbol</code></td>
+              <td>Element data lookup</td>
+            </tr>
+            <tr>
+              <td>⚗️ Reaction Balancer</td>
+              <td><code>ReactionBalancer.balance</code></td>
+              <td>Equation balancing</td>
+            </tr>
+            <tr>
+              <td>🛡️ Safety Data</td>
+              <td><code>getSafetyData</code></td>
+              <td>GHS hazard information</td>
+            </tr>
+            <tr>
+              <td>🔗 SMILES Parser</td>
+              <td><code>parseSmiles</code> / <code>isSmilesValid</code></td>
+              <td>SMILES structure analysis</td>
+            </tr>
+            <tr>
+              <td>📡 Spectroscopy</td>
+              <td><code>simulateProtonNmr</code> / <code>simulateIrSpectrum</code></td>
+              <td>Spectrum simulation</td>
+            </tr>
+            <tr>
+              <td>🖼️ Visualization</td>
+              <td><code>drawMolecule</code></td>
+              <td>PubChem structure image URL</td>
+            </tr>
+          </tbody>
+        </table>
+        <hr>
+        <h2 id="-license">📄 License</h2>
+        <p>This project is licensed under the <strong>BSD 3-Clause License</strong> — see the <a
+            href="LICENSE">LICENSE</a> file for details.</p>
+        <hr>
+        <div align="center">
+          <p>Made with ❤️ for the chemistry and Dart community.</p>
+          <p><a href="https://github.com/mohammed-nor/ChemNOR-package"><img
+                src="https://img.shields.io/badge/GitHub-ChemNOR--package-181717?style=flat-square&amp;logo=github"
+                alt="GitHub"></a></p>
+        </div>
+      </section>
 
 
       <section class="summary">
-          <h2>Libraries</h2>
+        <h2>Libraries</h2>
         <dl>
           <dt id="chem_nor">
-  <span class="name"><a href="chem_nor/">chem_nor</a></span> 
+            <span class="name"><a href="chem_nor/">chem_nor</a></span>
 
-</dt>
-<dd>
-</dd>
+          </dt>
+          <dd>
+          </dd>
 
         </dl>
       </section>
-  </div> <!-- /.main-content -->
-  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
-    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
-<header id="header-search-sidebar" class="hidden-l">
-  <form class="search-sidebar" role="search">
-    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
-  </form>
-</header>
-<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
-    <li><a href="https://github.com/mohammed-nor/ChemNOR-package">chem_nor package</a></li>
-</ol>
+    </div> <!-- /.main-content -->
+    <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+      <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+      <header id="header-search-sidebar" class="hidden-l">
+        <form class="search-sidebar" role="search">
+          <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead"
+            placeholder="Loading search...">
+        </form>
+      </header>
+      <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+        <li><a href="https://github.com/mohammed-nor/ChemNOR-package">chem_nor package</a></li>
+      </ol>
 
-    <h5 class="hidden-xs"><span class="package-name">chem_nor</span> <span class="package-kind">package</span></h5>
-    <ol>
-      <li class="section-title">Libraries</li>
-      <li><a href="chem_nor/">chem_nor</a></li>
-</ol>
+      <h5 class="hidden-xs"><span class="package-name">chem_nor</span> <span class="package-kind">package</span></h5>
+      <ol>
+        <li class="section-title">Libraries</li>
+        <li><a href="chem_nor/">chem_nor</a></li>
+      </ol>
 
-  </div>
-  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
-  </div>
-</main>
-<footer>
-  <span class="no-break">
-    chem_nor
-      0.5.7
-  </span>
-  
-</footer>
+    </div>
+    <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+    </div>
+  </main>
+  <footer>
+    <span class="no-break">
+      chem_nor
+      0.5.8
+    </span>
+
+  </footer>
 
 
-<script src="static-assets/highlight.pack.js?v1"></script>
-<script src="static-assets/docs.dart.js"></script>
+  <script src="static-assets/highlight.pack.js?v1"></script>
+  <script src="static-assets/docs.dart.js"></script>
 
 </body>
-</html>
 
+</html>
