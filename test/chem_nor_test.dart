@@ -1,9 +1,10 @@
 import 'package:chem_nor/chem_nor.dart';
-import 'package:chem_nor/key.dart';
+import 'key.dart';
 
 void main() async {
   print(ChemNOR.availableModels);
-  final finder = ChemNOR(genAiApiKey: key, model: GeminiModel.gemini3_0Flash);
+  final finder =
+      ChemNOR(genAiApiKey: key, model: GeminiModel.gemini3_0Flash.apiName);
   dynamic properties = await finder.getCompoundProperties(248);
   print(properties);
   dynamic list = await finder.getSubstructureCids('CC');

@@ -1,11 +1,11 @@
 <div align="center">
 
 
-<img src="app_icon.png" alt="ChemNOR Logo" width="120" height="120" style="border-radius: 24px;" />
+<!-- <img src="app_icon.png" alt="ChemNOR Logo" width="120" height="120" style="border-radius: 24px;" /> -->
 
-<img src="https://img.shields.io/badge/ChemNOR-v0.5.2-6C63FF?style=for-the-badge&logo=dart&logoColor=white" alt="ChemNOR Version"/>
+<img src="https://img.shields.io/badge/ChemNOR-v0.5.7-6C63FF?style=for-the-badge&logo=dart&logoColor=white" alt="ChemNOR Version"/>
 
-# ⚗️ ChemNOR
+# ChemNOR
 
 ### _Chemical Heuristic Evaluation of Molecules Networking for Optimized Reactivity_
 
@@ -42,7 +42,7 @@ Add the following to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  chem_nor: ^0.5.2
+  chem_nor: ^0.5.7
 ```
 
 Then run:
@@ -68,19 +68,25 @@ final chemNor = ChemNOR(genAiApiKey: 'your-api-key');
 ```dart
 final chemNor = ChemNOR(
   genAiApiKey: 'your-api-key',
-  model: GeminiModel.gemini_2_5_pro,
+  model: GeminiModel.gemini_2_5_pro.apiName,
 );
 ```
-
+note: use .apiName to get the api name of the model 
 **Available models:**
 
 | Model | Identifier |
 |---|---|
-| Gemini 2.5 Flash Lite | `GeminiModel.gemini_2_5_flash_lite` |
-| Gemini 2.5 Flash | `GeminiModel.gemini_2_5_flash` |
-| Gemini 2.5 Pro | `GeminiModel.gemini_2_5_pro` |
-| Gemini 3 Flash Preview | `GeminiModel.gemini_3_flash_preview` |
-| Gemini 3 Pro Preview | `GeminiModel.gemini_3_pro_preview` |
+| Gemini 2.0 Flash Lite | `GeminiModel.gemini2_0flashlite.apiName` |
+| Gemini 2.5 Flash Lite | `GeminiModel.gemini2_5flashlite.apiName` |
+| Gemini 2.5 Flash Lite | `GeminiModel.gemini2_5flashlite.apiName` |
+| Gemini 2.5 Flash | `GeminiModel.gemini2_5flash.apiName` |
+| Gemini 2.5 Pro | `GeminiModel.gemini2_5pro.apiName` |
+| Gemini 3.0 Flash | `GeminiModel.gemini3_0flash.apiName` |
+| Gemini 3.0 Pro  | `GeminiModel.gemini3_0pro.apiName` |
+| Gemini 3.1 Flash | `GeminiModel.gemini3_1flashlive.apiName` |
+| Gemini 3.1 Pro | `GeminiModel.gemini3_1pro.apiName` |
+
+
 
 ```dart
 // Print all available models
@@ -391,7 +397,7 @@ void main() async {
 
 ## 📄 License
 
-This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+This project is licensed under the **BSD 3-Clause License** — see the [LICENSE](LICENSE) file for details.
 
 ---
 

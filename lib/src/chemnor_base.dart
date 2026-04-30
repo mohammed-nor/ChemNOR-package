@@ -4,11 +4,15 @@ import 'package:intl/intl.dart';
 
 /// Available Gemini AI models
 enum GeminiModel {
+  gemini2_0Flash('gemini-2.0-flash'),
+  gemini2_0FlashLite('gemini-2.0-flash-lite'),
   gemini2_5FlashLite('gemini-2.5-flash-lite'),
   gemini2_5Pro('gemini-2.5-pro'),
   gemini2_5Flash('gemini-2.5-flash'),
-  gemini3_0Pro('gemini-3-pro-preview'),
+  gemini2_5Flashlite('gemini-2.5-flash-lite'),
   gemini3_0Flash('gemini-3-flash-preview'),
+  gemini3_1Pro('gemini-3.1-pro-preview'),
+  gemini3_1Flashlive('gemini-3.1-flash-live-preview'),
   ; // Default model
 
   final String apiName;
@@ -52,8 +56,8 @@ class ChemNOR {
   /// Optionally specify a Gemini model to use (defaults to gemini-2.5-flash).
   ChemNOR({
     required this.genAiApiKey,
-    GeminiModel model = GeminiModel.gemini2_5Flash,
-  }) : model = model.apiName;
+    required this.model,
+  });
 
   /// List of all available Gemini model names
   static List<String> get availableModels => GeminiModel.allModelNames;
@@ -186,9 +190,7 @@ class ChemNOR {
     consider the following context: $context
   ''';
     try {
-      final model = ChemNOR(genAiApiKey: genAiApiKey);
-      final response =
-          await model.generateContent(userInput, systemInstruction);
+      final response = await generateContent(userInput, systemInstruction);
       return response;
     } catch (e) {
       return 'Error: ${e.toString()}';
@@ -218,9 +220,7 @@ class ChemNOR {
     "I specialize in organic chemistry. Please ask questions related to that field."
   ''';
     try {
-      final model = ChemNOR(genAiApiKey: genAiApiKey);
-      final response =
-          await model.generateContent(userInput, systemInstruction);
+      final response = await generateContent(userInput, systemInstruction);
       return response;
     } catch (e) {
       return 'Error: ${e.toString()}';
@@ -246,8 +246,7 @@ class ChemNOR {
         '''If a question is not related to organic chemistry of a specific application, respond with:
     "I specialize in organic chemistry. Please ask questions related to that field."''';
 
-    final model = ChemNOR(genAiApiKey: genAiApiKey);
-    final response = await model.generateContent(prompt, systemInstruction);
+    final response = await generateContent(prompt, systemInstruction);
 
     // Extract SMILES using regex pattern
     final RegExp smilesRegex =
