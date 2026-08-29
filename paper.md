@@ -17,23 +17,22 @@ authors:
     corresponding: true
   - name: Loubna Jabir
     affiliation: "2"
-    orcid: 0000-0000-0000-0000
+    orcid: 0009-0004-9906-3198
   - name: Soufian El Barkany
     affiliation: "2"
-    orcid: 0000-0000-0000-0000
+    orcid: 0000-0003-3756-2237
   - name: Hassan Amhamdi
     affiliation: "1"
-    orcid: 0000-0000-0000-0000
+    orcid: 0000-0002-6693-5752
 affiliations:
   - name: Applied Chemistry Unit, Sciences and Technologies Faculty, Abdelmalek Essaadi University, 32 003 Al Hoceima, Morocco
     index: 1
   - name: Laboratory of Molecular Chemistry, Materials and Environment (LMCME), Department of Chemistry, Faculty of Multidisciplinary Nador, Mohamed 1st University, P. B. 300, Nador 62700, Morocco
     index: 2
 date: 29 August 2026
+
 bibliography: paper.bib
 ---
-
-# ChemNOR: An AI-assisted chemistry toolkit for compound discovery, property analysis, and educational workflows
 
 ## Summary
 
@@ -69,12 +68,12 @@ The library also emphasizes low-friction integration for Dart-based projects. Th
 
 ## Research impact statement
 
-ChemNOR demonstrates credible near-term research and community value through its open-source structure, public documentation, and reusable software design. The package is distributed as a Dart library with repository metadata, issue tracking, and example-driven documentation that make the API accessible to users and contributors. It provides concrete usage patterns for compound discovery, formula parsing, spectroscopy support, and chemistry-focused AI assistance, which contribute to both reproducibility and adoptability.in which, « ChemNOR It ! », an State of Art app was recently published in [GIthub](https://github.com/mohammed-nor/ChemNOR-it) and [Playstore](https://play.google.com/store/apps/details?id=com.norit.chemnor_it) that manifest the core methods of ChemNOR package.
+ChemNOR demonstrates credible near-term research and community value through its open-source structure, public documentation, and reusable software design. The package is distributed as a Dart library with repository metadata, issue tracking, and example-driven documentation that make the API accessible to users and contributors. It provides concrete usage patterns for compound discovery, formula parsing, spectroscopy support, and chemistry-focused AI assistance, which contribute to both reproducibility and adoptability.in which, « ChemNOR It ! », an State of Art app was recently published in [GitHub](https://github.com/mohammed-nor/ChemNOR-it) and [Playstore](https://play.google.com/store/apps/details?id=com.norit.chemnor_it) that manifest the core methods of ChemNOR package.
 
 The project’s likely impact is strongest in three areas. First, it reduces the effort needed to move from a vague application description to candidate chemical structures and associated properties. Second, it supports educational use by exposing common chemistry tasks in an approachable interface. Third, it demonstrates how AI-assisted chemistry reasoning can be embedded in an open-source software package alongside authoritative data retrieval. In this way, ChemNOR is not merely a collection of utilities; it is a research-enabling workflow for exploratory chemistry.
 
 
-The effectiveness of this sustained improvement is reflected in its visibility and impact within the platform: ChemNOR currently ranks as the third most relevant package under the keyword “chemistry” and holds the position of the leading chemistry-related package in terms of relevance. Furthermore, the package has achieved a full quality score of 160/160 and has successfully surpassed the milestone of +5000 downloads after 28 updates [Link](https://pub.dev/packages/chem_nor/score), highlighting both its academic and practical significance within the scientific and programming communities.
+The effectiveness of this sustained improvement is reflected in its visibility and impact within the platform: ChemNOR currently ranks as the third most relevant package under the keyword “chemistry” and holds the position of the leading chemistry-related package in terms of relevance. Furthermore, the package has achieved a full quality score of 160/160 and has successfully surpassed the milestone of +5000 downloads after 28 updates [[Link]](https://pub.dev/packages/chem_nor/score), highlighting both its academic and practical significance within the scientific and programming communities.
 
 ## AI usage disclosure
 
