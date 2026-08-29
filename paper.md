@@ -30,7 +30,6 @@ affiliations:
   - name: Laboratory of Molecular Chemistry, Materials and Environment (LMCME), Department of Chemistry, Faculty of Multidisciplinary Nador, Mohamed 1st University, P. B. 300, Nador 62700, Morocco
     index: 2
 date: 29 August 2026
-bibliography: paper.bib
 ---
 
 # ChemNOR: An AI-assisted chemistry toolkit for compound discovery, property analysis, and educational workflows
