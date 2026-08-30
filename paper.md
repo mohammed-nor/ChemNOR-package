@@ -1,5 +1,5 @@
 ---
-title: 'ChemNOR: An AI-assisted chemistry toolkit for compound discovery, property analysis, and educational workflows'
+title: 'ChemNOR: An AI-assisted chemistry Dart / Flutter toolkit for compound discovery, property analysis, and educational workflows'
 tags:
   - chemistry software
   - Dart
